@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX CLEAR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MODERN FLOATING HAMBURGER HEADER -->
+    <header class="navbar">
+        <div class="menu-container">
+            <button class="hamburger-btn" onclick="toggleMenu()" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="logo">APEX CLEAR</div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+        </div>
+
+        <!-- SLIDE-DOWN DROPDOWN MENU -->
+        <nav class="nav-links" id="navMenu">
+            <a href="#products" onclick="toggleMenu()">Store</a>
+            <a href="#" onclick="openSupportModal(); toggleMenu();">Support</a>
+            <button id="themeToggleBtn" onclick="toggleTheme(); toggleMenu();">Theme</button>
+            <a href="#" id="cartNavBtn" onclick="openCartSummary(); toggleMenu();">Cart (<span id="cartCount">0</span>)</a>
+            <a href="#" id="myOrdersBtn" onclick="showMyOrders(); toggleMenu();">My Orders</a>
+            <button class="admin-btn" onclick="openAdminPanel(); toggleMenu();">Admin</button>
+        </nav>
+    </header>
+
+    <!-- HERO / BANNER SECTION -->
+    <section class="hero">
+        <h1>APEX CLEAR ONLINE STORE</h1>
+        <p>Official E-Commerce Platform | Premium Deals</p>
+        <a href="#products" class="btn-primary hero-btn">Browse Store</a>
+    </section>
+
+    <!-- STORE CATEGORIES (AMAZON STYLE) -->
+    <section class="container categories-section">
+        <h3>Top Categories</h3>
+        <div class="category-grid">
+            <div class="cat-card" onclick="filterByCategory('Electronics')">Electronics</div>
+            <div class="cat-card" onclick="filterByCategory('Fashion')">Fashion</div>
+            <div class="cat-card" onclick="filterByCategory('Gadgets')">Gadgets</div>
+            <div class="cat-card" onclick="filterByCategory('Accessories')">Accessories</div>
+        </div>
+    </section>
+
+    <!-- HORIZONTAL SCROLL PRODUCT SECTIONS -->
+    <main class="container" id="products">
+        
+        <!-- SECTION 1: TRENDING PRODUCTS -->
+        <div class="section-header">
+            <h2>Trending Products</h2>
+            <span class="see-more-link" onclick="seeMoreProducts('Trending')">See More &rarr;</span>
+        </div>
+        <div id="noResults" class="no-results" style="display:none;">No products available. Add using Admin panel.</div>
+        <div class="product-row-scroll" id="trendingProductsGrid">
+            <!-- Dynamic 10 Horizontal Products -->
+        </div>
+
+        <!-- SECTION 2: FEATURED DEALS -->
+        <div class="section-header" style="margin-top: 30px;">
+            <h2>Featured Deals</h2>
+            <span class="see-more-link" onclick="seeMoreProducts('Featured')">See More &rarr;</span>
+        </div>
+        <div class="product-row-scroll" id="featuredProductsGrid">
+            <!-- Dynamic 10 Horizontal Products -->
+        </div>
+
+        <!-- SEE MORE / ALL PRODUCTS CONTAINER -->
+        <div id="allProductsContainer" style="display: none; margin-top: 30px;">
+            <h2>All APEX CLEAR Products</h2>
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </main>
+
+    <!-- ADVANCED AMAZON-STYLE CUSTOMER SUPPORT MODAL -->
+    <div id="supportModal" class="modal" style="display: none !important;">
+        <div class="modal-content support-modal-content">
+            <span class="close-btn" onclick="closeSupportModal()">&times;</span>
+            <h2>Amazon-Style Customer Support</h2>
+            <p style="font-size: 12px; color: #8b949e; margin-bottom: 15px;">How can we help you with your order?</p>
+
+            <form id="supportForm" onsubmit="handleSupportSubmit(event)">
+                <div class="form-group-row">
+                    <input type="text" id="custName" placeholder="Full Name" required>
+                    <input type="tel" id="custPhone" placeholder="Mobile Number" required>
+                </div>
+                
+                <div class="form-group-row">
+                    <input type="email" id="custEmail" placeholder="Email Address" required>
+                    <input type="text" id="custOrderID" placeholder="Order ID (Optional)">
+                </div>
+
+                <div class="form-group-row">
+                    <select id="queryType" required>
+                        <option value="">Select Issue Type</option>
+                        <option value="Where is my order?">Where is my order?</option>
+                        <option value="Return / Replacement">Return / Replacement</option>
+                        <option value="Damaged / Wrong Product">Damaged / Wrong Product Received</option>
+                        <option value="Payment / Refund Issue">Payment / Refund Issue</option>
+                        <option value="General Query">General Inquiry</option>
+                    </select>
+                    <input type="text" id="custProductName" placeholder="Product Name (If applicable)">
+                </div>
+
+                <textarea id="custMessage" rows="5" placeholder="Describe your issue in detail so we can assist you better..." required></textarea>
+                
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Submit Ticket to Support Team</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADVANCED CHECKOUT MODAL (REAL ADDRESS & PAYMENT) -->
+    <div id="checkoutModal" class="modal" style="display: none !important;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCheckoutModal()">&times;</span>
+            <h2>Complete Your Order</h2>
+            <p style="font-size: 12px; color: #8b949e; margin-bottom: 15px;">Enter delivery address and choose payment method</p>
+
+            <form id="checkoutForm" onsubmit="processRealOrder(event)">
+                <h4 style="margin-bottom: 8px; color: #00f2fe;">1. Shipping Address</h4>
+                <div class="form-group-row">
+                    <input type="text" id="shipName" placeholder="Full Name" required>
+                    <input type="tel" id="shipPhone" placeholder="10-Digit Mobile Number" pattern="[0-9]{10}" required>
+                </div>
+                
+                <input type="text" id="shipAddress" placeholder="Flat, House no., Building, Company, Apartment" required style="width: 100%; margin-bottom: 10px;">
+                
+                <div class="form-group-row">
+                    <input type="text" id="shipCity" placeholder="City" required>
+                    <input type="text" id="shipState" placeholder="State" required>
+                    <input type="text" id="shipPincode" placeholder="6-Digit Pincode" pattern="[0-9]{6}" required>
+                </div>
+
+                <h4 style="margin-top: 15px; margin-bottom: 8px; color: #00f2fe;">2. Payment Method</h4>
+                <select id="paymentMethod" onchange="togglePaymentUI()" required style="width: 100%; margin-bottom: 10px;">
+                    <option value="COD">Cash on Delivery (COD)</option>
+                    <option value="UPI">UPI / QR Code Scan</option>
+                </select>
+
+                <!-- UPI Payment Box (Shows if UPI selected) -->
+                <div id="upiPaymentBox" style="display: none; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; margin-bottom: 10px; text-align: center;">
+                    <p style="font-size: 13px; margin-bottom: 5px;">Scan & Pay via any UPI App:</p>
+                    <p style="font-weight: bold; color: #2ea043; font-size: 16px;">UPI ID: yourname@upi</p>
+                    <small style="color: #8b949e;">Enter Transaction / UTR No. after payment:</small>
+                    <input type="text" id="upiTransactionId" placeholder="12-digit UTR / Ref Number" style="margin-top: 5px;">
+                </div>
+
+                <div style="margin-top: 15px; background: rgba(0,242,254,0.1); padding: 10px; border-radius: 8px;">
+                    <strong>Total Amount to Pay: <span id="checkoutTotalAmount">₹0</span></strong>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px; background: linear-gradient(135deg, #2ea043 0%, #238636 100%);">Place Confirmed Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN SETUP & LOGIN MODAL -->
+    <div id="adminModal" class="modal" style="display: none !important;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAdminPanel()">&times;</span>
+            <div id="adminAuthSection">
+                <h3 id="adminModalTitle">Admin Security</h3>
+                <form id="adminAuthForm" onsubmit="handleAdminAuth(event)">
+                    <div id="passwordSetupGroup">
+                        <input type="password" id="adminPasswordInput" placeholder="Enter Admin Password" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 12px;">Login</button>
+                </form>
+            </div>
+
+            <!-- ADMIN CONTROL PANEL -->
+            <div id="adminControlPanel" style="display: none;">
+                <h3>Add New Product</h3>
+                <form id="addProductForm" onsubmit="saveProductByAdmin(event)">
+                    <input type="text" id="adminPName" placeholder="Product Title" required>
+                    <input type="text" id="adminPDesc" placeholder="Product Description" required>
+                    <input type="text" id="adminPrice" placeholder="Price (e.g. ₹499)" required>
+                    <input type="number" id="adminStock" placeholder="Stock Quantity" min="1" required>
+                    <input type="text" id="adminPImage" placeholder="Image URL" required>
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 12px;">Add Product</button>
+                </form>
+
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
+
+                <h3 style="margin-bottom: 10px;">Manage Existing Products</h3>
+                <div id="adminProductList" style="max-height: 180px; overflow-y: auto; margin-bottom: 20px;"></div>
+
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
+
+                <h3 style="margin-bottom: 10px;">Customer Orders Received</h3>
+                <div id="adminOrdersList" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;"></div>
+
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
+                
+                <button type="button" class="btn-primary" onclick="exportStoreData()" style="background-color: #2ea043; width: 100%; margin-bottom: 10px;">Export Store Data (JSON Backup)</button>
+                <button type="button" class="btn-primary" onclick="resetAdminPassword()" style="background-color: #da3633; width: 100%;">Reset Admin Password</button>
+                <button type="button" class="btn-primary" onclick="clearAllProducts()" style="background-color: #d97706; width: 100%; margin-top: 10px;">Clear All Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 APEX CLEAR. All rights reserved.</p>
+    </footer>
+
+    <div id="toastNotification" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+  </html>
+  
