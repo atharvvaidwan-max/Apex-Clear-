@@ -1,0 +1,2069 @@
+/* ==========================================
+   APEX CLEAR - CLEAN E-COMMERCE STYLES (PART 1)
+   ========================================== */
+
+:root {
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --text-color: #c9d1d9;
+    --accent-color: #238636;
+    --accent-hover: #2ea043;
+    --heading-color: #ffffff;
+    --modal-bg: #161b22;
+    --danger-color: #da3633;
+    --badge-blue: #1f6beb;
+}
+
+body.light-mode {
+    --bg-color: #f6f8fa;
+    --card-bg: #ffffff;
+    --border-color: #d0d7de;
+    --text-color: #24292f;
+    --accent-color: #1f883d;
+    --accent-hover: #1a7f37;
+    --heading-color: #000000;
+    --modal-bg: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ==========================================
+   RESPONSIVE NAVBAR & HEADER FIX
+   ========================================== */
+
+:root {
+    --bg-color: #0d1117;
+    --card-bg: #161b22;
+    --modal-bg: #161b22;
+    --text-color: #c9d1d9;
+    --heading-color: #ffffff;
+    --border-color: #30363d;
+    --accent-color: #238636;
+    --accent-hover: #2ea043;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--heading-color);
+    letter-spacing: 1px;
+}
+
+.search-container {
+    flex: 1 1 100%;
+    order: 3;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 14px;
+    outline: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.nav-links a, .nav-links button {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nav-links a:hover, #themeToggleBtn:hover {
+    background-color: var(--border-color);
+}
+
+#themeToggleBtn {
+    border: 1px solid var(--border-color);
+}
+
+.admin-btn {
+    background-color: #1f6beb !important;
+    color: #ffffff !important;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 15px;
+}
+
+.hero {
+    text-align: center;
+    padding: 30px 15px;
+    background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg-color) 100%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero h1 {
+    font-size: 24px;
+    color: var(--heading-color);
+    margin-bottom: 8px;
+}
+
+.hero p {
+    color: #8b949e;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+
+/* HERO SECTION */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg-color) 100%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero h1 {
+    font-size: 36px;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.hero-btn {
+    display: inline-block;
+    width: auto;
+    padding: 10px 25px;
+    text-decoration: none;
+}
+
+/* LAYOUT CONTAINER */
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.container h2 {
+    color: var(--heading-color);
+    margin-bottom: 20px;
+}
+
+.no-results {
+    text-align: center;
+    color: #8b949e;
+    padding: 20px;
+    font-size: 16px;
+}
+/* ==========================================
+   APEX CLEAR - PRODUCTS & MODAL STYLES (PART 2)
+   ========================================== */
+
+/* PRODUCT GRID */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.badge-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.product-img {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.product-info h3 {
+    color: var(--heading-color);
+    font-size: 18px;
+}
+
+.desc {
+    font-size: 13px;
+    color: #8b949e;
+    margin-bottom: 10px;
+}
+
+.curr-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent-hover);
+}
+
+/* BUTTONS */
+.btn-primary, .btn-buy, .btn-add-cart {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-primary, .btn-buy {
+    background-color: var(--accent-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-buy:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-add-cart {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-add-cart:hover {
+    background-color: var(--border-color);
+}
+
+/* SUPPORT FORM */
+.support-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.support-section input, .support-section select, .support-section textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    outline: none;
+}
+
+/* MODALS */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75);
+    z-index: 1000;
+}
+
+/* FIXED MODAL SCROLLING FOR MOBILE SCREEN */
+.modal-content {
+    background-color: var(--modal-bg);
+    width: 90%;
+    max-width: 420px;
+    max-height: 85vh;
+    overflow-y: auto;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    color: var(--text-color);
+}
+
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+    font-size: 13px;
+    color: #8b949e;
+}
+
+/* ==========================================
+   CHECKOUT FORM & TOAST NOTIFICATION STYLES
+   ========================================== */
+
+/* CHECKOUT FORM INPUTS */
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.checkout-form input, 
+.checkout-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    outline: none;
+    font-size: 14px;
+}
+
+/* BOTTOM TOAST NOTIFICATION */
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px 16px;
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.3s, bottom 0.3s;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 40px;
+}
+/* TOAST NOTIFICATION ANIMATION */
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px 16px;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px;
+}
+/* MOBILE BOTTOM FLOATING NAVIGATION BAR */
+@media (max-width: 768px) {
+    /* Navbar Flex Layout Adjustments */
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+
+    /* Convert Navigation Links to Fixed Bottom Bar */
+    .nav-links {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--card-bg, #161b22);
+        border-top: 1px solid var(--border-color, #30363d);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px 5px;
+        z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Floating Links Styling */
+    .nav-links a, 
+    .nav-links button {
+        font-size: 11px;
+        padding: 6px 8px;
+        margin: 0;
+        white-space: nowrap;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    /* Adjust Footer/Body spacing to prevent content occlusion */
+    body {
+        padding-bottom: 60px;
+    }
+}
+/* MODERN MOBILE BOTTOM FLOATING NAVIGATION BAR */
+@media (max-width: 768px) {
+    /* Navbar Flex Layout Adjustments */
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 5px;
+    }
+
+    /* Convert Navigation Links to Modern Floating Bottom Bar */
+    .nav-links {
+        position: fixed;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 92%;
+        max-width: 450px;
+        background: rgba(22, 27, 34, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 8px 6px;
+        z-index: 9999;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Floating Links & Buttons Alignment */
+    .nav-links a, 
+    .nav-links button,
+    .nav-links .admin-btn {
+        font-size: 11px !important;
+        font-weight: 500;
+        padding: 6px 8px !important;
+        margin: 0 !important;
+        white-space: nowrap;
+        border-radius: 10px;
+        text-align: center;
+        background: transparent !important;
+        border: none !important;
+        color: #c9d1d9 !important;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    /* Highlight Active/Special Buttons */
+    .nav-links .admin-btn {
+        background: rgba(31, 111, 235, 0.2) !important;
+        color: #58a6ff !important;
+        border: 1px solid rgba(56, 139, 253, 0.4) !important;
+    }
+
+    .nav-links #themeToggleBtn {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Smooth Touch Effect */
+    .nav-links a:active, 
+    .nav-links button:active {
+        transform: scale(0.92);
+    }
+
+    /* Prevent content overlap at the bottom */
+    body {
+        padding-bottom: 80px !important;
+    }
+}
+/* HORIZONTAL PRODUCT SCROLLING (AMAZON STYLE) */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.see-more-link {
+    color: var(--accent-hover, #58a6ff);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.product-row-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 12px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.product-row-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.product-row-scroll::-webkit-scrollbar-thumb {
+    background: var(--border-color, #30363d);
+    border-radius: 10px;
+}
+
+.product-row-scroll .product-card {
+    min-width: 220px;
+    max-width: 220px;
+    flex-shrink: 0;
+}
+
+/* CATEGORIES GRID */
+.categories-section {
+    margin: 20px auto;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cat-card {
+    background: var(--card-bg, #161b22);
+    border: 1px solid var(--border-color, #30363d);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cat-card:hover {
+    border-color: var(--accent-color, #1f6feb);
+}
+
+/* SUPPORT MODAL STYLING */
+.support-modal-content {
+    max-width: 600px !important;
+    width: 90%;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.form-group-row input, 
+.form-group-row select {
+    flex: 1;
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 600px) {
+    .form-group-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+/* WISHLIST & STAR RATING STYLING */
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #ff4757;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: transform 0.2s;
+}
+
+.wishlist-btn:active {
+    transform: scale(0.85);
+}
+
+.product-rating {
+    font-size: 12px;
+    color: #f1c40f;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.product-rating span {
+    color: #8b949e;
+    font-size: 11px;
+}
+
+/* CART QUANTITY CONTROLS */
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.qty-btn {
+    background: var(--border-color);
+    color: var(--text-color);
+    border: none;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* WISHLIST & STAR RATING STYLING */
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #ff4757;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: transform 0.2s;
+}
+
+.wishlist-btn:active {
+    transform: scale(0.85);
+}
+
+.product-rating {
+    font-size: 12px;
+    color: #f1c40f;
+    margin: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.product-rating span {
+    color: #8b949e;
+    font-size: 11px;
+}
+
+/* CART QUANTITY CONTROLS */
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.qty-btn {
+    background: var(--border-color);
+    color: var(--text-color);
+    border: none;
+    padding: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* ======================================================
+   APEX CLEAR - ULTRA MODERN & PREMIUM THEME OVERRIDES
+   ====================================================== */
+
+/* Root UI Color Palette & Variables */
+:root {
+    --bg-primary: #0b0f19;
+    --bg-card: rgba(22, 27, 34, 0.75);
+    --accent-neon: #00f2fe;
+    --accent-purple: #4facfe;
+    --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --glow-shadow: 0 8px 32px 0 rgba(0, 242, 254, 0.15);
+}
+
+/* Global Body Style Upgrade */
+body {
+    background-color: var(--bg-primary) !important;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(0, 242, 254, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(79, 172, 254, 0.05) 0px, transparent 50%) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    color: #e6edf3 !important;
+}
+
+/* Modern Glass Header */
+header {
+    background: rgba(13, 17, 23, 0.8) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--card-border) !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Hero Section Enhancements */
+.hero {
+    background: linear-gradient(180deg, rgba(13, 17, 23, 0.4) 0%, rgba(11, 15, 25, 0.9) 100%) !important;
+    padding: 50px 20px !important;
+    border-radius: 16px;
+    margin: 20px auto;
+    border: 1px solid var(--card-border);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+/* Category Cards Polish */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.cat-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.cat-card:hover {
+    transform: translateY(-5px) scale(1.02) !important;
+    border-color: var(--accent-neon) !important;
+    box-shadow: var(--glow-shadow) !important;
+    color: var(--accent-neon);
+}
+
+/* Premium Product Cards Styling */
+.product-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 16px !important;
+    padding: 16px !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-6px) !important;
+    border-color: rgba(0, 242, 254, 0.4) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), var(--glow-shadow) !important;
+}
+
+.product-img {
+    border-radius: 12px !important;
+    transition: transform 0.4s ease !important;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.04);
+}
+
+.product-title {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    margin-top: 10px !important;
+}
+
+.product-price {
+    font-size: 1.25rem !important;
+    font-weight: 800 !important;
+    color: #2ed573 !important;
+    margin: 8px 0 !important;
+}
+
+/* Modern Glowing Buttons */
+.btn-primary, .buy-btn {
+    background: var(--accent-gradient) !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 10px 18px !important;
+    cursor: pointer;
+    transition: all 0.25s ease !important;
+}
+
+.btn-primary:hover, .buy-btn:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4) !important;
+}
+.cart-btn {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--card-border) !important;
+    color: #e6edf3 !important;
+    border-radius: 10px !important;
+    padding: 10px 18px !important;
+    font-weight: 600;
+    transition: all 0.25s ease !important;
+}
+
+.cart-btn:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Wishlist Button Styling */
+.wishlist-btn {
+    background: rgba(13, 17, 23, 0.7) !important;
+    border: 1px solid var(--card-border) !important;
+    backdrop-filter: blur(6px);
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    transition: all 0.2s ease !important;
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.15) !important;
+    background: #ff4757 !important;
+    color: #fff !important;
+}
+
+/* Stylish Toast Notification */
+.toast {
+    background: rgba(22, 27, 34, 0.95) !important;
+    border: 1px solid var(--accent-neon) !important;
+    box-shadow: var(--glow-shadow) !important;
+    color: #fff !important;
+    border-radius: 12px !important;
+    padding: 12px 24px !important;
+    font-weight: 600;
+}
+/* ======================================================
+   FIXES: NAVIGATION BAR ALIGNMENT & LIGHT/DARK THEME
+   ====================================================== */
+
+/* 1. Fix Header Layout (Admin Button Overflow) */
+header {
+    padding: 10px 15px !important;
+}
+
+nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+nav a, nav button, .admin-btn {
+    margin: 2px !important;
+    white-space: nowrap !important;
+    font-size: 13px !important;
+    padding: 6px 12px !important;
+}
+
+/* 2. Proper Light Theme Override Support */
+body.light-theme {
+    background-color: #f6f8fa !important;
+    background-image: none !important;
+    color: #24292f !important;
+}
+
+body.light-theme header {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-bottom: 1px solid #d0d7de !important;
+}
+
+body.light-theme .hero {
+    background: #ffffff !important;
+    border-color: #d0d7de !important;
+}
+
+body.light-theme .hero h1 {
+    background: linear-gradient(135deg, #0969da 0%, #1f883d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-theme .cat-card,
+body.light-theme .product-card {
+    background: #ffffff !important;
+    border-color: #d0d7de !important;
+    color: #24292f !important;
+    box-shadow: 0 3px 6px rgba(140, 149, 159, 0.15) !important;
+}
+
+body.light-theme .product-title,
+body.light-theme .product-desc {
+    color: #24292f !important;
+}
+
+body.light-theme .cart-btn {
+    background: #f3f4f6 !important;
+    border-color: #d0d7de !important;
+    color: #24292f !important;
+}
+
+body.light-theme .wishlist-btn {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-color: #d0d7de !important;
+}
+/* ======================================================
+   FORCE FIX: HEADER RESPONSIVENESS & THEME SWITCHING
+   ====================================================== */
+
+/* 1. Header aur Nav Height Reset */
+header, nav {
+    height: auto !important;
+    max-height: none !important;
+    min-height: fit-content !important;
+    overflow: visible !important;
+}
+
+/* 2. Flex Layout Force Fix */
+nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px 10px !important;
+    padding: 8px 5px !important;
+}
+
+/* 3. Button & Link Styling */
+nav a, nav button, .admin-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 36px !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+}
+
+/* 4. Complete Light Theme Universal Reset */
+body.light-theme,
+body.light-theme * {
+    transition: background-color 0.2s, color 0.2s;
+}
+
+body.light-theme {
+    background-color: #f6f8fa !important;
+    color: #1f2328 !important;
+}
+
+body.light-theme header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid #d0d7de !important;
+}
+
+body.light-theme .hero,
+body.light-theme .cat-card,
+body.light-theme .product-card,
+body.light-theme .modal-content {
+    background: #ffffff !important;
+    color: #1f2328 !important;
+    border-color: #d0d7de !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.light-theme h1, 
+body.light-theme h2, 
+body.light-theme h3, 
+body.light-theme h4,
+body.light-theme .product-title,
+body.light-theme .product-desc {
+    color: #1f2328 !important;
+}
+
+body.light-theme .cart-btn {
+    background: #f3f4f6 !important;
+    color: #1f2328 !important;
+    border-color: #d0d7de !important;
+}
+
+body.light-theme .wishlist-btn {
+    background: rgba(240, 240, 240, 0.9) !important;
+    color: #ff4757 !important;
+    border-color: #d0d7de !important;
+}
+/* ======================================================
+   COMPLETE UNIVERSAL LIGHT THEME FIX (FOR ALL ELEMENTS)
+   ====================================================== */
+
+/* Total Background & Text Color Override */
+body.light-theme,
+body.light-theme main,
+body.light-theme section,
+body.light-theme div,
+body.light-theme p,
+body.light-theme span,
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4,
+body.light-theme h5,
+body.light-theme h6,
+body.light-theme a,
+body.light-theme label,
+body.light-theme strong {
+    color: #1f2328 !important;
+}
+
+/* Page Background in Light Mode */
+body.light-theme {
+    background-color: #f6f8fa !important;
+    background-image: none !important;
+}
+
+/* Cards, Containers, Sections in Light Mode */
+body.light-theme header,
+body.light-theme .hero,
+body.light-theme .cat-card,
+body.light-theme .product-card,
+body.light-theme .modal-content,
+body.light-theme .admin-section,
+body.light-theme .cart-drawer,
+body.light-theme .order-card,
+body.light-theme div[class*="card"],
+body.light-theme div[class*="container"] {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    border-color: #d0d7de !important;
+    box-shadow: 0 4px 12px rgba(140, 149, 159, 0.15) !important;
+}
+
+/* Inputs, Textareas & Select Options in Light Mode */
+body.light-theme input,
+body.light-theme textarea,
+body.light-theme select {
+    background-color: #ffffff !important;
+    color: #1f2328 !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-theme input::placeholder,
+body.light-theme textarea::placeholder {
+    color: #6e7781 !important;
+}
+
+/* Buttons in Light Mode */
+body.light-theme .cart-btn,
+body.light-theme .qty-btn,
+body.light-theme button:not(.btn-primary):not(.buy-btn):not(.admin-btn) {
+    background-color: #f3f4f6 !important;
+    color: #1f2328 !important;
+    border: 1px solid #d0d7de !important;
+}
+
+/* Wishlist Button in Light Mode */
+body.light-theme .wishlist-btn {
+    background-color: rgba(240, 240, 240, 0.9) !important;
+    color: #ff4757 !important;
+    border-color: #d0d7de !important;
+}
+
+/* Toast Notification in Light Mode */
+body.light-theme .toast {
+    background-color: #ffffff !important;
+    color: #1f2328 !important;
+    border: 1px solid #0969da !important;
+    box-shadow: 0 8px 24px rgba(140, 149, 159, 0.25) !important;
+}
+/* ======================================================
+   FIX: FLOATING STICKY HEADER & NAV ALIGNMENT
+   ====================================================== */
+
+/* 1. Header ko Flawless Floating Sticky look dena */
+header {
+    position: sticky !important;
+    top: 10px !important;
+    z-index: 9999 !important;
+    margin: 10px 12px 20px 12px !important;
+    padding: 12px 16px !important;
+    background: rgba(13, 17, 23, 0.85) !important;
+    backdrop-filter: blur(16px) -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Light Mode Header Adjustment */
+body.light-theme header {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 2. Navigation bar buttons ko ek line me aur proper spacing dena */
+nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px 12px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 3. Buttons & Links ko properly balanced floating look dena */
+nav a, nav button, .admin-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: inherit !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+nav a:hover, nav button:hover, .admin-btn:hover {
+    background: var(--accent-neon, #00f2fe) !important;
+    color: #000000 !important;
+    border-color: var(--accent-neon, #00f2fe) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Light Theme Navigation Buttons */
+body.light-theme nav a, 
+body.light-theme nav button, 
+body.light-theme .admin-btn {
+    background: rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 4. Hero Section ke saath spacing fix karna */
+.hero {
+    margin-top: 15px !important;
+}
+/* ======================================================
+   PERFECT HEADER FIX: ALL BUTTONS IN ONE ROW
+   ====================================================== */
+
+/* 1. Outer Header Container Padding Reset */
+header {
+    padding: 8px 4px !important;
+    width: 95% !important;
+    margin: 10px auto !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. Nav Container Setup - No Wrapping allowed */
+nav {
+    display: flex !important;
+    flex-wrap: nowrap !important; /* Forces all buttons in single row */
+    align-items: center !important;
+    justify-content: space-evenly !important;
+    gap: 3px !important;
+    width: 100% !important;
+    overflow-x: auto !important; /* Adds subtle horizontal scroll on tiny screens if needed */
+    scrollbar-width: none !important; /* Hide scrollbar for clean look */
+}
+
+nav::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* 3. Button Sizing Adjustment for Mobile Screen */
+nav a, nav button, .admin-btn {
+    flex: 0 0 auto !important; /* Prevents stretching or breaking */
+    padding: 6px 8px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+/* 4. Background text overlap fix for Theme button */
+nav * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+/* ======================================================
+   FLOATING BOTTOM NAVIGATION BAR (FIXED AT BOTTOM)
+   ====================================================== */
+
+/* 1. Header ko screen ke bottom par floating fix karna */
+header {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 15px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 92% !important;
+    max-width: 480px !important;
+    z-index: 99999 !important;
+    background: rgba(13, 17, 23, 0.88) !important;
+    backdrop-filter: blur(16px) -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 20px !important;
+    padding: 8px 10px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 242, 254, 0.15) !important;
+    margin: 0 !important;
+}
+
+/* Light Theme Support for Bottom Bar */
+body.light-theme header {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 2. Buttons Alignment in Bottom Bar */
+nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 4px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+}
+
+nav::-webkit-scrollbar {
+    display: none !important;
+}
+
+nav a, nav button, .admin-btn {
+    flex: 0 0 auto !important;
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 3. Page content bottom padding adjustment */
+body {
+    padding-bottom: 90px !important; /* Taaki bottom nav content ko na dhabaye */
+}
+/* ======================================================
+   FIX: FLOATING BOTTOM BAR & ADMIN ORDERS LIGHT THEME
+   ====================================================== */
+
+/* 1. Header se फालतू Title/Text HIDE करना (sirf clean floating bar dikhe) */
+header h1, 
+header h2, 
+header .logo,
+header .site-title,
+header > span,
+header > div:not(nav) {
+    display: none !important;
+}
+
+/* 2. Floating Bottom Bar Container Fix */
+header {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 94% !important;
+    max-width: 450px !important;
+    height: auto !important;
+    min-height: 50px !important;
+    z-index: 99999 !important;
+    background: rgba(18, 24, 38, 0.92) !important;
+    backdrop-filter: blur(16px) -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 25px !important;
+    padding: 6px 10px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Light Theme Floating Bar Background */
+body.light-theme header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 3. Navigation Buttons Flex Alignment */
+nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    gap: 4px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+nav a, nav button, .admin-btn {
+    flex: 0 0 auto !important;
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #e6edf3 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.light-theme nav a, 
+body.light-theme nav button, 
+body.light-theme .admin-btn {
+    background: rgba(0, 0, 0, 0.05) !important;
+    color: #1f2328 !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 4. Fix Dark Order Cards in Light Theme (Admin Panel) */
+body.light-theme .order-card,
+body.light-theme [class*="order"],
+body.light-theme div[style*="background"] {
+    background-color: #f6f8fa !important;
+    background-image: none !important;
+    color: #1f2328 !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-theme .order-card *,
+body.light-theme [class*="order"] * {
+    color: #1f2328 !important;
+}
+
+/* Page content space at bottom */
+body {
+    padding-bottom: 80px !important;
+}
+/* ======================================================
+   ULTRA-MODERN FLOATING BOTTOM NAVIGATION BAR
+   ====================================================== */
+
+/* Outer Header Container Reset */
+header {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 16px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 420px !important;
+    height: 58px !important;
+    z-index: 99999 !important;
+    background: rgba(18, 24, 38, 0.85) !important;
+    backdrop-filter: blur(20px) -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 30px !important;
+    padding: 0 8px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Light Theme Navigation Bar Background */
+body.light-theme header {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Nav Inner Container */
+nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 2px !important;
+}
+
+/* Clean Minimal Button Styling */
+nav a, nav button, .admin-btn {
+    flex: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 40px !important;
+    padding: 0 4px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2px !important;
+    border-radius: 20px !important;
+    white-space: nowrap !important;
+    background: transparent !important;
+    color: #94a3b8 !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Hover and Active State */
+nav a:hover, nav button:hover, .admin-btn:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Selected / Active Button Highlight Effect */
+nav a.active, nav button.active, .admin-btn.active,
+nav a:focus, nav button:focus {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%) !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(0, 242, 254, 0.3) !important;
+}
+
+/* Light Theme Text Colors */
+body.light-theme nav a, 
+body.light-theme nav button, 
+body.light-theme .admin-btn {
+    color: #475569 !important;
+}
+
+body.light-theme nav a:hover, 
+body.light-theme nav button:hover, 
+body.light-theme .admin-btn:hover {
+    color: #0f172a !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+/* ======================================================
+   TOP HAMBURGER MENU & SLIDE-DOWN POPUP STYLING
+   ====================================================== */
+
+/* Floating Header Bar at Top */
+header {
+    position: fixed !important;
+    top: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 420px !important;
+    height: 52px !important;
+    z-index: 99999 !important;
+    background: rgba(18, 24, 38, 0.88) !important;
+    backdrop-filter: blur(20px) -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 20px !important;
+    padding: 0 16px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin: 0 !important;
+}
+
+body.light-theme header {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.app-logo-text {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+body.light-theme .app-logo-text {
+    color: #1f2328;
+}
+
+/* Three Lines Hamburger Icon */
+.hamburger-btn {
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-around !important;
+    width: 28px !important;
+    height: 22px !important;
+    padding: 0 !important;
+    z-index: 100000 !important;
+}
+
+.hamburger-btn span {
+    width: 100%;
+    height: 2.5px;
+    background-color: #00f2fe;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+body.light-theme .hamburger-btn span {
+    background-color: #0969da;
+}
+
+/* Hamburger Active (X Shape) Animation */
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Popup Nav Menu Panel */
+.nav-menu {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: rgba(18, 24, 38, 0.96) !important;
+    backdrop-filter: blur(25px) -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 20px !important;
+    padding: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-10px) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.light-theme .nav-menu {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Menu Open State */
+.nav-menu.open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+}
+
+/* Menu Items Styling */
+.nav-menu a, .nav-menu button {
+    display: flex !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #e6edf3 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    text-align: left !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    transition: background 0.2s ease !important;
+}
+
+body.light-theme .nav-menu a, 
+body.light-theme .nav-menu button {
+    color: #1f2328 !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.nav-menu a:hover, .nav-menu button:hover {
+    background: rgba(0, 242, 254, 0.15) !important;
+    color: #00f2fe !important;
+}
+
+/* Body Top Padding Fix */
+body {
+    padding-top: 75px !important;
+    padding-bottom: 20px !important;
+}
+/* ======================================================
+   FORCE HAMBURGER MENU & CLEAN TOP BAR FIX
+   ====================================================== */
+
+/* Top Floating Header Bar */
+header.navbar, header {
+    position: fixed !important;
+    top: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    max-width: 420px !important;
+    height: 50px !important;
+    z-index: 999999 !important;
+    background: rgba(18, 24, 38, 0.92) !important;
+    backdrop-filter: blur(20px) -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 25px !important;
+    padding: 0 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    box-sizing: border-box !important;
+}
+
+/* Container for Hamburger Icon + Logo */
+.menu-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+.logo {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+    color: #ffffff !important;
+}
+
+/* 3 Lines Hamburger Button Icon */
+.hamburger-btn {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 24px !important;
+    height: 18px !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+.hamburger-btn span {
+    display: block !important;
+    width: 100% !important;
+    height: 2.5px !important;
+    background-color: #00f2fe !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Hamburger Active State (X Button) */
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg) !important;
+}
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0 !important;
+}
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg) !important;
+}
+
+/* HIDE DIRECT NAV LINKS IN HEADER (Crucial Fix!) */
+header .nav-links, nav.nav-links {
+    position: absolute !important;
+    top: 58px !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: rgba(18, 24, 38, 0.96) !important;
+    backdrop-filter: blur(25px) -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 20px !important;
+    padding: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+    box-sizing: border-box !important;
+    
+    /* DEFAULT HIDDEN STATE */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(-10px) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* SHOW MENU WHEN CLICKED */
+header .nav-links.open, nav.nav-links.open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+}
+
+/* DROPDOWN MENU ITEMS STYLING */
+.nav-links a, .nav-links button {
+    display: block !important;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #f0f6fc !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    text-decoration: none !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+}
+
+.nav-links a:hover, .nav-links button:hover {
+    background: rgba(0, 242, 254, 0.15) !important;
+    color: #00f2fe !important;
+    border-color: rgba(0, 242, 254, 0.4) !important;
+}
+
+/* Search Box inside Bar Fix */
+.search-container {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.search-container input {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+    width: 120px !important;
+}
+
+/* Space for Page Content */
+body {
+    padding-top: 75px !important;
+}
+/* ======================================================
+   CLEAN MINIMAL FLOATING HAMBURGER BUTTON FIX
+   ====================================================== */
+
+/* 1. Header ke Bada Box/Rectangle Border Hatao */
+header, header.navbar {
+    position: fixed !important;
+    top: 12px !important;
+    left: 16px !important; /* Screen ke Left corner me float karega */
+    transform: none !important;
+    width: 48px !important; /* Sirf Hamburger jitni width */
+    height: 48px !important; /* Circular height */
+    z-index: 999999 !important;
+    background: rgba(18, 24, 38, 0.9) !important;
+    backdrop-filter: blur(16px) -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 50% !important; /* Perfect Circular Button */
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Light Theme Circle Button Background */
+body.light-theme header, 
+body.light-theme header.navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Hide Search Box or Extra Text inside Header */
+header .search-container,
+header .logo {
+    display: none !important;
+}
+
+/* 2. Menu Container Centered inside Floating Circle */
+.menu-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hamburger Icon Lines */
+.hamburger-btn {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 20px !important;
+    height: 15px !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.hamburger-btn span {
+    display: block !important;
+    width: 100% !important;
+    height: 2.2px !important;
+    background-color: #00f2fe !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+}
+
+body.light-theme .hamburger-btn span {
+    background-color: #0969da !important;
+}
+
+/* Hamburger Active State (X Animation) */
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(6.4px) rotate(45deg) !important;
+}
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0 !important;
+}
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-6.4px) rotate(-45deg) !important;
+}
+
+/* 3. Dropdown Menu Floating Positioning */
+header .nav-links, nav.nav-links {
+    position: fixed !important;
+    top: 68px !important;
+    left: 16px !important;
+    width: 220px !important; /* Neat compact width */
+    max-width: 85vw !important;
+    background: rgba(18, 24, 38, 0.96) !important;
+    backdrop-filter: blur(25px) -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 18px !important;
+    padding: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+    box-sizing: border-box !important;
+    
+    /* Default Hidden */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(-10px) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body.light-theme header .nav-links,
+body.light-theme nav.nav-links {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Menu Open State */
+header .nav-links.open, nav.nav-links.open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+}
+
+/* Menu Items Styling */
+.nav-links a, .nav-links button {
+    display: block !important;
+    width: 100% !important;
+    padding: 10px 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #f0f6fc !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+}
+
+body.light-theme .nav-links a, 
+body.light-theme .nav-links button {
+    color: #1f2328 !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Space from top for Hero banner */
+body {
+    padding-top: 20px !important;
+}
+/* ======================================================
+   FIX FOR CHECKOUT MODAL, IMAGES & MINI CARDS (ADD TO BOTTOM)
+   ====================================================== */
+
+/* Enable Full Screen Checkout / Payment Modal */
+.modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 9999999 !important;
+    padding: 15px !important;
+}
+
+.modal-content {
+    background: #161b22 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+    position: relative !important;
+    color: #f0f6fc !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+}
+
+/* Amazon Style Mini Card Grid */
+.product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 12px !important;
+}
+
+/* Image Fallback Fix */
+.product-img-box, .product-card img {
+    width: 100% !important;
+    height: 120px !important;
+    object-fit: cover !important;
+    background: #21262d !important;
+    border-radius: 8px !important;
+}
