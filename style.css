@@ -1,3 +1,11 @@
+html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important; /* पूरे पेज को दाईं तरफ भागने से रोकेगा */
+}
+
 /* ==========================================
    APEX CLEAR - CLEAN E-COMMERCE STYLES (PART 1)
    ========================================== */
@@ -2066,4 +2074,2292 @@ body {
     object-fit: cover !important;
     background: #21262d !important;
     border-radius: 8px !important;
+}
+/* MOVE BIG HERO CARD TO TOP RIGHT OF HAMBURGER */
+/* ADJUST SPACING AND SIZE OF APEX CLEAR TEXT */
+.hero {
+    position: absolute !important;
+    top: 14px !important;
+    left: 80px !important; /* हैमबर्गर से थोड़ा और दूर खिसकाया (60px से 80px) */
+    right: 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-align: left !important;
+}
+
+.hero h1 {
+    font-size: 1.25rem !important; /* साइज हल्का सा बड़ा किया (1.1rem से 1.25rem) */
+    margin: 0 !important;
+    color: #0072ff !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+}
+
+
+.hero p, .hero-btn {
+    display: none !important; /* एक्स्ट्रा टेक्स्ट और बटन छुपा दिया */
+}
+
+/* कैटेगरी सेक्शन को ऊपर खिसकाना ताकि खाली जगह ना बचे */
+.categories-section, .top-categories, h2:first-of-type {
+    margin-top: 70px !important;
+}
+/* ==========================================
+   PREMIUM SEARCH BAR STYLING
+   ========================================== */
+
+/* Top header se sahi gap dena */
+.search-section {
+    margin-top: 65px !important; /* Top title ke neeche thik-thak gap */
+    padding: 10px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Glassmorphism Outer Box */
+.search-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 30px !important; /* Rounded pill design */
+    padding: 6px 8px 6px 16px !important;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.08) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Focus effect jab click kare */
+.search-wrapper:focus-within {
+    border-color: #0072ff !important;
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.18) !important;
+}
+
+.search-icon {
+    font-size: 1rem !important;
+    margin-right: 10px !important;
+    opacity: 0.6 !important;
+}
+
+.search-wrapper input {
+    flex: 1 !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    font-size: 0.9rem !important;
+    color: #1a1d20 !important;
+}
+
+.search-wrapper input::placeholder {
+    color: #a0aec0 !important;
+}
+
+/* Premium Gradient Button */
+.search-btn {
+    background: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8px 18px !important;
+    border-radius: 20px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    cursor: pointer !important;
+    box-shadow: 0 3px 10px rgba(0, 114, 255, 0.3) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.search-btn:active {
+    transform: scale(0.95) !important;
+}
+
+/* Top Categories Section Alignment Fix */
+.categories-section, .top-categories, h2:first-of-type {
+    margin-top: 15px !important;
+}
+
+/* Dark Mode Support for Search Bar */
+body.dark-mode .search-wrapper,
+[data-theme="dark"] .search-wrapper {
+    background: #161b22 !important;
+    border-color: #30363d !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .search-wrapper input,
+[data-theme="dark"] .search-wrapper input {
+    color: #f0f6fc !important;
+}
+/* LIGHT & DARK DYNAMIC SEARCH BAR FIX */
+
+/* 1. Light Mode (Default) - Safed Background */
+.search-wrapper {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.search-wrapper input {
+    color: #1a1d20 !important;
+}
+
+.search-wrapper input::placeholder {
+    color: #a0aec0 !important;
+}
+
+/* 2. Dark Mode Only - Black Background */
+body.dark-mode .search-wrapper,
+body.dark .search-wrapper,
+[data-theme="dark"] .search-wrapper {
+    background: #161b22 !important;
+    border: 1px solid #30363d !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .search-wrapper input,
+body.dark .search-wrapper input,
+[data-theme="dark"] .search-wrapper input {
+    color: #f0f6fc !important;
+}
+
+body.dark-mode .search-wrapper input::placeholder,
+body.dark .search-wrapper input::placeholder,
+[data-theme="dark"] .search-wrapper input::placeholder {
+    color: #8b949e !important;
+}
+/* PERFECT AUTO-THEME SEARCH BAR */
+.search-wrapper {
+    background-color: var(--card-bg, #ffffff) !important;
+    border: 1px solid var(--border-color, #e2e8f0) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+.search-wrapper input {
+    color: var(--text-color, #1a1d20) !important;
+    background: transparent !important;
+}
+
+.search-wrapper input::placeholder {
+    color: var(--placeholder-color, #8b949e) !important;
+}
+
+/* Dark Theme Variables Override */
+body.dark-mode, 
+body.dark, 
+[data-theme="dark"] {
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --text-color: #f0f6fc;
+    --placeholder-color: #8b949e;
+}
+/* ALL-IN-ONE SEARCH BAR THEME FIX */
+
+/* Light Theme Default (सफ़ेद बैकग्राउंड, काला टेक्स्ट) */
+.search-wrapper {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+.search-wrapper input {
+    color: #1a1d20 !important;
+    background: transparent !important;
+}
+
+.search-wrapper input::placeholder {
+    color: #a0aec0 !important;
+}
+
+/* Dark Theme (डार्क बैकग्राउंड, सफ़ेद टेक्स्ट) */
+body.dark-mode .search-wrapper,
+body.dark .search-wrapper,
+[data-theme="dark"] .search-wrapper,
+body[style*="background"] .search-wrapper {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .search-wrapper input,
+body.dark .search-wrapper input,
+[data-theme="dark"] .search-wrapper input,
+body[style*="background"] .search-wrapper input {
+    color: #ffffff !important;
+}
+
+body.dark-mode .search-wrapper input::placeholder,
+body.dark .search-wrapper input::placeholder,
+[data-theme="dark"] .search-wrapper input::placeholder {
+    color: #8b949e !important;
+}
+/* LIGHT MODE SEARCH BAR FORCE FIX */
+body .search-wrapper,
+div.search-wrapper {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+body .search-wrapper input,
+div.search-wrapper input {
+    color: #1a1d20 !important;
+    background: transparent !important;
+}
+
+body .search-wrapper input::placeholder,
+div.search-wrapper input::placeholder {
+    color: #8b949e !important;
+}
+
+/* DARK MODE ONLY WHEN DARK CLASS IS ACTIVE */
+body.dark-mode .search-wrapper,
+body.dark .search-wrapper,
+[data-theme="dark"] .search-wrapper {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+}
+
+body.dark-mode .search-wrapper input,
+body.dark .search-wrapper input,
+[data-theme="dark"] .search-wrapper input {
+    color: #ffffff !important;
+}
+/* FORCE SEARCH BAR LIGHT MODE BY DEFAULT */
+html body .search-wrapper {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+html body .search-wrapper input {
+    color: #1a1d20 !important;
+    background: transparent !important;
+}
+
+html body .search-wrapper input::placeholder {
+    color: #8b949e !important;
+}
+
+/* APPLY DARK ONLY WHEN DARK CLASS IS PRESENT ON BODY */
+html body.dark-mode .search-wrapper,
+html body.dark .search-wrapper,
+html body[data-theme="dark"] .search-wrapper {
+    background: #161b22 !important;
+    border: 1px solid #30363d !important;
+}
+
+html body.dark-mode .search-wrapper input,
+html body.dark .search-wrapper input,
+html body[data-theme="dark"] .search-wrapper input {
+    color: #ffffff !important;
+}
+/* CLEAN AUTOMATIC SEARCH BAR THEME */
+.search-wrapper {
+    background-color: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e2e8f0);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.search-wrapper input {
+    color: var(--text-color, #1a1d20);
+    background: transparent;
+}
+/* FULLSCREEN ADMIN PANEL & TABS STYLES */
+#adminModal .admin-modal-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+    background: #ffffff;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+}
+
+/* TABS STYLING */
+.admin-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    padding: 10px 16px;
+    border: none;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.tab-btn.active {
+    background: #00a2ff;
+    color: #ffffff;
+}
+
+/* TAB CONTENT CONTROLS */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.section-divider {
+    margin: 25px 0;
+    border: 0;
+    border-top: 1px solid #cbd5e1;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.action-btn {
+    width: 100%;
+    padding: 12px;
+    background: #00a2ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.warning-btn { background: #f59e0b; }
+.danger-btn { background: #ef4444; }
+/* ADMIN MODAL DISPLAY FIX */
+#adminModal {
+    display: none; /* शुरू में बंद रहेगा */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+}
+
+#adminModal.active,
+#adminModal[style*="display: block"] {
+    display: flex !important;
+}
+
+#adminModal .admin-modal-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+    background: #ffffff;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+/* FORCE HIDE ADMIN MODAL ON LOAD */
+#adminModal {
+    display: none !important;
+}
+
+#adminModal.show-admin {
+    display: flex !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important;
+    background: #ffffff !important;
+}
+/* HORIZONTAL SLIDING CATEGORIES BAR */
+.categories-slider-wrapper {
+    width: 100% !important;
+    padding: 12px 16px 5px 16px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.categories-slider {
+    display: flex !important;
+    gap: 10px !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important; /* Smooth touch scroll on mobile */
+    scrollbar-width: none !important; /* Hide scrollbar Firefox */
+}
+
+/* Hide scrollbar for Chrome/Safari/Edge */
+.categories-slider::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Individual Category Chips */
+.cat-chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 8px 16px !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0 !important; /* Prevents chips from squishing */
+}
+
+/* Active Selected Category Chip */
+.cat-chip.active {
+    background: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: 0 3px 10px rgba(0, 114, 255, 0.3) !important;
+}
+
+.cat-chip:active {
+    transform: scale(0.95) !important;
+}
+/* CUSTOM PASSWORD MODAL STYLES */
+.custom-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 100000 !important;
+}
+
+.custom-modal-box {
+    background: #ffffff !important;
+    width: 90% !important;
+    max-width: 360px !important;
+    padding: 24px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    animation: popupScale 0.2s ease-out !important;
+}
+
+@keyframes popupScale {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-icon-header {
+    font-size: 32px !important;
+    margin-bottom: 8px !important;
+}
+
+.custom-modal-box h3 {
+    margin: 0 0 6px 0 !important;
+    color: #1e293b !important;
+    font-size: 1.2rem !important;
+}
+
+.custom-modal-box p {
+    margin: 0 0 18px 0 !important;
+    color: #64748b !important;
+    font-size: 0.88rem !important;
+}
+
+/* PASSWORD INPUT WITH EYE BUTTON */
+.password-input-container {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 12px !important;
+}
+
+.password-input-container input {
+    width: 100% !important;
+    padding: 12px 42px 12px 14px !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    font-size: 1rem !important;
+    outline: none !important;
+    transition: border-color 0.2s !important;
+    box-sizing: border-box !important;
+}
+
+.password-input-container input:focus {
+    border-color: #0072ff !important;
+}
+
+.eye-btn {
+    position: absolute !important;
+    right: 10px !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #64748b !important;
+}
+
+.eye-btn:hover {
+    color: #1e293b !important;
+}
+
+.error-msg {
+    color: #ef4444 !important;
+    font-size: 0.82rem !important;
+    margin-bottom: 12px !important;
+}
+
+/* BUTTONS */
+.modal-actions {
+    display: flex !important;
+    gap: 10px !important;
+    margin-top: 15px !important;
+}
+
+.btn-cancel, .btn-submit {
+    flex: 1 !important;
+    padding: 11px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    border: none !important;
+    font-size: 0.9rem !important;
+}
+
+.btn-cancel {
+    background: #f1f5f9 !important;
+    color: #475569 !important;
+}
+
+.btn-submit {
+    background: #0072ff !important;
+    color: #ffffff !important;
+}
+/* PASSWORD MODAL & ADMIN MODAL STRICT HIDING */
+#passwordModal,
+#adminModal {
+    display: none !important;
+}
+
+#passwordModal.active-modal {
+    display: flex !important;
+}
+
+#adminModal.show-admin {
+    display: flex !important;
+}
+/* TOAST NOTIFICATION STYLING */
+.toast-popup {
+    position: fixed !important;
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #ef4444 !important; /* Soft Red Color */
+    color: #ffffff !important;
+    padding: 12px 20px !important;
+    border-radius: 30px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4) !important;
+    z-index: 200000 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    animation: toastSlideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+@keyframes toastSlideDown {
+    from {
+        top: -60px;
+        opacity: 0;
+    }
+    to {
+        top: 20px;
+        opacity: 1;
+    }
+}
+/* Toast Notification Hide by Default */
+#toastNotification, .toast-popup {
+    display: none !important;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+#toastNotification.show {
+    display: flex !important;
+}
+/* ======================================================
+   APEX CLEAR - ULTRA PREMIUM LIGHT THEME (CSS)
+   ====================================================== */
+
+:root {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --accent-blue: #2563eb;
+    --accent-blue-hover: #1d4ed8;
+    --accent-gradient: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    --border-light: #e2e8f0;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+    --radius-lg: 16px;
+    --radius-md: 12px;
+}
+
+/* Page Background */
+body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header & Logo Section */
+header {
+    background: #ffffff !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: var(--shadow-sm);
+    padding: 15px 20px;
+}
+
+header h1, header .logo-text, .header-title {
+    color: #0f172a !important;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Hamburger Menu Button */
+.hamburger-btn {
+    background: #f1f5f9 !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: 50%;
+    color: #0f172a !important;
+}
+
+/* Search Bar Wrapper */
+.search-wrapper {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 30px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+    padding: 4px 6px 4px 16px !important;
+}
+
+.search-wrapper input {
+    background: transparent !important;
+    color: #0f172a !important;
+    font-size: 14px;
+}
+
+.search-wrapper input::placeholder {
+    color: #94a3b8 !important;
+}
+
+.search-wrapper button {
+    background: var(--accent-gradient) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: 8px 20px !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Category Filter Chips */
+.cat-chip {
+    background: #ffffff !important;
+    border: 1px solid var(--border-light) !important;
+    color: var(--text-secondary) !important;
+    font-weight: 600;
+    border-radius: 20px !important;
+    padding: 8px 18px !important;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.cat-chip.active, .cat-chip:hover {
+    background: var(--accent-blue) !important;
+    color: #ffffff !important;
+    border-color: var(--accent-blue) !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+}
+
+/* Section Titles (Trending Products, Featured Deals) */
+h2, h3, .section-title {
+    color: #0f172a !important;
+    font-weight: 700;
+}
+
+.see-more, a.see-more {
+    color: var(--accent-blue) !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Product Cards (Ultra Premium Look) */
+.product-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-md) !important;
+    padding: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px -5px rgba(15, 23, 42, 0.12) !important;
+}
+
+.product-title {
+    color: var(--text-primary) !important;
+    font-weight: 600;
+}
+
+.product-desc {
+    color: var(--text-secondary) !important;
+}
+
+.product-price {
+    color: #0f172a !important;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/* Buttons inside Product Card */
+.btn-primary.buy-btn {
+    background: var(--accent-gradient) !important;
+    border: none !important;
+    border-radius: var(--radius-md) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2) !important;
+}
+
+.btn-primary.cart-btn {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: var(--radius-md) !important;
+    font-weight: 600;
+}
+
+/* Modals & Admin Dashboard */
+.modal-content, .admin-section {
+    background: #ffffff !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15) !important;
+    color: #0f172a !important;
+}
+
+/* Footer */
+footer {
+    background: #ffffff !important;
+    border-top: 1px solid var(--border-light) !important;
+    color: var(--text-secondary) !important;
+    padding: 20px;
+    text-align: center;
+}
+/* FIX 1: HIDE ADMIN PANEL FROM MAIN SCREEN */
+#adminControlPanel, 
+.admin-section, 
+#adminModal {
+    display: none !important;
+}
+
+/* SHOW ADMIN PANEL ONLY WHEN OPENED PROPERLY */
+#adminModal.show-admin,
+.show-admin #adminControlPanel {
+    display: block !important;
+}
+
+/* FIX 2: HAMBURGER MENU BUTTON & THREE LINES */
+.hamburger-btn {
+    background: #ffffff !important;
+    border: 1px solid #2563eb !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15) !important;
+    cursor: pointer !important;
+}
+
+/* THREE LINES STYLING */
+.hamburger-btn span,
+.hamburger-btn div,
+.bar {
+    background-color: #2563eb !important; /* ब्लू लाइन्स */
+    height: 3px !important;
+    width: 20px !important;
+    border-radius: 2px !important;
+    margin: 3px 0 !important;
+    display: block !important;
+}
+
+/* SVG ICON IF USED INSIDE HAMBURGER */
+.hamburger-btn svg,
+.hamburger-btn svg path {
+    stroke: #2563eb !important;
+    fill: none !important;
+}
+/* ==========================================
+   HAMBURGER DROPDOWN MENU - WHITE THEME
+   ========================================== */
+
+/* Dropdown Menu Container */
+.dropdown-menu, 
+.menu-dropdown, 
+.nav-menu, 
+#navMenu, 
+#sidebarMenu {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+    padding: 10px !important;
+}
+
+/* Dropdown Menu Items / Links */
+.dropdown-menu a, 
+.dropdown-menu button, 
+.menu-dropdown a, 
+.menu-dropdown button, 
+.nav-menu a, 
+#navMenu a, 
+#sidebarMenu a {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    margin-bottom: 6px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+    display: block !important;
+    text-decoration: none !important;
+}
+
+/* Hover Effect for Menu Items */
+.dropdown-menu a:hover, 
+.menu-dropdown a:hover, 
+.nav-menu a:hover, 
+#navMenu a:hover {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    border-color: #2563eb !important;
+}
+
+/* Admin Link Styling */
+.dropdown-menu a.admin-link, 
+#navMenu a[onclick*="admin"], 
+.menu-dropdown a:last-child {
+    background-color: #eff6ff !important;
+    color: #2563eb !important;
+}
+/* ==========================================
+   DARKER OUTLINES FOR UI ELEMENTS
+   ========================================== */
+
+/* Dropdown Container Border */
+.dropdown-menu, 
+.menu-dropdown, 
+.nav-menu, 
+#navMenu, 
+#sidebarMenu {
+    border: 2px solid #94a3b8 !important; /* डार्क बॉर्डर */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Dropdown Menu Items Outline */
+.dropdown-menu a, 
+.dropdown-menu button, 
+.menu-dropdown a, 
+.menu-dropdown button, 
+.nav-menu a, 
+#navMenu a, 
+#sidebarMenu a {
+    border: 1.5px solid #cbd5e1 !important; /* स्पष्ट डार्क आउटलाइन */
+}
+
+/* Search Bar Outline */
+.search-wrapper {
+    border: 2px solid #94a3b8 !important;
+}
+
+/* Category Filter Chips Outline (Electronics, Fashion etc.) */
+.cat-chip {
+    border: 1.5px solid #cbd5e1 !important;
+}
+
+/* Product Cards Outline */
+.product-card {
+    border: 1.5px solid #cbd5e1 !important;
+}
+/* ==========================================
+   PURE BLACK OUTLINES FOR MAIN UI ELEMENTS
+   ========================================== */
+
+/* Hamburger Button Outer Border */
+.hamburger-btn {
+    border: 2px solid #000000 !important;
+}
+
+/* Search Bar Outer Border */
+.search-wrapper,
+.search-bar,
+#searchContainer {
+    border: 2px solid #000000 !important;
+}
+
+/* Category Buttons / Chips Border */
+.cat-chip,
+.category-btn,
+.filter-chip {
+    border: 2px solid #000000 !important;
+}
+
+/* Product Cards Border */
+.product-card {
+    border: 2px solid #000000 !important;
+}
+/* ==========================================
+   SOLID BLACK OUTLINES & HAMBURGER ADJUSTMENT
+   ========================================== */
+
+/* 1. SEARCH BAR - SOLID BLACK OUTLINE */
+.search-wrapper,
+.search-bar,
+#searchContainer,
+.search-input-container {
+    border: 2px solid #000000 !important;
+}
+
+/* 2. DROPDOWN MENU CONTAINER - SOLID BLACK OUTLINE */
+.dropdown-menu, 
+.menu-dropdown, 
+.nav-menu, 
+#navMenu, 
+#sidebarMenu {
+    border: 2px solid #000000 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 3. DROPDOWN MENU ITEMS (Store, Support, Cart, Orders, Admin) - SOLID BLACK OUTLINE */
+.dropdown-menu a, 
+.dropdown-menu button, 
+.menu-dropdown a, 
+.menu-dropdown button, 
+.nav-menu a, 
+#navMenu a, 
+#sidebarMenu a,
+.dropdown-item,
+.menu-item {
+    border: 2px solid #000000 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+/* 4. REMOVE INNER LINES / ICONS FROM HAMBURGER BUTTON */
+.hamburger-btn span,
+.hamburger-btn div,
+.hamburger-btn .bar,
+.hamburger-btn svg,
+.hamburger-btn i {
+    display: none !important;
+}
+/* ==========================================
+   PERFECT BALANCED OUTLINES & HAMBURGER RESTORE
+   ========================================== */
+
+/* 1. RESTORE HAMBURGER BUTTON & THREE LINES */
+.hamburger-btn {
+    background: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 50% !important;
+    width: 42px !important;
+    height: 42px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* THREE BLUE LINES */
+.hamburger-btn span,
+.hamburger-btn div,
+.bar {
+    display: block !important;
+    background-color: #2563eb !important; /* प्रीमियम ब्लू कलर */
+    height: 2.5px !important;
+    width: 18px !important;
+    border-radius: 2px !important;
+}
+
+.hamburger-btn svg,
+.hamburger-btn i {
+    display: inline-block !important;
+    color: #2563eb !important;
+    stroke: #2563eb !important;
+}
+
+/* 2. SOFT & ELEGANT OUTLINES (NOT TOO DARK) */
+.search-wrapper,
+.search-bar,
+#searchContainer {
+    border: 1.5px solid #94a3b8 !important; /* हल्का साफ़ ग्रे बॉर्डर */
+}
+
+.dropdown-menu, 
+.menu-dropdown, 
+.nav-menu, 
+#navMenu, 
+#sidebarMenu {
+    border: 1.5px solid #cbd5e1 !important;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1) !important;
+}
+
+.dropdown-menu a, 
+.dropdown-menu button, 
+.menu-dropdown a, 
+.menu-dropdown button, 
+.nav-menu a, 
+#navMenu a, 
+#sidebarMenu a,
+.dropdown-item,
+.menu-item {
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+.cat-chip,
+.category-btn,
+.filter-chip {
+    border: 1.5px solid #cbd5e1 !important;
+}
+
+.product-card {
+    border: 1.5px solid #e2e8f0 !important;
+}
+/* ==========================================
+   ULTRA-PREMIUM CIRCULAR HAMBURGER BUTTON
+   ========================================== */
+
+.hamburger-btn,
+button.hamburger,
+.menu-toggle {
+    width: 44px !important;
+    height: 44px !important;
+    background: #ffffff !important;
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 50% !important; /* परफेक्ट गोल शेप */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+    transition: all 0.25s ease-in-out !important;
+}
+
+/* Hover & Active Animation */
+.hamburger-btn:hover {
+    background: #f8fafc !important;
+    border-color: #2563eb !important;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.15) !important;
+}
+
+.hamburger-btn:active {
+    transform: scale(0.95);
+}
+
+/* THREE LINES STYLING */
+.hamburger-btn span,
+.hamburger-btn div,
+.hamburger-btn .bar {
+    display: block !important;
+    background-color: #1e293b !important; /* डार्क प्रीमियम फिनिश */
+    height: 2px !important;
+    width: 18px !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Optional Hover Line Glow */
+.hamburger-btn:hover span,
+.hamburger-btn:hover div,
+.hamburger-btn:hover .bar {
+    background-color: #2563eb !important;
+}
+/* ==========================================
+   SLIM PURE BLACK OUTLINES (SEARCH & CATEGORIES)
+   ========================================== */
+
+/* 1. SEARCH BAR - SLIM BLACK BORDER */
+.search-wrapper,
+.search-bar,
+#searchContainer,
+.search-input-container {
+    border: 1px solid #000000 !important; /* पतली और साफ़ ब्लैक आउटलाइन */
+    box-shadow: none !important;
+}
+
+/* 2. CATEGORY BUTTONS / CHIPS - SLIM BLACK BORDER */
+.cat-chip,
+.category-btn,
+.filter-chip {
+    border: 1px solid #000000 !important; /* पतली ब्लैक आउटलाइन */
+    box-shadow: none !important;
+}
+
+/* 3. INPUT INSIDE SEARCH BAR */
+.search-wrapper input {
+    border: none !important; /* अंदर की फ़ालतू लाइनें हटाने के लिए */
+}
+/* ==========================================
+   SLIM PURE BLACK OUTLINE FOR SEARCH BAR ONLY
+   ========================================== */
+
+.search-wrapper,
+.search-bar,
+#searchContainer,
+.search-box,
+form.search-form {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+}
+
+/* Ensure no inner input outline conflicts */
+.search-wrapper input,
+.search-bar input {
+    outline: none !important;
+    border: none !important;
+}
+/* ==========================================
+   SLIM BLACK OUTLINE FOR DROPDOWN ITEMS ONLY
+   ========================================== */
+
+/* Outer Dropdown Box Boundary */
+.dropdown-menu, 
+.menu-dropdown, 
+.nav-menu, 
+#navMenu, 
+#sidebarMenu {
+    border: 1px solid #000000 !important;
+}
+
+/* Individual Items inside Hamburger (Store, Support, Cart, Orders, Admin) */
+.dropdown-menu a, 
+.dropdown-menu button, 
+.menu-dropdown a, 
+.menu-dropdown button, 
+.nav-menu a, 
+#navMenu a, 
+#sidebarMenu a,
+.dropdown-item,
+.menu-item {
+    border: 1px solid #000000 !important; /* पतली ब्लैक आउटलाइन */
+    color: #0f172a !important;
+}
+/* ==========================================
+   ULTRA-PREMIUM SEARCH BAR (APPLE-STYLE)
+   ========================================== */
+
+.apex-search-wrapper,
+.search-wrapper,
+.search-container {
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: 12px auto !important;
+    padding: 0 4px !important;
+    box-sizing: border-box !important;
+}
+
+.search-inner,
+.search-wrapper form,
+.search-bar {
+    display: flex !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    border: 1px solid #000000 !important; /* पतली 1px प्योर ब्लैक आउटलाइन */
+    border-radius: 99px !important; /* पिल-शेप फिनिश */
+    padding: 4px 5px 4px 16px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.25s ease !important;
+}
+
+/* Focus and Glow Effect */
+.search-inner:focus-within {
+    border-color: #000000 !important;
+    box-shadow: 0 6px 24px rgba(37, 99, 235, 0.12) !important;
+}
+
+/* Search Icon Styling */
+.search-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 10px !important;
+    opacity: 0.8;
+}
+
+/* Search Input Field */
+.search-inner input,
+.search-wrapper input {
+    flex: 1 !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #0f172a !important;
+    padding: 8px 0 !important;
+}
+
+.search-inner input::placeholder {
+    color: #94a3b8 !important;
+    font-weight: 400 !important;
+}
+
+/* Search Button */
+.search-btn,
+.search-wrapper button {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 99px !important;
+    padding: 10px 22px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2px !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+.search-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4) !important;
+}
+
+.search-btn:active {
+    transform: scale(0.96);
+}
+/* ==========================================
+   AMAZON-STYLE FULL SCREEN SEARCH OVERLAY
+   ========================================== */
+
+/* Main Page Search Trigger Bar */
+.main-search-bar {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 99px;
+    padding: 8px 16px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+.main-search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-left: 8px;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Fullscreen Overlay Popup */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    z-index: 9999;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+}
+
+.search-overlay.active {
+    display: flex;
+}
+
+/* Overlay Top Header Bar */
+.overlay-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    gap: 10px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #1e293b;
+    padding: 4px 8px;
+}
+
+.overlay-input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.overlay-input-wrapper input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    margin-left: 8px;
+    font-size: 15px;
+    color: #0f172a;
+}
+
+/* History Items List */
+.search-history-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+}
+
+.history-item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #334155;
+    font-size: 14px;
+}
+
+.history-clock-icon {
+    opacity: 0.5;
+}
+
+.delete-history-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #94a3b8;
+    cursor: pointer;
+}
+/* ==========================================
+   FIX OVERLAPPING HEADER & SEARCH BAR
+   ========================================== */
+
+/* Main Header Container */
+.navbar {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 12px 16px !important;
+    box-sizing: border-box !important;
+    background: #ffffff !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+/* Menu Top Row: Hamburger + Logo Side-by-Side */
+.menu-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* Logo Styling */
+.logo {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #1e40af !important;
+    position: static !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+    position: static !important;
+    flex-shrink: 0 !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    cursor: pointer !important;
+}
+
+.hamburger-btn span {
+    display: block !important;
+    background-color: #1e293b !important;
+    height: 2px !important;
+    width: 16px !important;
+    border-radius: 2px !important;
+}
+
+/* Search Bar (Clean Separated Line Below Header) */
+.main-search-bar {
+    position: static !important;
+    margin: 10px 16px 16px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    border: 1px solid #000000 !important;
+    border-radius: 99px !important;
+    padding: 10px 16px !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+}
+
+.main-search-bar input {
+    border: none !important;
+    outline: none !important;
+    width: 100% !important;
+    margin-left: 8px !important;
+    background: transparent !important;
+    font-size: 14px !important;
+    color: #0f172a !important;
+    cursor: pointer !important;
+}
+/* FORCE SEARCH BAR TO MOVE DOWN BELOW HAMBURGER */
+.main-search-bar {
+    position: relative !important;
+    top: 50px !important; /* सर्च बार को हैमबर्गर से नीचे खिसकाने के लिए */
+    margin-bottom: 60px !important; /* नीचे वाली कैटेगरी बटन चिप्स को धक्का देने के लिए */
+    z-index: 1 !important;
+}
+/* ==========================================
+   REMOVE HAMBURGER & ADD 5-ITEM BOTTOM NAV
+   ========================================== */
+
+/* Hamburger Button Ko Permanently Hide Karna */
+.hamburger-btn, 
+button.hamburger-btn,
+.menu-container,
+.nav-links {
+    display: none !important;
+}
+
+/* Top Header Title Alignment */
+.top-header {
+    padding: 16px 16px 4px 16px !important;
+    background: transparent !important;
+}
+
+.top-header .logo {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Floating Bottom Navigation Bar (YouTube Style) */
+.bottom-nav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 62px !important;
+    background: #ffffff !important;
+    border-top: 1px solid #e2e8f0 !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+.bottom-nav .nav-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    color: #64748b !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    flex: 1 !important;
+}
+
+.bottom-nav .nav-icon {
+    font-size: 20px !important;
+    margin-bottom: 2px !important;
+}
+
+.bottom-nav .nav-item.active,
+.bottom-nav .nav-item:hover {
+    color: #2563eb !important;
+}
+
+/* Screen Bottom Space so footer/content is not covered */
+body {
+    padding-bottom: 75px !important;
+}
+/* Clean SVG Icons Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 500;
+    flex: 1;
+}
+
+.bottom-nav .nav-icon {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2;
+    margin-bottom: 3px;
+    color: #64748b;
+}
+
+/* Active State (Blue Icon) */
+.bottom-nav .nav-item.active,
+.bottom-nav .nav-item.active .nav-icon {
+    color: #2563eb;
+}
+.modal-card {
+    position: relative !important; /* ताकि × बटन कार्ड के कोने में सही से सेट हो सके */
+}
+
+.close-btn {
+    pointer-events: auto !important;
+    z-index: 99999 !important;
+}
+.close-btn {
+    color: #111827 !important; /* गहरा काला रंग */
+    font-size: 24px !important;
+    font-weight: bold !important;
+    opacity: 1 !important; /* धुंधलापन खत्म करने के लिए */
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+}
+/* CART & ORDERS FULL SCREEN STYLE */
+.fullscreen-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #ffffff !important;
+    z-index: 999999 !important;
+    overflow-y: auto !important;
+    display: none;
+}
+
+.fullscreen-modal.active {
+    display: block !important;
+}
+
+.fullscreen-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #131921; /* Amazon Dark Header */
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.fullscreen-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.fullscreen-close-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 26px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.fullscreen-body {
+    padding: 20px;
+    min-height: calc(100vh - 70px);
+    background: #f3f3f3;
+}
+/* FULLSCREEN MODAL CORE STYLES */
+.fullscreen-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #eaeded !important; /* Amazon Background Grey */
+    z-index: 999999 !important;
+    overflow-y: auto !important;
+}
+
+/* AMAZON HEADER STYLE */
+.fullscreen-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 14px 18px !important;
+    background-color: #131921 !important; /* Amazon Dark Navy */
+    color: #ffffff !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.fullscreen-header h2 {
+    margin: 0 !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    letter-spacing: 0.3px;
+}
+
+.fullscreen-close-btn {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-size: 22px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    line-height: 1;
+}
+
+.fullscreen-body {
+    padding: 20px 16px !important;
+}
+
+/* AMAZON STYLE EMPTY STATE CARD */
+.empty-state-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 35px 20px;
+    text-align: center;
+    border: 1px solid #d5d9d9;
+    margin-top: 10px;
+}
+
+.empty-state-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: #0f1111;
+    font-weight: 700;
+}
+
+.empty-state-card p {
+    margin: 0 0 22px 0;
+    color: #565959;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* AMAZON YELLOW BUTTON STYLE */
+.shop-now-btn {
+    display: inline-block;
+    background: #ffd814; /* Amazon Yellow */
+    color: #0f1111;
+    padding: 10px 24px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid #fcd200;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(213,217,217,0.5);
+}
+
+.shop-now-btn:hover {
+    background: #f7ca00;
+}
+
+.shop-now-btn:active {
+    background: #f0b800;
+}
+/* SEARCH OVERLAY FULLSCREEN STYLES */
+.search-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #ffffff !important;
+    z-index: 9999999 !important;
+    display: none;
+    overflow-y: auto;
+}
+
+.search-overlay.active {
+    display: block !important;
+}
+
+.overlay-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #131921;
+    gap: 12px;
+}
+
+.overlay-header .back-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.overlay-input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+.overlay-input-wrapper input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    margin-left: 8px;
+    color: #0f1111;
+}
+
+/* SEARCH HISTORY LIST DESIGN */
+.search-history-container {
+    padding: 16px;
+}
+
+.search-section {
+    margin-bottom: 24px;
+}
+
+.search-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #565959;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.search-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-list li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e7e7e7;
+    cursor: pointer;
+}
+
+.history-icon {
+    color: #888888;
+    font-size: 16px;
+    margin-right: 14px;
+    width: 20px;
+    text-align: center;
+}
+
+.search-text {
+    font-size: 15px;
+    color: #0f1111;
+}
+/* BIG UNIQUE BRAND HEADER */
+.brand-header {
+    padding: 16px 20px 8px 20px;
+    background: transparent;
+    text-align: left;
+}
+
+.brand-title {
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    letter-spacing: 1px !important;
+    color: #0f1111;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif, system-ui;
+}
+
+.brand-title span {
+    color: #2563eb; /* Highlight Accent Color */
+    font-weight: 300;
+}
+
+/* HORIZONTAL SLIDER SECTION */
+.products-main-content {
+    padding: 10px 0 80px 0;
+}
+
+.horizontal-slider-section {
+    margin-bottom: 24px;
+    background: #ffffff;
+    padding: 16px 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 12px 16px;
+}
+
+.section-header h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f1111;
+    margin: 0;
+}
+
+.see-all-link {
+    font-size: 13px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* HORIZONTAL SCROLL CONTAINER (10 ITEMS ROW) */
+.product-row-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 4px 16px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.product-row-scroll::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for clean app look */
+}
+
+/* AMAZON STYLE PRODUCT CARD */
+.product-card-item {
+    flex: 0 0 140px; /* Card Width */
+    background: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.product-card-img {
+    width: 100%;
+    height: 110px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #f9fafb;
+    margin-bottom: 8px;
+}
+
+.product-card-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #111827;
+    margin: 0 0 4px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.3;
+}
+
+.product-card-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f1111;
+    margin-bottom: 8px;
+}
+
+.product-add-btn {
+    width: 100%;
+    background: #ffd814;
+    border: 1px solid #fcd200;
+    border-radius: 15px;
+    padding: 6px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f1111;
+    cursor: pointer;
+}
+/* MAIN CONTAINER FILL HEIGHT */
+body, .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.products-section-container {
+    flex: 1;
+    padding: 15px 0;
+}
+
+.products-row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 10px 16px;
+}
+
+.products-row-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f1111;
+}
+
+.products-row-header .see-all {
+    font-size: 12px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* HORIZONTAL SCROLL PRODUCT LIST */
+.horizontal-product-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 5px 16px 15px 16px;
+}
+
+.horizontal-product-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* FOOTER FIX TO BOTTOM */
+.main-footer {
+    margin-top: auto;
+    padding: 15px 0 80px 0; /* Bottom nav ke liye space */
+    text-align: center;
+    background: transparent;
+}
+
+.main-footer p {
+    font-size: 12px;
+    color: #888888;
+    margin: 0;
+}
+body, html {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden; /* इससे पूरा पेज दाएं-बाएं नहीं भागेगा */
+  margin: 0;
+  padding: 0;
+}
+/* केवल कैटेगरी और प्रोडक्ट्स वाले DIV के लिए */
+.horizontal-scroll-container {
+  display: flex;
+  overflow-x: auto; /* सिर्फ यह सेक्शन स्क्रॉल होगा */
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
+  
+  /* स्क्रॉलबार छिपाने के लिए */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE/Edge */
+}
+
+/* Chrome, Safari और Opera के लिए स्क्रॉलबार छिपाना */
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+/* जब तक एडमिन से असली डेटा/URL न आए, तब तक कार्ड्स पर क्लिक न हो */
+.product-card {
+  /* pointer-events: none; */ /* इसे इनेबल कर देंगे तो गलती से भी क्लिक/रीडायरेक्ट नहीं होगा */
+}
+/* 1. पूरे पेज का खिसकना पूरी तरह से ब्लॉक करें */
+html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    position: relative;
+}
+
+/* 2. केवल प्रोडक्ट्स और कैटेगिरी वाली रो (Row) को स्क्रॉल करें */
+.categories-container,
+.category-scroll,
+.products-container,
+.product-slider,
+.top-products {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+}
+
+/* 3. प्रोडक्ट कार्ड्स की चौड़ाई को फिक्स करें ताकि वे पेज को बाहर न धकेलें */
+.product-card {
+    flex: 0 0 auto !important; /* कार्ड की चौड़ाई फिक्स रखेगा */
+    width: 150px !important;   /* आप अपनी पसंद से 140px या 160px कर सकते हैं */
+}
+
+/* स्क्रॉलबार छिपाने के लिए */
+.categories-container::-webkit-scrollbar,
+.products-container::-webkit-scrollbar,
+.top-products::-webkit-scrollbar {
+    display: none !important;
+}
+html, body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+}
+
+.horizontal-product-scroll, 
+.categories-slider {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+/* कैटेगिरी और प्रोडक्ट्स स्क्रॉलर कंटेनर */
+.categories-slider,
+.horizontal-product-scroll {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/* अंदर के सारे बटन और कार्ड्स */
+.categories-slider > *,
+.horizontal-product-scroll > *,
+.cat-chip,
+.product-card {
+    flex: 0 0 auto !important; /* सिकुड़ने से रोकेगा */
+    shrink: 0 !important;
+}
+
+/* कार्ड का फिक्स साइज */
+.product-card {
+    width: 140px !important;
+    min-width: 140px !important;
+}
+/* SECTION WRAPPER */
+.top-products-section {
+    width: 100%;
+    margin: 20px 0;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* HEADER STYLE */
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.see-all-btn {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.see-all-btn:hover {
+    opacity: 0.8;
+}
+
+/* HORIZONTAL SCROLL CONTAINER */
+.horizontal-scroll-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    scrollbar-width: none; /* Hide scrollbar on Firefox */
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar on Chrome/Safari */
+}
+
+/* PRODUCT CARD STYLING */
+.product-card {
+    flex: 0 0 160px;
+    width: 160px;
+    min-width: 160px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+    padding: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:active {
+    transform: scale(0.98);
+}
+
+.product-img-wrapper {
+    width: 100%;
+    height: 120px;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 4px;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2563eb;
+    margin-top: auto;
 }
