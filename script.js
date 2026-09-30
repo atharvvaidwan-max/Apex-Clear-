@@ -1,4 +1,6 @@
+// ======================================================
 // APEX CLEAR - SAFE STORAGE & CORE ENGINE (PART 1)
+// ======================================================
 
 let cart = [];
 let myOrders = getSafeStorage('apex_my_orders', []);
@@ -47,30 +49,40 @@ function getStoredProducts() {
 
 // ADMIN PANEL SECURITY & LOGIC
 function openAdminPanel() {
-    const adminModal = document.getElementById('adminModal');
-    const authSection = document.getElementById('adminAuthSection');
-    const controlPanel = document.getElementById('adminControlPanel');
-    const title = document.getElementById('adminModalTitle');
+    const pwdModal = document.getElementById('passwordModal');
+    const input = document.getElementById('adminPassInput');
+    const errorMsg = document.getElementById('passErrorMsg');
     
-    if (!adminModal || !authSection || !controlPanel || !title) return;
+    if (input) input.value = '';
+    if (errorMsg) errorMsg.style.display = 'none';
+    
+    if (pwdModal) {
+        pwdModal.classList.add('active-modal');
+        pwdModal.style.setProperty('display', 'flex', 'important');
+    }
+}
 
-    adminModal.style.display = "block";
-    controlPanel.style.display = "none";
-    authSection.style.display = "block";
-
-    const savedPassword = getSafeStorage('apex_admin_password', null);
-    if (!savedPassword) {
-        title.innerText = "Admin Setup - Create Password";
-    } else {
-        title.innerText = "Admin Security - Login";
+function closePasswordModal() {
+    const pwdModal = document.getElementById('passwordModal');
+    const adminModal = document.getElementById('adminModal');
+    
+    if (pwdModal) {
+        pwdModal.classList.remove('active-modal');
+        pwdModal.style.setProperty('display', 'none', 'important');
+    }
+    
+    if (adminModal) {
+        adminModal.classList.remove('show-admin');
+        adminModal.style.setProperty('display', 'none', 'important');
     }
 }
 
 function closeAdminPanel() {
     const adminModal = document.getElementById('adminModal');
-    const authForm = document.getElementById('adminAuthForm');
-    if (adminModal) adminModal.style.display = "none";
-    if (authForm) authForm.reset();
+    if (adminModal) {
+        adminModal.classList.remove('show-admin');
+        adminModal.style.setProperty('display', 'none', 'important');
+    }
 }
 
 function handleAdminAuth(event) {
@@ -96,8 +108,10 @@ function handleAdminAuth(event) {
 }
 
 function showAdminControlPanel() {
-    document.getElementById('adminAuthSection').style.display = "none";
-    document.getElementById('adminControlPanel').style.display = "block";
+    const authSec = document.getElementById('adminAuthSection');
+    const ctrlPanel = document.getElementById('adminControlPanel');
+    if (authSec) authSec.style.display = "none";
+    if (ctrlPanel) ctrlPanel.style.display = "block";
     renderAdminInventoryList();
     renderAdminOrdersList();
 }
@@ -161,7 +175,10 @@ function renderProductsGrid() {
         grid.appendChild(card);
     });
 }
+
+// ======================================================
 // APEX CLEAR - ADMIN INVENTORY, UI & CHECKOUT (PART 2)
+// ======================================================
 
 function saveProductByAdmin(event) {
     event.preventDefault();
@@ -239,15 +256,6 @@ function toggleTheme() {
     });
 }
 
-// Ensure saved theme is applied when page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('apex_theme');
-    if (savedTheme === 'light') {
-        toggleTheme();
-    }
-});
-
-
 // CART & ORDERS SUMMARY
 function openCartSummary() {
     if (cart.length === 0) {
@@ -255,7 +263,7 @@ function openCartSummary() {
         return;
     }
     let htmlContent = "<ul style='list-style: none; padding: 0;'>";
-    cart.forEach((item, index) => {
+    cart.forEach((item) => {
         htmlContent += `<li style='padding: 8px 0; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;'>
             <span>${item.name}</span>
             <strong style='color: var(--accent-hover);'>${item.price}</strong>
@@ -272,7 +280,7 @@ function showMyOrders() {
         return;
     }
     let htmlContent = "<div style='max-height: 250px; overflow-y: auto;'>";
-    orders.forEach((ord, index) => {
+    orders.forEach((ord) => {
         htmlContent += `<div style='padding: 10px; margin-bottom: 8px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 6px;'>
             <div style='font-weight: bold; color: var(--heading-color);'>${ord.name}</div>
             <div style='font-size: 12px; color: #8b949e;'>Price: ${ord.price} | Date: ${ord.date}</div>
@@ -280,20 +288,6 @@ function showMyOrders() {
     });
     htmlContent += "</div>";
     showCustomModal("Order History", htmlContent);
-}
-
-function searchProducts() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.product-card');
-    
-    cards.forEach(card => {
-        const title = card.querySelector('h3').innerText.toLowerCase();
-        if (title.includes(input)) {
-            card.style.display = "flex";
-        } else {
-            card.style.display = "none";
-        }
-    });
 }
 
 function addToCart(name, price) {
@@ -420,28 +414,10 @@ function triggerCheckoutModal(pName, pPrice) {
     modal.style.display = "block";
 }
 
-// TOAST NOTIFICATION SYSTEM
-function showToast(message) {
-    let toast = document.getElementById('toastNotification');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'toastNotification';
-        toast.className = 'toast';
-        document.body.appendChild(toast);
-    }
-    
-    toast.innerText = message;
-    toast.classList.add("show");
-    
-    setTimeout(function() { 
-        toast.classList.remove("show");
-    }, 2500);
-}
 // ======================================================
-// पुराने script.js के ठीक नीचे केवल इसे पेस्ट (Paste) करें
+// ADMIN ANALYTICS & EXTRA UTILITIES
 // ======================================================
 
-// 1. एडमिन स्टैटिस्टिक्स / डैशबोर्ड एनैलिटिक्स
 function renderAdminAnalytics() {
     const products = getStoredProducts();
     const orders = getSafeStorage('apex_my_orders', []);
@@ -475,7 +451,7 @@ function renderAdminAnalytics() {
     `;
 }
 
-// 2. डिस्काउंट और कूपन कोड लॉजिक (e.g. APEX10 या APEX20)
+// PROMO CODE LOGIC
 let appliedDiscount = 0;
 
 function applyPromoCode() {
@@ -500,7 +476,7 @@ function applyPromoCode() {
     }
 }
 
-// 3. एडमिन के लिए स्टोर डेटा बैकअप (JSON Export)
+// EXPORT STORE DATA
 function exportStoreData() {
     const data = {
         products: getStoredProducts(),
@@ -514,6 +490,7 @@ function exportStoreData() {
     downloadAnchor.click();
     downloadAnchor.remove();
 }
+
 // ORDER CONFIRMATION LOGIC
 function confirmOrderPlacement(event, pName, pPrice) {
     if (event) event.preventDefault();
@@ -547,7 +524,8 @@ function confirmOrderPlacement(event, pName, pPrice) {
         `Thank you <strong>${name}</strong>! Your Cash on Delivery order for <strong>${pName || 'item'}</strong> ${appliedDiscount > 0 ? '(with ' + appliedDiscount + '% OFF)' : ''} has been received.`
     );
 }
-// OPEN & CLOSE SUPPORT MODAL
+
+// SUPPORT MODAL CONTROLS
 function openSupportModal() {
     const modal = document.getElementById('supportModal');
     if (modal) modal.style.display = 'block';
@@ -555,10 +533,9 @@ function openSupportModal() {
 
 function closeSupportModal() {
     const modal = document.getElementById('supportModal');
-    if (modal) modal.style.display = 'none';
+    if (modal) modal.style.setProperty('display', 'none', 'important');
 }
 
-// SUPPORT FORM SUBMISSION LOGIC
 function handleSupportSubmit(event) {
     event.preventDefault();
     const name = document.getElementById('custName').value;
@@ -592,20 +569,20 @@ function renderProducts() {
 
     if (noResults) noResults.style.display = 'none';
 
-    // Limit Max 10 per Horizontal Row
     const row1Products = products.slice(0, 10);
     const row2Products = products.slice(10, 20);
 
     const createCardHTML = (p) => `
-        <div class="product-card">
+        <div class="product-card" style="flex: 0 0 140px !important; width: 140px !important; min-width: 140px !important; box-sizing: border-box !important;">
+            
             <span class="stock-badge">Stock: ${p.stock}</span>
-            <img src="${p.image}" alt="${p.title}" class="product-img" onerror="this.src='https://via.placeholder.com/150'">
+            <img src="${p.image}" alt="${p.title || p.name}" class="product-img" onerror="this.src='https://via.placeholder.com/150'">
             <div class="product-info">
-                <h4 class="product-title">${p.title}</h4>
-                <p class="product-desc">${p.description}</p>
+                <h4 class="product-title">${p.title || p.name}</h4>
+                <p class="product-desc">${p.description || p.desc || ''}</p>
                 <div class="product-price">${p.price}</div>
-                <button class="btn-primary buy-btn" onclick="triggerCheckoutModal('${p.title}', '${p.price}')">Buy via COD</button>
-                <button class="btn-primary cart-btn" style="background:#30363d; margin-top:5px;" onclick="addToCart('${p.title}', '${p.price}')">+ Add to Cart</button>
+                <button class="btn-primary buy-btn" onclick="triggerCheckoutModal('${p.title || p.name}', '${p.price}')">Buy via COD</button>
+                <button class="btn-primary cart-btn" style="background:#30363d; margin-top:5px;" onclick="addToCart('${p.title || p.name}', '${p.price}')">+ Add to Cart</button>
             </div>
         </div>
     `;
@@ -618,8 +595,7 @@ function renderProducts() {
     }
 }
 
-// SEE MORE TOGGLE FUNCTION
-function seeMoreProducts(type) {
+function seeMoreProducts() {
     const container = document.getElementById('allProductsContainer');
     if (container) {
         container.style.display = 'block';
@@ -627,132 +603,43 @@ function seeMoreProducts(type) {
     }
 }
 
-// AUTO-CALL ON LOAD
 document.addEventListener('DOMContentLoaded', renderProducts);
+
 // ======================================================
-// ENHANCEMENTS: WISHLIST, SEARCH FILTER & CART QUANTITY
+// SEARCH, WISHLIST & CATEGORY FILTERING
 // ======================================================
 
-// 1. LIVE SEARCH & CATEGORY FILTERING
 function searchProducts() {
-    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    const inputEl = document.getElementById('searchInput');
+    if (!inputEl) return;
+    const query = inputEl.value.toLowerCase().trim();
     const products = getStoredProducts();
-    const filtered = products.filter(p => 
-        p.title.toLowerCase().includes(query) || 
-        p.description.toLowerCase().includes(query)
-    );
+    const filtered = products.filter(p => {
+        const title = (p.title || p.name || '').toLowerCase();
+        const desc = (p.description || p.desc || '').toLowerCase();
+        return title.includes(query) || desc.includes(query);
+    });
 
     renderFilteredProducts(filtered);
 }
 
-function filterByCategory(categoryName) {
+function filterByCategory(categoryName, btnElement) {
+    if (btnElement) {
+        document.querySelectorAll('.cat-chip').forEach(chip => chip.classList.remove('active'));
+        btnElement.classList.add('active');
+    }
+
     if (!categoryName) return;
-    const products = typeof getStoredProducts === 'function' ? getStoredProducts() : [];
+    const products = getStoredProducts();
     
-    // category चेक करके फिल्टर
     const filtered = products.filter(p => 
         p && p.category && String(p.category).toLowerCase() === String(categoryName).toLowerCase()
     );
 
-    // अगर कैटेगरी नहीं मिली तो टाइटल में ढूँढो (Safe Optional Chaining)
-    const fallbackFiltered = filtered.length > 0 ? filtered : products.filter(p => 
-        p && p.title && String(p.title).toLowerCase().includes(String(categoryName).toLowerCase())
-    );
-
-    if (typeof renderFilteredProducts === 'function') {
-        renderFilteredProducts(fallbackFiltered);
-    }
-    
-    if (typeof showToast === 'function') {
-        showToast(`Showing products for: ${categoryName}`);
-    }
-}
-
-function renderFilteredProducts(productsList) {
-    const fullGrid = document.getElementById('productGrid');
-    const container = document.getElementById('allProductsContainer');
-
-    if (container) container.style.display = 'block';
-
-    if (fullGrid) {
-        if (productsList.length === 0) {
-            fullGrid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:20px; color:#8b949e;">No matching products found.</div>';
-        } else {
-            fullGrid.innerHTML = productsList.map(p => `
-                <div class="product-card" style="position:relative;">
-                    <button class="wishlist-btn" onclick="toggleWishlist('${p.title}')">&#9829;</button>
-                    <span class="stock-badge">Stock: ${p.stock}</span>
-                    <img src="${p.image}" alt="${p.title}" class="product-img" onerror="this.src='https://via.placeholder.com/150'">
-                    <div class="product-info">
-                        <h4 class="product-title">${p.title}</h4>
-                        <div class="product-rating">&#9733; 4.5 <span>(24 reviews)</span></div>
-                        <p class="product-desc">${p.description}</p>
-                        <div class="product-price">${p.price}</div>
-                        <button class="btn-primary buy-btn" onclick="triggerCheckoutModal('${p.title}', '${p.price}')">Buy via COD</button>
-                        <button class="btn-primary cart-btn" style="background:#30363d; margin-top:5px;" onclick="addToCart('${p.title}', '${p.price}')">+ Add to Cart</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-    }
-}
-
-// 2. WISHLIST SYSTEM
-function toggleWishlist(productTitle) {
-    let wishlist = getSafeStorage('apex_wishlist', []);
-    const index = wishlist.indexOf(productTitle);
-
-    if (index > -1) {
-        wishlist.splice(index, 1);
-        showToast(`Removed "${productTitle}" from Wishlist`);
-    } else {
-        wishlist.push(productTitle);
-        showToast(`Added "${productTitle}" to Wishlist!`);
-    }
-
-    setSafeStorage('apex_wishlist', wishlist);
-}
-
-// 3. TOAST NOTIFICATION HELPER
-function showToast(message) {
-    let toast = document.getElementById('toastNotification');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'toastNotification';
-        toast.className = 'toast';
-        document.body.appendChild(toast);
-    }
-    toast.innerText = message;
-    toast.style.display = 'block';
-    setTimeout(() => {
-        toast.style.display = 'none';
-    }, 2500);
-}
-// ======================================================
-// ENHANCEMENTS: WISHLIST, SEARCH FILTER & TOAST NOTIFICATION
-// ======================================================
-
-// 1. LIVE SEARCH & CATEGORY FILTERING
-function searchProducts() {
-    const query = document.getElementById('searchInput').value.toLowerCase().trim();
-    const products = getStoredProducts();
-    const filtered = products.filter(p => 
-        p.title.toLowerCase().includes(query) || 
-        p.description.toLowerCase().includes(query)
-    );
-
-    renderFilteredProducts(filtered);
-}
-
-function filterByCategory(categoryName) {
-    const products = getStoredProducts();
-    const filtered = products.filter(p => 
-        p.category && p.category.toLowerCase() === categoryName.toLowerCase()
-    );
-    
-    const fallbackFiltered = filtered.length > 0 ? filtered : products.filter(p => 
-        p.title.toLowerCase().includes(categoryName.toLowerCase())
-    );
+    const fallbackFiltered = filtered.length > 0 ? filtered : products.filter(p => {
+        const title = (p.title || p.name || '').toLowerCase();
+        return title.includes(String(categoryName).toLowerCase());
+    });
 
     renderFilteredProducts(fallbackFiltered.length > 0 ? fallbackFiltered : products);
     showToast(`Showing products for: ${categoryName}`);
@@ -770,16 +657,16 @@ function renderFilteredProducts(productsList) {
         } else {
             fullGrid.innerHTML = productsList.map(p => `
                 <div class="product-card" style="position:relative;">
-                    <button class="wishlist-btn" onclick="toggleWishlist('${p.title}')">&#9829;</button>
+                    <button class="wishlist-btn" onclick="toggleWishlist('${p.title || p.name}')">&#9829;</button>
                     <span class="stock-badge">Stock: ${p.stock}</span>
-                    <img src="${p.image}" alt="${p.title}" class="product-img" onerror="this.src='https://via.placeholder.com/150'">
+                    <img src="${p.image}" alt="${p.title || p.name}" class="product-img" onerror="this.src='https://via.placeholder.com/150'">
                     <div class="product-info">
-                        <h4 class="product-title">${p.title}</h4>
+                        <h4 class="product-title">${p.title || p.name}</h4>
                         <div class="product-rating">&#9733; 4.5 <span>(24 reviews)</span></div>
-                        <p class="product-desc">${p.description}</p>
+                        <p class="product-desc">${p.description || p.desc || ''}</p>
                         <div class="product-price">${p.price}</div>
-                        <button class="btn-primary buy-btn" onclick="triggerCheckoutModal('${p.title}', '${p.price}')">Buy via COD</button>
-                        <button class="btn-primary cart-btn" style="background:#30363d; margin-top:5px;" onclick="addToCart('${p.title}', '${p.price}')">+ Add to Cart</button>
+                        <button class="btn-primary buy-btn" onclick="triggerCheckoutModal('${p.title || p.name}', '${p.price}')">Buy via COD</button>
+                        <button class="btn-primary cart-btn" style="background:#30363d; margin-top:5px;" onclick="addToCart('${p.title || p.name}', '${p.price}')">+ Add to Cart</button>
                     </div>
                 </div>
             `).join('');
@@ -787,7 +674,7 @@ function renderFilteredProducts(productsList) {
     }
 }
 
-// 2. WISHLIST SYSTEM
+// WISHLIST SYSTEM
 function toggleWishlist(productTitle) {
     let wishlist = getSafeStorage('apex_wishlist', []);
     const index = wishlist.indexOf(productTitle);
@@ -803,21 +690,7 @@ function toggleWishlist(productTitle) {
     setSafeStorage('apex_wishlist', wishlist);
 }
 
-// 3. TOAST NOTIFICATION HELPER
-function showToast(message) {
-    let toast = document.getElementById('toastNotification');
-    if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'toastNotification';
-        toast.className = 'toast';
-        document.body.appendChild(toast);
-    }
-    toast.innerText = message;
-    toast.style.display = 'block';
-    setTimeout(() => {
-        toast.style.display = 'none';
-    }, 2500);
-}
+// NAVIGATION MENU TOGGLE
 function toggleMenu() {
     const nav = document.getElementById('navMenu');
     const btn = document.querySelector('.hamburger-btn');
@@ -828,7 +701,6 @@ function toggleMenu() {
     }
 }
 
-// Close menu if clicked outside
 document.addEventListener('click', (e) => {
     const header = document.querySelector('header');
     const nav = document.getElementById('navMenu');
@@ -836,127 +708,51 @@ document.addEventListener('click', (e) => {
         toggleMenu();
     }
 });
+
+// CHECKOUT & PAYMENTS
 function togglePaymentUI() {
     const method = document.getElementById('paymentMethod').value;
     const upiBox = document.getElementById('upiPaymentBox');
-    if (method === 'UPI') {
-        upiBox.style.display = 'block';
-    } else {
-        upiBox.style.display = 'none';
+    if (upiBox) {
+        upiBox.style.display = (method === 'UPI') ? 'block' : 'none';
     }
 }
 
 function closeCheckoutModal() {
-    document.getElementById('checkoutModal').style.display = 'none';
-}
-
-function processRealOrder(event) {
-    event.preventDefault();
-
-    const name = document.getElementById('shipName').value;
-    const phone = document.getElementById('shipPhone').value;
-    const address = document.getElementById('shipAddress').value;
-    const city = document.getElementById('shipCity').value;
-    const state = document.getElementById('shipState').value;
-    const pincode = document.getElementById('shipPincode').value;
-    const payment = document.getElementById('paymentMethod').value;
-    const utr = document.getElementById('upiTransactionId') ? document.getElementById('upiTransactionId').value : 'N/A';
-
-    const fullAddress = `${address}, ${city}, ${state} - ${pincode}`;
-    
-    // Get existing orders or initialize array
-    let orders = JSON.parse(localStorage.getItem('apex_orders') || '[]');
-    
-    const newOrder = {
-        orderId: 'APX-' + Math.floor(100000 + Math.random() * 900000),
-        customerName: name,
-        phone: phone,
-        address: fullAddress,
-        paymentMethod: payment,
-        utrNumber: utr,
-        date: new Date().toLocaleDateString('en-IN'),
-        status: 'Order Placed (Pending Shipping)'
-    };
-
-    orders.push(newOrder);
-    localStorage.setItem('apex_orders', JSON.stringify(orders));
-
-    alert(` Order Placed Successfully!\n\nOrder ID: ${newOrder.orderId}\nWe will deliver to: ${fullAddress}`);
-    closeCheckoutModal();
-    
-    // Refresh Admin Orders List if open
-    if(typeof renderAdminOrders === 'function') {
-        renderAdminOrders();
+    const checkoutModal = document.getElementById('checkoutModal');
+    if (checkoutModal) {
+        checkoutModal.style.setProperty('display', 'none', 'important');
     }
 }
+
 function openCheckoutModal() {
     const modal = document.getElementById('checkoutModal');
     if (modal) {
         modal.style.display = 'flex';
     }
 }
-// एडमिन पैनल बंद करने का फ़ंक्शन
-function closeAdminPanel() {
-    const adminModal = document.getElementById('adminModal');
-    if (adminModal) {
-        adminModal.setAttribute('style', 'display: none !important;');
-    }
-}
 
-// कस्टमर सपोर्ट पैनल बंद करने का फ़ंक्शन
-function closeSupportModal() {
-    const supportModal = document.getElementById('supportModal');
-    if (supportModal) {
-        supportModal.setAttribute('style', 'display: none !important;');
-    }
-}
-
-// चेकआउट पैनल बंद करने का फ़ंक्शन
-function closeCheckoutModal() {
-    const checkoutModal = document.getElementById('checkoutModal');
-    if (checkoutModal) {
-        checkoutModal.setAttribute('style', 'display: none !important;');
-    }
-}
-
-// अगर यूज़र पॉप-अप के बाहर कहीं भी काली स्क्रीन पर क्लिक करे, तब भी पॉप-अप बंद हो जाए
-window.onclick = function(event) {
-    const adminModal = document.getElementById('adminModal');
-    const supportModal = document.getElementById('supportModal');
-    const checkoutModal = document.getElementById('checkoutModal');
-
-    if (event.target === adminModal) {
-        closeAdminPanel();
-    }
-    if (event.target === supportModal) {
-        closeSupportModal();
-    }
-    if (event.target === checkoutModal) {
-        closeCheckoutModal();
-    }
-};
 function processRealOrder(event) {
     event.preventDefault();
 
-    // कस्टमर की डिटेल्स
-    const name = document.getElementById('shipName').value;
-    const phone = document.getElementById('shipPhone').value;
-    const paymentMethod = document.getElementById('paymentMethod').value;
-    const amount = 499; // तुम्हारा प्रोडक्ट प्राइस
+    const nameEl = document.getElementById('shipName');
+    const phoneEl = document.getElementById('shipPhone');
+    const paymentEl = document.getElementById('paymentMethod');
+
+    const name = nameEl ? nameEl.value : '';
+    const phone = phoneEl ? phoneEl.value : '';
+    const paymentMethod = paymentEl ? paymentEl.value : 'COD';
+    const amount = 499;
 
     if (paymentMethod === 'COD') {
-        alert('🎉 Cash on Delivery Order Successful!');
+        alert(' Cash on Delivery Order Successful!');
         closeCheckoutModal();
         return;
     }
 
-    // तुम्हारा असली UPI ID (यहाँ अपना UPI ID लिखो)
     const myUpiId = "YOURNAME@upi"; 
-
-    // ऑटोमैटिक QR Code URL
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=upi://pay?pa=${myUpiId}&pn=APEX%20CLEAR&am=${amount}&cu=INR`;
 
-    // QR Code पॉप-अप में दिखाओ
     const upiBox = document.getElementById('upiPaymentBox');
     if (upiBox) {
         upiBox.style.display = 'block';
@@ -968,3 +764,636 @@ function processRealOrder(event) {
         `;
     }
 }
+
+// CLOSE MODALS ON OUTSIDE CLICK
+window.onclick = function(event) {
+    const adminModal = document.getElementById('adminModal');
+    const supportModal = document.getElementById('supportModal');
+    const checkoutModal = document.getElementById('checkoutModal');
+    const pwdModal = document.getElementById('passwordModal');
+
+    if (event.target === adminModal) closeAdminPanel();
+    if (event.target === supportModal) closeSupportModal();
+    if (event.target === checkoutModal) closeCheckoutModal();
+    if (event.target === pwdModal) closePasswordModal();
+};
+
+// SEARCH BAR THEME SYNC
+function fixSearchBarTheme() {
+    const wrapper = document.querySelector('.search-wrapper');
+    const input = document.querySelector('.search-wrapper input');
+    if (!wrapper) return;
+
+    const bodyBg = window.getComputedStyle(document.body).backgroundColor;
+    const isLight = bodyBg === 'rgb(255, 255, 255)' || 
+                    bodyBg === 'rgb(248, 249, 250)' || 
+                    bodyBg === 'rgb(240, 242, 245)' ||
+                    !document.body.classList.contains('dark-mode') && !document.body.classList.contains('dark');
+
+    if (isLight) {
+        wrapper.style.setProperty('background-color', '#ffffff', 'important');
+        wrapper.style.setProperty('border-color', '#e2e8f0', 'important');
+        if (input) input.style.setProperty('color', '#1a1d20', 'important');
+    } else {
+        wrapper.style.setProperty('background-color', '#161b22', 'important');
+        wrapper.style.setProperty('border-color', '#30363d', 'important');
+        if (input) input.style.setProperty('color', '#ffffff', 'important');
+    }
+}
+
+setInterval(fixSearchBarTheme, 1000);
+
+// ADMIN TAB SWITCHING
+function switchAdminTab(tabId, btnElement) {
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    const selectedTab = document.getElementById(tabId);
+    if (selectedTab) selectedTab.classList.add('active');
+    if (btnElement) btnElement.classList.add('active');
+}
+
+function togglePasswordVisibility() {
+    const input = document.getElementById('adminPassInput');
+    const eyeIcon = document.getElementById('eyeIcon');             
+    const eyeSlashIcon = document.getElementById('eyeSlashIcon');   
+
+    if (!input) return;
+
+    if (input.type === 'password') {
+        // पासवर्ड दिखाएँ -> स्लैश वाला आइकॉन दिखाएँ ताकि क्लिक करने पर वापस छुप सके
+        input.type = 'text';
+        if (eyeIcon) eyeIcon.style.display = 'none';
+        if (eyeSlashIcon) eyeSlashIcon.style.display = 'inline-block';
+    } else {
+        // पासवर्ड छुपाएँ -> बिना स्लैश वाला सामान्य आँख का आइकॉन दिखाएँ
+        input.type = 'password';
+        if (eyeIcon) eyeIcon.style.display = 'inline-block';
+        if (eyeSlashIcon) eyeSlashIcon.style.display = 'none';
+    }
+}
+
+// TOAST NOTIFICATION FUNCTION
+function showToast(message, icon = "") {
+    const toast = document.getElementById('toastNotification');
+    const toastMsg = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+
+    if (toast && toastMsg) {
+        toastMsg.innerText = message;
+        if (toastIcon) toastIcon.innerText = icon;
+        
+        toast.style.setProperty('display', 'flex', 'important');
+
+        setTimeout(() => {
+            toast.style.setProperty('display', 'none', 'important');
+        }, 2500);
+    }
+}
+
+// SUBMIT ADMIN PASSWORD LOGIC
+function submitAdminPassword() {
+    const pwdModal = document.getElementById('passwordModal');
+    
+    // modal check
+    if (!pwdModal || pwdModal.style.display === 'none' || getComputedStyle(pwdModal).display === 'none') {
+        return;
+    }
+
+    const input = document.getElementById('adminPassInput');
+    const errorMsg = document.getElementById('passErrorMsg');
+    const password = input ? input.value.trim() : '';
+
+    if (password === "") {
+        showToast("Please enter a password!", "");
+        return;
+    }
+
+    if (password === "Atharv Ui") {
+        closePasswordModal();
+        showToast("Login Successful!", "");
+        
+        const adminModal = document.getElementById('adminModal');
+        if (adminModal) {
+            adminModal.classList.add('show-admin');
+            adminModal.style.setProperty('display', 'flex', 'important');
+        }
+    } else {
+        if (errorMsg) errorMsg.style.display = 'block';
+        showToast("Incorrect password! Access denied.", "");
+    }
+}
+// ==========================================
+// MISSING ADMIN AUTHENTICATION & INITIALIZATION
+// ==========================================
+
+// SUBMIT ADMIN PASSWORD LOGIC
+function submitAdminPassword() {
+    const pwdModal = document.getElementById('passwordModal');
+    
+    if (!pwdModal || pwdModal.style.display === 'none' || getComputedStyle(pwdModal).display === 'none') {
+        return;
+    }
+
+    const input = document.getElementById('adminPassInput');
+    const errorMsg = document.getElementById('passErrorMsg');
+    const password = input ? input.value.trim() : '';
+
+    if (password === "") {
+        showToast("Please enter a password!", "");
+        return;
+    }
+
+    if (password === "Atharv Ui") {
+        closePasswordModal();
+        showToast("Login Successful!", "");
+        
+        const adminModal = document.getElementById('adminModal');
+        if (adminModal) {
+            adminModal.classList.add('show-admin');
+            adminModal.style.setProperty('display', 'flex', 'important');
+            showAdminControlPanel();
+        }
+    } else {
+        if (errorMsg) errorMsg.style.display = 'block';
+        showToast("Incorrect password! Access denied.", "");
+    }
+}
+
+// ATTACH ENTER KEY EVENT TO PASSWORD INPUT
+document.addEventListener("DOMContentLoaded", function () {
+    const adminPassInput = document.getElementById('adminPassInput');
+    if (adminPassInput) {
+        adminPassInput.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                submitAdminPassword();
+            }
+        });
+    }
+});
+// ==========================================
+// MISSING FUNCTIONS DEFINITIONS
+// ==========================================
+
+// 1. ADD NEW PRODUCT FUNCTION
+function addNewProduct(event) {
+    if (event) event.preventDefault();
+
+    const nameInput = document.getElementById('adminPName') || document.getElementById('productTitle');
+    const descInput = document.getElementById('adminPDesc') || document.getElementById('productDesc');
+    const priceInput = document.getElementById('adminPrice') || document.getElementById('productPrice');
+    const stockInput = document.getElementById('adminStock') || document.getElementById('productStock');
+    const imgInput = document.getElementById('adminPImage') || document.getElementById('productImage');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    const desc = descInput ? descInput.value.trim() : '';
+    const price = priceInput ? priceInput.value.trim() : '';
+    const stock = stockInput ? parseInt(stockInput.value) || 0 : 0;
+    const image = imgInput ? imgInput.value.trim() : '';
+
+    if (!name || !price) {
+        showToast("Please enter product name and price!", "");
+        return;
+    }
+
+    let products = getStoredProducts();
+    products.push({
+        id: Date.now(),
+        name: name,
+        title: name,
+        desc: desc,
+        description: desc,
+        price: price,
+        stock: stock,
+        image: image || 'https://via.placeholder.com/150'
+    });
+
+    setSafeStorage('apex_products', products);
+
+    showToast("Product added successfully!", "");
+
+    const addProductForm = document.getElementById('addProductForm');
+    if (addProductForm) addProductForm.reset();
+
+    if (typeof renderProductsGrid === 'function') renderProductsGrid();
+    if (typeof renderProducts === 'function') renderProducts();
+    if (typeof renderAdminInventoryList === 'function') renderAdminInventoryList();
+}
+
+// 2. EXPORT DATA FUNCTION
+function exportData() {
+    if (typeof exportStoreData === 'function') {
+        exportStoreData();
+    } else {
+        const data = {
+            products: getStoredProducts(),
+            orders: getSafeStorage('apex_my_orders', [])
+        };
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `apex_store_backup_${Date.now()}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+        showToast("Data exported successfully!", "");
+    }
+}
+
+// 3. CLEAR ALL DATA FUNCTION
+function clearAllData() {
+    if (confirm("Are you sure you want to clear all product and order data? This cannot be undone.")) {
+        removeSafeStorage('apex_products');
+        removeSafeStorage('apex_my_orders');
+        
+        if (typeof renderProductsGrid === 'function') renderProductsGrid();
+        if (typeof renderProducts === 'function') renderProducts();
+        if (typeof renderAdminInventoryList === 'function') renderAdminInventoryList();
+        if (typeof renderAdminOrdersList === 'function') renderAdminOrdersList();
+
+        showToast("All data cleared successfully!", "");
+    }
+}
+// Open and Close Overlay Functions
+function openSearchOverlay() {
+    document.getElementById('searchOverlay').classList.add('active');
+    document.getElementById('overlaySearchInput').focus();
+    renderSearchHistory();
+}
+
+function closeSearchOverlay() {
+    document.getElementById('searchOverlay').classList.remove('active');
+}
+
+// Save Search Query to LocalStorage
+function saveSearchQuery(query) {
+    if (!query.trim()) return;
+    
+    let history = JSON.parse(localStorage.getItem('apex_search_history')) || [];
+    
+    // Duplicate हटाने के लिए
+    history = history.filter(item => item.toLowerCase() !== query.toLowerCase());
+    
+    // शुरुआत में नया सर्च जोड़ने के लिए
+    history.unshift(query);
+    
+    // अधिकतम 10 रिसेंट सर्च सेव रखें
+    if (history.length > 10) history.pop();
+    
+    localStorage.setItem('apex_search_history', JSON.stringify(history));
+}
+
+// Render History Items in Overlay
+function renderSearchHistory() {
+    const historyContainer = document.getElementById('historyContainer');
+    let history = JSON.parse(localStorage.getItem('apex_search_history')) || [];
+    
+    historyContainer.innerHTML = '';
+
+    if (history.length === 0) {
+        historyContainer.innerHTML = ''; // यदि कोई सर्च नहीं हुआ तो पूरा खाली रहेगा
+        return;
+    }
+
+    history.forEach((term, index) => {
+        const itemHtml = `
+            <div class="history-item">
+                <div class="history-item-left" onclick="executeSearch('${term}')">
+                    <span class="history-clock-icon">🕒</span>
+                    <span>${term}</span>
+                </div>
+                <button class="delete-history-btn" onclick="removeHistoryItem(event, ${index})">✕</button>
+            </div>
+        `;
+        historyContainer.insertAdjacentHTML('beforeend', itemHtml);
+    });
+}
+
+// Remove Single History Item
+function removeHistoryItem(event, index) {
+    event.stopPropagation();
+    let history = JSON.parse(localStorage.getItem('apex_search_history')) || [];
+    history.splice(index, 1);
+    localStorage.setItem('apex_search_history', JSON.stringify(history));
+    renderSearchHistory();
+}
+
+// Execute Search on Pressing Enter (Fixed Optional Check)
+const searchInput = document.getElementById('overlaySearchInput');
+if (searchInput) {
+    searchInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            const query = this.value;
+            if (query.trim()) {
+                saveSearchQuery(query);
+                executeSearch(query);
+            }
+        }
+    });
+}
+
+function executeSearch(query) {
+    alert("Searching for: " + query); // अपनी सर्च फ़िल्टरिंग का कोड यहाँ चलाएँ
+    closeSearchOverlay();
+}
+// Master Function: Close everything and return to Store (Home)
+function goHomeAndCloseAll() {
+    // 1. All Modals & Overlays Hide karo
+    const allModals = document.querySelectorAll('.modal-overlay, .search-overlay, #cartModal, #ordersModal, #profileModal, #supportModal, #searchOverlay');
+    allModals.forEach(modal => {
+        modal.classList.remove('active');
+        modal.style.setProperty('display', 'none', 'important');
+    });
+
+    // 2. Bottom Nav Highlights Reset karke 'Store' ko Active karo
+    const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+    navItems.forEach(item => item.classList.remove('active'));
+
+    const storeBtn = document.querySelector('.bottom-nav .nav-item:first-child');
+    if (storeBtn) {
+        storeBtn.classList.add('active');
+    }
+}
+
+// Global Close bindings
+function closeAllModals() { goHomeAndCloseAll(); }
+function closeCartModal() { goHomeAndCloseAll(); }
+function closeOrdersModal() { goHomeAndCloseAll(); }
+function closeProfileModal() { goHomeAndCloseAll(); }
+function closeSupportModal() { goHomeAndCloseAll(); }
+function closeSearchOverlay() { goHomeAndCloseAll(); }
+function goHomeAndCloseAll() {
+    // Cross (✕) दबाने पर Back जाने का सिंपल कोड
+function goBackAndClose() {
+    // 1. सभी पॉपअप/मॉडल्स को छुपाएं
+    const allModals = document.querySelectorAll('.modal-overlay, .search-overlay, #cartModal, #ordersModal, #profileModal, #supportModal, #searchOverlay');
+    allModals.forEach(modal => {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+    });
+
+    // 2. Browser / Page History में एक कदम पीछे (Back) जाएं
+    window.history.back();
+}
+}
+function closeAllModals() {
+    // 1. जितने भी पॉपअप हैं, उन सबको स्क्रीन से गायब कर दो
+    let modals = document.querySelectorAll('.modal-overlay');
+    modals.forEach(function(modal) {
+        modal.style.setProperty('display', 'none', 'important');
+    });
+
+    // 2. नीचे वाले नेविगेशन बार में वापस 'Store' को नीला (Active) कर दो
+    let navItems = document.querySelectorAll('.bottom-nav .nav-item');
+    navItems.forEach(function(item) {
+        item.classList.remove('active');
+    });
+    
+    let storeBtn = document.querySelector('.bottom-nav .nav-item:first-child');
+    if(storeBtn) {
+        storeBtn.classList.add('active');
+    }
+}
+// यह फंक्शन किसी भी खुले हुए पॉपअप को तुरंत बंद कर देगा
+function closePopup() {
+    // 1. सारे Modals और Overlays ढूँढकर बंद करो
+    document.querySelectorAll('.modal-overlay, .modal, .search-overlay, [class*="modal"], [class*="overlay"]').forEach(el => {
+        el.style.setProperty('display', 'none', 'important');
+        el.classList.remove('active', 'show');
+    });
+
+    // 2. बॉटम नेविगेशन में 'Store' को दोबारा एक्टिव करो
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
+    const storeBtn = document.querySelector('.bottom-nav .nav-item:first-child');
+    if (storeBtn) storeBtn.classList.add('active');
+}
+function closePopup() {
+    document.querySelectorAll('.modal-overlay, .modal, .search-overlay').forEach(el => {
+        el.style.display = 'none';
+        el.classList.remove('active', 'show');
+    });
+}
+function closeAndGoToSearch() {
+    // 1. Cart और Orders दोनों मॉडल्स को बंद करें
+    const cartModal = document.getElementById('cartModal');
+    const ordersModal = document.getElementById('ordersModal');
+    
+    if (cartModal) {
+        cartModal.style.display = 'none';
+        cartModal.classList.remove('active');
+    }
+    if (ordersModal) {
+        ordersModal.style.display = 'none';
+        ordersModal.classList.remove('active');
+    }
+
+    // 2. होम पेज के टॉप पर स्क्रॉल करें
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 3. अगर सर्च ओवरले फ़ंक्शन मौजूद है, तो उसे चलाएं
+    if (typeof openSearchOverlay === 'function') {
+        openSearchOverlay();
+    } else {
+        // अगर सर्च ओवरले नहीं बना है तो मुख्य सर्च इनपुट पर फ़ोकस करें
+        const mainSearchInput = document.querySelector('.main-search-bar input');
+        if (mainSearchInput) {
+            mainSearchInput.focus();
+            mainSearchInput.click();
+        }
+    }
+}
+// LocalStorage से रीसेंट सर्च गेट करना
+function getRecentSearches() {
+    const history = localStorage.getItem('apex_recent_searches');
+    return history ? JSON.parse(history) : [];
+}
+
+// LocalStorage में नया सर्च सेव करना
+function saveSearchTerm(term) {
+    if (!term || term.trim() === '') return;
+    let searches = getRecentSearches();
+    // duplicate हटाएँ और नए सर्च को सबसे ऊपर रखें
+    searches = searches.filter(item => item.toLowerCase() !== term.toLowerCase());
+    searches.unshift(term.trim());
+    // सिर्फ़ आख़िरी 5 सर्च ही रखें
+    if (searches.length > 5) searches.pop();
+    localStorage.setItem('apex_recent_searches', JSON.stringify(searches));
+}
+
+// सर्च ओवरले रेंडर करना (डायनामिक रीसेंट सर्च + ट्रेंडिंग प्रोडक्ट्स)
+function renderSearchHistory() {
+    const historyContainer = document.getElementById('historyContainer');
+    if (!historyContainer) return;
+
+    const recentSearches = getRecentSearches();
+    
+    // ट्रेंडिंग कैटेगरीज और ट्रेंडिंग प्रोडक्ट्स (इमोजी फ्री)
+    const trendingCategories = ['Electronics', 'Men Fashion', 'Mobile Accessories'];
+    const trendingProducts = ['Wireless Earbuds', 'Smart Watch', 'Gaming Laptop'];
+
+    let html = '';
+
+    // केवल तभी Recent Searches दिखाएगा जब यूजर ने पहले कभी कुछ सर्च किया हो
+    if (recentSearches.length > 0) {
+        html += `
+            <div class="search-section">
+                <div class="search-section-title" style="display: flex; justify-content: space-between; align-items: center;">
+                    <span>Recent Searches</span>
+                    <span onclick="clearRecentSearches()" style="font-size: 11px; color: #2563eb; cursor: pointer; text-transform: none;">Clear All</span>
+                </div>
+                <ul class="search-list">
+                    ${recentSearches.map(item => `
+                        <li onclick="selectSearchTerm('${item}')">
+                            <span class="history-icon">↺</span>
+                            <span class="search-text">${item}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+        `;
+    }
+
+    // Trending Products Section
+    html += `
+        <div class="search-section">
+            <div class="search-section-title">Trending Products</div>
+            <ul class="search-list">
+                ${trendingProducts.map(item => `
+                    <li onclick="selectSearchTerm('${item}')">
+                        <span class="history-icon">★</span>
+                        <span class="search-text">${item}</span>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+    `;
+
+    // Trending Categories Section
+    html += `
+        <div class="search-section">
+            <div class="search-section-title">Trending Categories</div>
+            <ul class="search-list">
+                ${trendingCategories.map(item => `
+                    <li onclick="selectSearchTerm('${item}')">
+                        <span class="history-icon">↗</span>
+                        <span class="search-text">${item}</span>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+    `;
+
+    historyContainer.innerHTML = html;
+}
+
+// किसी आइटम पर क्लिक करने पर उसे सर्च में डालना और सेव करना
+function selectSearchTerm(term) {
+    const searchInput = document.getElementById('overlaySearchInput');
+    if (searchInput) {
+        searchInput.value = term;
+        saveSearchTerm(term);
+    }
+}
+
+// रीसेंट सर्च क्लियर करने का फंक्शन
+function clearRecentSearches() {
+    localStorage.removeItem('apex_recent_searches');
+    renderSearchHistory();
+}
+
+// जब यूज़र सर्च इनपुट में 'Enter' दबाए
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('overlaySearchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    saveSearchTerm(query);
+                    // यहाँ आपकी प्रोडक्ट फ़िल्टरिंग या सर्च का फ़ंक्शन कॉल कर सकते हैं
+                }
+            }
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    renderHorizontalProducts();
+});
+
+function renderHorizontalProducts() {
+    const slider1 = document.getElementById('sliderRow1');
+    const slider2 = document.getElementById('sliderRow2');
+
+
+    if (slider1) {
+        slider1.innerHTML = productsRow1.map(p => createProductCardHtml(p)).join('');
+    }
+
+    if (slider2) {
+        slider2.innerHTML = productsRow2.map(p => createProductCardHtml(p)).join('');
+    }
+}
+
+function createProductCardHtml(product) {
+    return `
+        <div class="product-card-item">
+            <img src="${product.img}" alt="${product.name}" class="product-card-img">
+            <div class="product-card-title">${product.name}</div>
+            <div class="product-card-price">${product.price}</div>
+            <button class="product-add-btn">Add to Cart</button>
+        </div>
+    `;
+}
+document.addEventListener('DOMContentLoaded', function() {
+    renderProducts();
+});
+
+function renderProducts() {
+    const container = document.getElementById('mainProductsRow');
+    if (!container) return;
+
+    const products = [
+        { name: 'Wireless Headphones', price: '₹1,999' },
+        { name: 'Smart Watch', price: '₹2,499' },
+        { name: 'Bluetooth Speaker', price: '₹1,299' },
+        { name: 'Gaming Mouse', price: '₹899' },
+        { name: 'Fast Charger', price: '₹499' }
+    ];
+
+    container.innerHTML = products.map(p => `
+        <div style="flex: 0 0 130px !important; min-width: 130px !important; width: 130px !important; box-sizing: border-box !important; background: #fff; padding: 10px; border-radius: 8px; border: 1px solid #e5e7eb; text-align: center;"> 
+            <div style="width: 100%; height: 90px; background: #f3f4f6; border-radius: 6px; margin-bottom: 8px;"></div>
+            <div style="font-size: 12px; font-weight: 600; color: #111; margin-bottom: 4px; text-overflow: ellipsis; overflow: hidden; whitespace: nowrap;">${p.name}</div>
+            <div style="font-size: 13px; font-weight: 700; color: #2563eb;">${p.price}</div>
+        </div>
+    `).join('');
+}
+function renderProducts() {
+    const container = document.getElementById('mainProductsRow');
+    if (!container) return;
+
+    const products = [
+        { name: 'Wireless Headphones', price: '₹1,999', image: '' },
+        { name: 'Smart Watch', price: '₹2,499', image: '' },
+        { name: 'Bluetooth Speaker', price: '₹1,299', image: '' },
+        { name: 'Gaming Mouse', price: '₹899', image: '' },
+        { name: 'Fast Charger', price: '₹499', image: '' }
+    ];
+
+    container.innerHTML = products.map(product => `
+        <div class="product-card">
+            <div class="product-img-wrapper">
+                <img src="${product.image || 'https://via.placeholder.com/150'}" alt="${product.name}">
+            </div>
+            <div class="product-title">${product.name}</div>
+            <div class="product-price">${product.price}</div>
+        </div>
+    `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', renderProducts);
