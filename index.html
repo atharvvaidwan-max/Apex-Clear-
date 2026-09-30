@@ -4,76 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APEX CLEAR</title>
+    
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+           <style>
+    /* पूरे पेज का दाएं-बाएं हिलना बंद */
+    html, body {
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* हॉरिजॉन्टल स्क्रॉल कंटेनर सेटिंग्स */
+    .horizontal-scroll-container,
+    .horizontal-product-scroll,
+    .categories-slider,
+    .category-scroll {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        scroll-behavior: smooth !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-x !important; /* मोबाइल टच स्क्रॉल चालू करने के लिए */
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* स्क्रॉलबार छिपाने के लिए */
+    .horizontal-scroll-container::-webkit-scrollbar,
+    .horizontal-product-scroll::-webkit-scrollbar,
+    .categories-slider::-webkit-scrollbar,
+    .category-scroll::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    /* सबसे महत्वपूर्ण: अंदर के हर आइटम/कार्ड को सिकुड़ने से रोकना */
+    .horizontal-scroll-container > *,
+    .horizontal-product-scroll > *,
+    .categories-slider > *,
+    .category-scroll > *,
+    .product-card,
+    .category-card {
+        flex: 0 0 auto !important; /* यह लाइन स्क्रॉलिंग को चालू करती है */
+        min-width: 140px !important; /* कार्ड की न्यूनतम चौड़ाई */
+    }
+    #mainProductsRow {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+#mainProductsRow > * {
+    flex: 0 0 140px !important;
+    min-width: 140px !important;
+}
+
+    </style>
+    
+   
 </head>
+
 <body>
 
-    <!-- MODERN FLOATING HAMBURGER HEADER -->
-    <header class="navbar">
-        <div class="menu-container">
-            <button class="hamburger-btn" onclick="toggleMenu()" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="logo">APEX CLEAR</div>
+    <!-- TOP BRAND HEADER (NO HAMBURGER) -->
+    <div class="top-header">
+        <h1 class="logo">APEX CLEAR</h1>
+    </div>
+
+     <div class="main-search-bar" onclick="openSearchOverlay()">
+    <span class="search-icon">🔍</span>
+    <input type="text" placeholder="Search products, brands and categories..." readonly>
+</div>
+
+    <!-- Amazon-Style Full Screen Search Overlay -->
+    <div id="searchOverlay" class="search-overlay" style="display: none;">
+        <div class="overlay-header">
+            <button type="button" class="back-btn" onclick="closeSearchOverlay()">←</button>
+            <div class="overlay-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="overlaySearchInput" placeholder="Search products, brands and categories..." autofocus>
+            </div>
         </div>
 
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProducts()">
+        <!-- History List Section -->
+        <div class="search-history-container" id="historyContainer">
+            <!-- History items will be inserted dynamically via JS -->
         </div>
+    </div>
 
-        <!-- SLIDE-DOWN DROPDOWN MENU -->
-        <nav class="nav-links" id="navMenu">
-            <a href="#products" onclick="toggleMenu()">Store</a>
-            <a href="#" onclick="openSupportModal(); toggleMenu();">Support</a>
-            <button id="themeToggleBtn" onclick="toggleTheme(); toggleMenu();">Theme</button>
-            <a href="#" id="cartNavBtn" onclick="openCartSummary(); toggleMenu();">Cart (<span id="cartCount">0</span>)</a>
-            <a href="#" id="myOrdersBtn" onclick="showMyOrders(); toggleMenu();">My Orders</a>
-            <button class="admin-btn" onclick="openAdminPanel(); toggleMenu();">Admin</button>
-        </nav>
-    </header>
-
-    <!-- HERO / BANNER SECTION -->
-    <section class="hero">
-        <h1>APEX CLEAR ONLINE STORE</h1>
-        <p>Official E-Commerce Platform | Premium Deals</p>
-        <a href="#products" class="btn-primary hero-btn">Browse Store</a>
-    </section>
-
-    <!-- STORE CATEGORIES (AMAZON STYLE) -->
-    <section class="container categories-section">
-        <h3>Top Categories</h3>
-        <div class="category-grid">
-            <div class="cat-card" onclick="filterByCategory('Electronics')">Electronics</div>
-            <div class="cat-card" onclick="filterByCategory('Fashion')">Fashion</div>
-            <div class="cat-card" onclick="filterByCategory('Gadgets')">Gadgets</div>
-            <div class="cat-card" onclick="filterByCategory('Accessories')">Accessories</div>
+    <!-- FULLSCREEN CART MODAL -->
+<div id="cartModal" class="fullscreen-modal" style="display: none;">
+    <div class="fullscreen-header">
+        <button type="button" class="fullscreen-close-btn" onclick="document.getElementById('cartModal').style.display='none'; document.getElementById('cartModal').classList.remove('active');">←</button>
+        <h2>Your Shopping Cart</h2>
+        <div style="width: 22px;"></div>
+    </div>
+    <div class="fullscreen-body">
+        <div id="cartItemsContainer">
+            <div class="empty-state-card">
+                <h3>Your Shopping Cart is empty</h3>
+                <p>Your shopping cart lives to serve. Give it purpose — fill it with books, CDs, electronics, and more.</p>
+                <button type="button" class="shop-now-btn" onclick="closeAndGoToSearch()">Continue Shopping</button>
+            </div>
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- HORIZONTAL SCROLL PRODUCT SECTIONS -->
-    <main class="container" id="products">
-        
-        <!-- SECTION 1: TRENDING PRODUCTS -->
-        <div class="section-header">
-            <h2>Trending Products</h2>
-            <span class="see-more-link" onclick="seeMoreProducts('Trending')">See More &rarr;</span>
+<!-- FULLSCREEN MY ORDERS MODAL -->
+<div id="ordersModal" class="fullscreen-modal" style="display: none;">
+    <div class="fullscreen-header">
+        <button type="button" class="fullscreen-close-btn" onclick="document.getElementById('ordersModal').style.display='none'; document.getElementById('ordersModal').classList.remove('active');">←</button>
+        <h2>Your Orders</h2>
+        <div style="width: 22px;"></div>
+    </div>
+    <div class="fullscreen-body">
+        <div id="ordersItemsContainer">
+            <div class="empty-state-card">
+                <h3>No Orders Placed</h3>
+                <p>We couldn't find any orders associated with your account. Check out today's deals to start shopping.</p>
+                <button type="button" class="shop-now-btn" onclick="closeAndGoToSearch()">Explore Products</button>
+            </div>
         </div>
-        <div id="noResults" class="no-results" style="display:none;">No products available. Add using Admin panel.</div>
-        <div class="product-row-scroll" id="trendingProductsGrid">
-            <!-- Dynamic 10 Horizontal Products -->
-        </div>
+    </div>
+</div>
 
-        <!-- SECTION 2: FEATURED DEALS -->
-        <div class="section-header" style="margin-top: 30px;">
-            <h2>Featured Deals</h2>
-            <span class="see-more-link" onclick="seeMoreProducts('Featured')">See More &rarr;</span>
-        </div>
-        <div class="product-row-scroll" id="featuredProductsGrid">
-            <!-- Dynamic 10 Horizontal Products -->
-        </div>
 
+
+    <!-- PROFESSIONAL FLOATING BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="#products" class="nav-item active">
+            <i data-lucide="store" class="nav-icon"></i>
+            <span class="nav-label">Store</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openSupportModal(); return false;">
+            <i data-lucide="headphones" class="nav-icon"></i>
+            <span class="nav-label">Support</span>
+        </a>
+        <a href="#" class="nav-item" id="cartNavBtn" onclick="document.getElementById('cartModal').style.display='block'; document.getElementById('cartModal').classList.add('active'); return false;">
+            <i data-lucide="shopping-cart" class="nav-icon"></i>
+            <span class="nav-label">Cart (<span id="cartCount">0</span>)</span>
+        </a>
+        <a href="#" class="nav-item" id="myOrdersBtn" onclick="document.getElementById('ordersModal').style.display='block'; document.getElementById('ordersModal').classList.add('active'); return false;">
+            <i data-lucide="package" class="nav-icon"></i>
+            <span class="nav-label">Orders</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openProfilePage(); return false;">
+            <i data-lucide="user" class="nav-icon"></i>
+            <span class="nav-label">Profile</span>
+        </a>
+    </nav>
+
+    
+    <!-- HORIZONTAL SLIDING CATEGORIES SECTION -->
+<div class="categories-slider-wrapper">
+    <div class="categories-slider">
+        <button class="cat-chip active" onclick="filterByCategory('all', this)">All Products</button>
+        <button class="cat-chip" onclick="filterByCategory('electronics', this)"> Electronics</button>
+        <button class="cat-chip" onclick="filterByCategory('fashion', this)"> Fashion</button>
+        <button class="cat-chip" onclick="filterByCategory('gadgets', this)"> Gadgets</button>
+        <button class="cat-chip" onclick="filterByCategory('accessories', this)">Accessories</button>
+        <button class="cat-chip" onclick="filterByCategory('makeup', this)">Make-Up & Beauty</button>
+        <button class="cat-chip" onclick="filterByCategory('home', this)"> Home Decor</button>
+    </div>
+</div>
+
+   <!-- TOP PRODUCTS SECTION -->
+<section class="top-products-section">
+    <div class="products-header">
+        <h3 class="section-title">Top Products</h3>
+        <a href="#" class="see-all-btn">See All</a>
+    </div>
+    
+    <div class="horizontal-scroll-container" id="mainProductsRow">
+        <!-- Products generated dynamically via JavaScript -->
+    </div>
+</section>
+
+   
         <!-- SEE MORE / ALL PRODUCTS CONTAINER -->
         <div id="allProductsContainer" style="display: none; margin-top: 30px;">
             <h2>All APEX CLEAR Products</h2>
@@ -84,9 +197,12 @@
     <!-- ADVANCED AMAZON-STYLE CUSTOMER SUPPORT MODAL -->
     <div id="supportModal" class="modal" style="display: none !important;">
         <div class="modal-content support-modal-content">
-            <span class="close-btn" onclick="closeSupportModal()">&times;</span>
+           
             <h2>Amazon-Style Customer Support</h2>
             <p style="font-size: 12px; color: #8b949e; margin-bottom: 15px;">How can we help you with your order?</p>
+            
+            <button type="button" class="close-btn" onclick="closePopup()" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; font-weight: bold; color: #333; cursor: pointer; z-index: 99999;">×</button>
+            
 
             <form id="supportForm" onsubmit="handleSupportSubmit(event)">
                 <div class="form-group-row">
@@ -162,20 +278,96 @@
             </form>
         </div>
     </div>
+  <div id="toastNotification" class="toast-popup" style="display: none !important;">
+    <span id="toastMessage"></span>
+</div>
+</div>
 
-    <!-- ADMIN SETUP & LOGIN MODAL -->
-    <div id="adminModal" class="modal" style="display: none !important;">
-        <div class="modal-content">
+<!-- CUSTOM ADMIN PASSWORD MODAL -->
+<div id="passwordModal" class="custom-modal-overlay" style="display: none !important;">
+    <div class="custom-modal-box">
+        <div class="modal-icon-header"></div>
+        <h3>Admin Access Required</h3>
+        <p>Please enter the admin password to proceed.</p>
+        
+        <div class="password-input-container">
+    <input type="password" id="adminPassInput" placeholder="Enter Password" autocomplete="off">
+    <button type="button" id="togglePasswordBtn" class="eye-btn" onclick="togglePasswordVisibility()">
+        <!-- Pass hidden hai tab Slash Eye dikhegi -->
+        <svg id="eyeSlashIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+        </svg>
+        <!-- Pass text dikhega tab Open Eye dikhegi -->
+        <svg id="eyeIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+    </button>
+</div>
+
+        <p id="passErrorMsg" class="error-msg" style="display: none;">Incorrect password! Access Denied.</p>
+
+        <div class="modal-actions">
+            <!-- Cancel Button sirf Password Modal ko band karega -->
+            <button type="button" class="btn-cancel" onclick="closePasswordModal()">Cancel</button>
+            <button type="button" class="btn-submit" onclick="submitAdminPassword()">Login</button>
+        </div>
+    </div>
+</div>
+
+
+    <!-- FULLSCREEN ADMIN PANEL WITH TABS -->
+<div id="adminModal" class="modal" style="display: none !important;">
+    
+    <div class="admin-modal-content">
+        <div class="admin-header">
+            <h2>Admin Dashboard</h2>
             <span class="close-btn" onclick="closeAdminPanel()">&times;</span>
-            <div id="adminAuthSection">
-                <h3 id="adminModalTitle">Admin Security</h3>
-                <form id="adminAuthForm" onsubmit="handleAdminAuth(event)">
-                    <div id="passwordSetupGroup">
-                        <input type="password" id="adminPasswordInput" placeholder="Enter Admin Password" required>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 12px;">Login</button>
-                </form>
+        </div>
+
+        <!-- NAVIGATION TABS -->
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="switchAdminTab('productsTab', this)"> Products</button>
+            <button class="tab-btn" onclick="switchAdminTab('ordersTab', this)"> Orders</button>
+            <button class="tab-btn" onclick="switchAdminTab('settingsTab', this)"> Backup & Settings</button>
+        </div>
+
+        <!-- TAB 1: PRODUCTS (Add & Manage) -->
+        <div id="productsTab" class="tab-content active">
+            <h3>Add New Product</h3>
+            <div class="form-group">
+                <input type="text" id="pTitle" placeholder="Product Title">
+                <input type="text" id="pDesc" placeholder="Product Description">
+                <input type="text" id="pPrice" placeholder="Price (e.g. ₹499)">
+                <input type="number" id="pStock" placeholder="Stock Quantity">
+                <input type="text" id="pImage" placeholder="Image URL">
+                <button class="action-btn" onclick="addNewProduct()">Add Product</button>
             </div>
+            
+            <hr class="section-divider">
+            
+            <h3>Manage Existing Products</h3>
+            <div id="adminProductsList">No products currently in store.</div>
+        </div>
+
+        <!-- TAB 2: ORDERS -->
+        <div id="ordersTab" class="tab-content">
+            <h3>Customer Orders Received</h3>
+            <div id="adminOrdersList">No orders received yet.</div>
+        </div>
+
+        <!-- TAB 3: BACKUP, RESET & DATA -->
+        <div id="settingsTab" class="tab-content">
+            <h3>Store Data & System Controls</h3>
+            <div class="settings-actions">
+                <button class="action-btn" onclick="exportData()">Export Store Data (JSON Backup)</button>
+                <button class="action-btn warning-btn" onclick="resetAdminPassword()">Reset Admin Password</button>
+                <button class="action-btn danger-btn" onclick="clearAllData()">Clear All Data</button>
+            </div>
+        </div>
+    </div>
+</div>
 
             <!-- ADMIN CONTROL PANEL -->
             <div id="adminControlPanel" style="display: none;">
@@ -205,8 +397,8 @@
                 <button type="button" class="btn-primary" onclick="resetAdminPassword()" style="background-color: #da3633; width: 100%;">Reset Admin Password</button>
                 <button type="button" class="btn-primary" onclick="clearAllProducts()" style="background-color: #d97706; width: 100%; margin-top: 10px;">Clear All Data</button>
             </div>
-        </div>
-    </div>
+        </div 
+</div>
 
     <!-- FOOTER -->
     <footer>
@@ -216,6 +408,9 @@
     <div id="toastNotification" class="toast"></div>
 
     <script src="script.js"></script>
+    <script>
+         lucide.createIcons();
+    </script>                
 </body>
-  </html>
+</html>
   
