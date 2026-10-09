@@ -490,7 +490,6 @@ function exportStoreData() {
     downloadAnchor.click();
     downloadAnchor.remove();
 }
-
 // ORDER CONFIRMATION LOGIC
 function confirmOrderPlacement(event, pName, pPrice) {
     if (event) event.preventDefault();
@@ -936,54 +935,90 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-// ==========================================
-// MISSING FUNCTIONS DEFINITIONS
-// ==========================================
-
-// 1. ADD NEW PRODUCT FUNCTION
 function addNewProduct(event) {
     if (event) event.preventDefault();
 
-    const nameInput = document.getElementById('adminPName') || document.getElementById('productTitle');
-    const descInput = document.getElementById('adminPDesc') || document.getElementById('productDesc');
-    const priceInput = document.getElementById('adminPrice') || document.getElementById('productPrice');
-    const stockInput = document.getElementById('adminStock') || document.getElementById('productStock');
-    const imgInput = document.getElementById('adminPImage') || document.getElementById('productImage');
+    // Screen par jitne bhi visible text/number inputs hain unko get kar rahe hain
+    const inputs = Array.from(document.querySelectorAll('input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"])'))
+                         .filter(input => input.offsetParent !== null || input.offsetWidth > 0 || input.offsetHeight > 0);
 
-    const name = nameInput ? nameInput.value.trim() : '';
-    const desc = descInput ? descInput.value.trim() : '';
-    const price = priceInput ? priceInput.value.trim() : '';
-    const stock = stockInput ? parseInt(stockInput.value) || 0 : 0;
-    const image = imgInput ? imgInput.value.trim() : '';
+    let name = '', description = '', originalPrice = '', price = '', image = '';
 
+    // Pehle IDs se try kar rahe hain
+    const nameEl = document.getElementById('productName') || document.getElementById('newProductName');
+    const descEl = document.getElementById('productDesc') || document.getElementById('productDescription');
+    const origPriceEl = document.getElementById('productOriginalPrice') || document.getElementById('originalPrice');
+    const priceEl = document.getElementById('productPrice') || document.getElementById('newProductPrice');
+    const imageEl = document.getElementById('productImage') || document.getElementById('productImageUrl');
+
+    if (nameEl && nameEl.value.trim()) name = nameEl.value.trim();
+    if (descEl && descEl.value.trim()) description = descEl.value.trim();
+    if (origPriceEl && origPriceEl.value.trim()) originalPrice = origPriceEl.value.trim();
+    if (priceEl && priceEl.value.trim()) price = priceEl.value.trim();
+    if (imageEl && imageEl.value.trim()) image = imageEl.value.trim();
+
+    // Agar IDs se nahi mila, toh screen par dikhne waale sequence se padhenge
     if (!name || !price) {
-        showToast("Please enter product name and price!", "");
+        const allInputs = document.querySelectorAll('input');
+        const filledInputs = Array.from(allInputs).filter(i => i.value && i.value.trim() !== '');
+        
+        if (filledInputs.length >= 2) {
+            name = filledInputs[0].value.trim();
+            if (filledInputs.length >= 5) {
+                description = filledInputs[1].value.trim();
+                originalPrice = filledInputs[2].value.trim();
+                price = filledInputs[3].value.trim();
+                image = filledInputs[4].value.trim();
+            } else {
+                price = filledInputs[filledInputs.length - 1].value.trim();
+            }
+        }
+    }
+
+    // Validation Check
+    if (!name || !price) {
+        if (typeof showToast === 'function') {
+            showToast("Please enter product name and price!", "error");
+        } else {
+            alert("Please enter product name and price!");
+        }
         return;
     }
 
-    let products = getStoredProducts();
-    products.push({
+    // New Product Object
+    const newProduct = {
         id: Date.now(),
         name: name,
-        title: name,
-        desc: desc,
-        description: desc,
-        price: price,
-        stock: stock,
-        image: image || 'https://via.placeholder.com/150'
+        description: description,
+        originalPrice: originalPrice,
+        price: parseFloat(price),
+        image: image || "https://via.placeholder.com/150"
+    };
+
+    // Save
+    let currentProducts = typeof getSafeStorage === 'function' ? getSafeStorage('apex_products', []) : [];
+    currentProducts.push(newProduct);
+    if (typeof setSafeStorage === 'function') setSafeStorage('apex_products', currentProducts);
+
+    // Reset inputs
+    document.querySelectorAll('input').forEach(input => {
+        if (input.type !== 'submit' && input.type !== 'button') input.value = '';
     });
 
-    setSafeStorage('apex_products', products);
-
-    showToast("Product added successfully!", "");
-
-    const addProductForm = document.getElementById('addProductForm');
-    if (addProductForm) addProductForm.reset();
-
+    // Refresh UI
     if (typeof renderProductsGrid === 'function') renderProductsGrid();
     if (typeof renderProducts === 'function') renderProducts();
     if (typeof renderAdminInventoryList === 'function') renderAdminInventoryList();
+
+    if (typeof showToast === 'function') {
+        showToast("Product added successfully!", "success");
+    } else {
+        alert("Product added successfully!");
+    }
 }
+
+window.addNewProduct = addNewProduct;
+window.handleAddProduct = addNewProduct;
 
 // 2. EXPORT DATA FUNCTION
 function exportData() {
@@ -1397,3 +1432,206 @@ function renderProducts() {
 }
 
 document.addEventListener('DOMContentLoaded', renderProducts);
+function openProfilePage() {
+    // 1. स्टोर की बाकी चीज़ें छुपाएं
+    const allElements = document.body.children;
+    for (let el of allElements) {
+        if (el.id !== 'profilePage' && el.tagName !== 'SCRIPT' && !el.classList.contains('bottom-nav')) {
+            el.style.setProperty('display', 'none', 'important');
+        }
+    }
+
+    // 2. प्रोफाइल पेज को दिखाएं
+    const profilePage = document.getElementById('profilePage');
+    if (profilePage) {
+        profilePage.style.setProperty('display', 'block', 'important');
+        profilePage.style.setProperty('visibility', 'visible', 'important');
+        profilePage.style.setProperty('opacity', '1', 'important');
+    }
+
+    // 3. बॉटम नेव एक्टिव करें
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
+    const profileBtn = document.querySelector('.bottom-nav .nav-item[onclick*="openProfilePage"]');
+    if (profileBtn) profileBtn.classList.add('active');
+}
+function openAdminModal() {
+    // अगर एडमिन पैनल का अलग मोडल/पॉपअप है तो उसे खोलें
+    const adminModal = document.getElementById('adminModal');
+    if (adminModal) {
+        adminModal.style.display = 'block';
+        adminModal.classList.add('active');
+    } else {
+        alert('Admin Panel Connected!');
+    }
+}
+// Tab Navigation Switcher Fix
+function switchTab(tabName) {
+    // Hide all main pages/sections
+    const sections = ['storePage', 'supportPage', 'cartPage', 'ordersPage', 'profilePage', 'profile-section', 'profile-container'];
+    
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.classList.remove('active');
+            el.style.display = 'none';
+        }
+    });
+
+    // Remove active class from all nav buttons
+    document.querySelectorAll('.nav-item, .bottom-nav a, .bottom-nav button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Show target tab
+    if (tabName === 'profile') {
+        const profileEl = document.getElementById('profilePage') || document.getElementById('profile-section') || document.querySelector('.profile-container');
+        if (profileEl) {
+            profileEl.classList.add('active');
+            profileEl.style.display = 'flex';
+        }
+    } else {
+        const targetEl = document.getElementById(tabName + 'Page') || document.getElementById(tabName);
+        if (targetEl) {
+            targetEl.classList.add('active');
+            targetEl.style.display = 'block';
+        }
+    }
+}
+
+// Bind clicks to bottom navigation
+document.addEventListener('DOMContentLoaded', function() {
+    const navItems = document.querySelectorAll('.nav-item, .bottom-nav a, .bottom-nav button');
+    navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            const text = this.innerText.toLowerCase().trim();
+            if (text.includes('store')) switchTab('store');
+            else if (text.includes('support')) switchTab('support');
+            else if (text.includes('cart')) switchTab('cart');
+            else if (text.includes('orders')) switchTab('orders');
+            else if (text.includes('profile')) switchTab('profile');
+        });
+    });
+});
+// Safe Storage Helpers
+function getSafeData(key, fallback) {
+    try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : fallback;
+    } catch (e) {
+        console
+        return fallback;
+    }                        
+}
+
+function setSafeData(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {
+        console.warn('localStorage write failed.');
+    }
+}
+
+// Account Settings Handler
+document.addEventListener('DOMContentLoaded', loadUserProfile);
+
+function loadUserProfile() {
+    const savedUser = getSafeData('apex_user_profile', {
+        name: 'Alex Dev',
+        email: 'alex.apex@app.com',
+        phone: '',
+        avatar: ''
+    });
+
+    document.querySelectorAll('.profile-card h2, .profile-name, .user-name').forEach(el => el.textContent = savedUser.name);
+    document.querySelectorAll('.profile-card p, .profile-email, .user-email').forEach(el => el.textContent = savedUser.email);
+    if (savedUser.avatar) {
+        document.querySelectorAll('.profile-avatar-container img, .avatar-wrapper img, .profile-card img').forEach(el => el.src = savedUser.avatar);
+    }
+}
+
+function openAccountSettings() {
+    const savedUser = getSafeData('apex_user_profile', {
+        name: 'Alex Dev',
+        email: 'alex.apex@app.com',
+        phone: '',
+        avatar: ''
+    });
+
+    if (document.getElementById('settingUserName')) document.getElementById('settingUserName').value = savedUser.name || '';
+    if (document.getElementById('settingUserEmail')) document.getElementById('settingUserEmail').value = savedUser.email || '';
+    if (document.getElementById('settingUserPhone')) document.getElementById('settingUserPhone').value = savedUser.phone || '';
+    if (document.getElementById('settingUserAvatar')) document.getElementById('settingUserAvatar').value = savedUser.avatar || '';
+
+    const modal = document.getElementById('accountSettingsModal');
+    if (modal) modal.classList.add('active');
+}
+
+function closeAccountSettings() {
+    const modal = document.getElementById('accountSettingsModal');
+    if (modal) modal.classList.remove('active');
+}
+
+function saveAccountSettings(event) {
+    if (event) event.preventDefault();
+
+    const updatedUser = {
+        name: document.getElementById('settingUserName')?.value.trim() || 'Alex Dev',
+        email: document.getElementById('settingUserEmail')?.value.trim() || 'alex.apex@app.com',
+        phone: document.getElementById('settingUserPhone')?.value.trim() || '',
+        avatar: document.getElementById('settingUserAvatar')?.value.trim() || ''
+    };
+
+    setSafeData('apex_user_profile', updatedUser);
+    loadUserProfile();
+    closeAccountSettings();
+
+    if (typeof showToast === 'function') {
+        showToast("Profile updated successfully!", "success");
+    } else {
+        alert("Profile updated successfully!");
+    }
+}
+
+// Click listener for Account Settings button
+document.addEventListener('click', function(e) {
+    const target = e.target.closest('div, button, a, li');
+    if (target && target.innerText && target.innerText.includes('Account Settings')) {
+        e.preventDefault();
+        openAccountSettings();
+    }
+});
+
+window.openAccountSettings = openAccountSettings;
+window.closeAccountSettings = closeAccountSettings;
+window.saveAccountSettings = saveAccountSettings;
+function openAccountSettings() {
+    const modal = document.getElementById('accountSettingsModal');
+    if (modal) {
+        modal.classList.add('active');
+        modal.style.display = 'flex'; // गारंटी से पॉपअप शो करने के लिए
+    }
+}
+
+window.openAccountSettings = openAccountSettings;
+// मोडल (Account Settings) को बंद करने का फंक्शन
+function closeAccountSettings() {
+    const modal = document.getElementById('accountSettingsModal');
+    if (modal) {
+        modal.classList.remove('active');
+        modal.style.display = 'none'; // मोडल को पूरी तरह छुपाने के लिए
+    }
+}
+
+window.closeAccountSettings = closeAccountSettings;
+const imageInput = document.getElementById('modalImageUpload');
+const fileNamePreview = document.getElementById('fileNamePreview');
+
+if (imageInput) {
+    imageInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            fileNamePreview.textContent = this.files[0].name;
+        } else {
+            fileNamePreview.textContent = 'No file chosen';
+        }
+    });
+}
