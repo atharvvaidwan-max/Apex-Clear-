@@ -159,6 +159,51 @@
             <span class="nav-label">Profile</span>
         </a>
     </nav>
+<!-- PROFILE PAGE VIEW -->
+<div id="profilePage" class="profile-view-container" style="display: none;">
+    <!-- Profile Card Header -->
+    <div class="profile-header-card">
+        <div class="avatar-wrapper">
+            <img id="profileImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=ApexUser" alt="User Avatar">
+            <label for="imageUpload" class="change-photo-badge">📸</label>
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+        </div>
+        <h2 id="userName" class="profile-name">Alex Dev</h2>
+        <p id="userEmail" class="profile-email">alex.apex@app.com</p>
+    </div>
+<!-- Main Menu List -->
+<div class="profile-menu-card">
+    <div id="accountSettingsBtn" class="profile-menu-item" onclick="openAccountSettings()" style="cursor: pointer; position: relative; z-index: 100;">
+        <span class="menu-icon">⚙️</span>
+        <span class="menu-label">Account Settings</span>
+        <span class="menu-arrow">&gt;</span>
+    </div>
+    
+        <div class="profile-menu-item">
+            <span class="menu-icon">🔔</span>
+            <span class="menu-label">Notifications</span>
+            <span class="menu-arrow">›</span>
+        </div>
+
+        <div class="profile-menu-item">
+    <span class="menu-icon">💳</span>
+    <span class="menu-label">Payment Methods</span>
+    <span class="menu-arrow">&gt;</span>
+</div>
+
+
+        <div class="profile-menu-item danger-item">
+            <span class="menu-icon">🚪</span>
+            <span class="menu-label">Sign Out</span>
+            <span class="menu-arrow">›</span>
+        </div>
+        <div class="profile-menu-item" style="background: #f8fafc; border-top: 1px dashed #e2e8f0;" onclick="document.getElementById('passwordModal').style.setProperty('display', 'flex', 'important');">
+    <span class="menu-icon">🛡️</span>
+    <span class="menu-label" style="color: #475569; font-size: 14px;">Admin Settings</span>
+    <span class="menu-arrow">›</span>
+</div>
+    </div>
+</div>
 
     
     <!-- HORIZONTAL SLIDING CATEGORIES SECTION -->
@@ -406,11 +451,50 @@
     </footer>
 
     <div id="toastNotification" class="toast"></div>
+<!-- Account Settings Modal -->
+<div id="accountSettingsModal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>Account Settings</h3>
+            <button class="modal-close-btn" type="button" onclick="closeAccountSettings()">&times;</button>
+            
+        </div>
+        <form id="accountSettingsForm" onsubmit="saveAccountSettings(event)">
+            <div class="form-group">
+                <label for="settingUserName">Full Name</label>
+                <input type="text" id="settingUserName" placeholder="Enter full name" required>
+            </div>
+            <div class="form-group">
+                <label for="settingUserEmail">Email Address</label>
+                <input type="email" id="settingUserEmail" placeholder="Enter email address" required>
+            </div>
+            <div class="form-group">
+                <label for="settingUserPhone">Phone Number</label>
+                <input type="tel" id="settingUserPhone" placeholder="Enter phone number">
+            </div>
+            <div class="form-group">
+    <label class="form-label">Profile Photo</label>
+    <div class="file-upload-wrapper">
+        <label for="modalImageUpload" class="file-upload-btn">
+            📷 Upload Profile Photo
+        </label>
+        <input type="file" id="modalImageUpload" accept="image/*" style="display: none;">
+        <span id="fileNamePreview" class="file-name-text">No file chosen</span>
+    </div>
+</div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" onclick="closeAccountSettings()">Cancel</button>
+                <button type="submit" class="btn-save">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
 
     <script src="script.js"></script>
-    <script>
-         lucide.createIcons();
-    </script>                
+   <script>lucide.createIcons();
+    </script>  
+             
 </body>
 </html>
   
