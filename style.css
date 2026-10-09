@@ -4363,3 +4363,507 @@ html, body {
     color: #2563eb;
     margin-top: auto;
 }
+/* Profile Container */
+.profile-view-container {
+    padding: 20px 16px 140px 16px !important; /* Bottom padding badhayi hai */
+    max-width: 440px;
+    margin: 0 auto;
+}
+/* Profile Header Card */
+.profile-header-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 24px;
+    padding: 28px 20px 24px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 16px auto;
+}
+
+.avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e2e8f0;
+    padding: 4px;
+    border: 2px solid #2563eb;
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
+}
+
+.change-photo-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: #ffffff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border: 1px solid #f1f5f9;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.3px;
+}
+
+.profile-email {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Menu List Card */
+.profile-menu-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 8px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0,0,0,0.1);
+    margin-bottom: 28px;
+}
+
+.profile-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile-menu-item:hover, .profile-menu-item:active {
+    background-color: #f8fafc;
+}
+
+.menu-icon {
+    font-size: 18px;
+    margin-right: 14px;
+    width: 36px;
+    height: 36px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-label {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.menu-arrow {
+    font-size: 16px;
+    color: #cbd5e1;
+    font-weight: 600;
+}
+
+.danger-item .menu-icon {
+    background: #fef2f2;
+}
+
+.danger-item .menu-label {
+    color: #ef4444;
+}
+
+/* Admin Section Footer */
+.admin-section {
+    text-align: center;
+}
+
+.admin-btn {
+    background: #f8fafc;
+    color: #64748b;
+    border: 1px dashed #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.admin-btn:hover {
+    background: #0f172a;
+    color: #ffffff;
+    border-style: solid;
+    border-color: #0f172a;
+}
+/* ==========================================
+   FULL SCREEN MODERN PROFILE SECTION STYLES
+   ========================================== */
+
+/* Profile Main Container - Full Screen Stretch */
+.profile-container, 
+#profilePage, 
+.profile-page,
+#profile-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100vh;
+    margin: 0 !important;
+    padding: 20px 16px 100px 16px !important;
+    box-sizing: border-box !important;
+    background: linear-gradient(180deg, #f4f7fc 0%, #eef2f8 100%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+}
+
+/* Upper Profile Card - Full Width Modern Glassmorphism */
+.profile-header, 
+.profile-card, 
+.user-profile-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    border-radius: 24px !important;
+    padding: 32px 20px !important;
+    text-align: center !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Avatar Wrapper & Camera Icon */
+.profile-avatar-container, 
+.avatar-wrapper {
+    position: relative !important;
+    margin-bottom: 16px !important;
+    display: inline-block !important;
+}
+
+.profile-avatar-container img, 
+.avatar-wrapper img, 
+.profile-card img {
+    width: 110px !important;
+    height: 110px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 4px solid #ffffff !important;
+    box-shadow: 0 8px 20px rgba(0, 122, 255, 0.15) !important;
+}
+
+/* Profile Name & Email */
+.profile-card h2, 
+.profile-name, 
+.user-name {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #1a1d2e !important;
+    margin: 8px 0 4px 0 !important;
+    letter-spacing: -0.5px !important;
+}
+
+.profile-card p, 
+.profile-email, 
+.user-email {
+    font-size: 14px !important;
+    color: #7b88a8 !important;
+    margin: 0 !important;
+    font-weight: 500 !important;
+}
+
+/* Settings Menu Card Container */
+.profile-menu, 
+.settings-list, 
+.profile-links {
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    border-radius: 24px !important;
+    padding: 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+/* Individual Menu Options - Full Width Clean Buttons */
+.profile-menu-item, 
+.menu-option, 
+.settings-item, 
+.profile-menu > div, 
+.profile-menu > button, 
+.profile-menu > a {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 16px 18px !important;
+    border-radius: 16px !important;
+    background: #f8fafc !important;
+    color: #1a1d2e !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    border: 1px solid transparent !important;
+    transition: all 0.25s ease !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+}
+
+.profile-menu-item:active, 
+.menu-option:active, 
+.settings-item:active {
+    background: #eef4ff !important;
+    transform: scale(0.99) !important;
+}
+
+/* Left Icon Styling */
+.menu-option-icon, 
+.settings-item i, 
+.settings-item img {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04) !important;
+    margin-right: 14px !important;
+}
+
+/* Arrow Indicator (>) */
+.profile-menu-item::after, 
+.menu-option::after, 
+.settings-item::after {
+    content: "›" !important;
+    font-size: 22px !important;
+    color: #a0aec0 !important;
+    font-weight: 400 !important;
+}
+
+/* Sign Out Red Styling */
+.sign-out-btn, 
+.logout-btn, 
+[data-action="logout"] {
+    background: #fff5f5 !important;
+    color: #e53e3e !important;
+}
+
+.sign-out-btn::after, 
+.logout-btn::after, 
+[data-action="logout"]::after {
+    color: #e53e3e !important;
+}
+/* Hide Profile Section by default */
+#profilePage, 
+#profile-section, 
+.profile-container {
+    display: none !important;
+}
+
+/* Show Profile Section only when active */
+#profilePage.active, 
+#profile-section.active, 
+.profile-container.active {
+    display: flex !important;
+}
+/* Popup Modal CSS */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.modal-overlay.active {
+    display: flex !important;
+}
+
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #1a1d2e;
+}
+
+.modal-close-btn {
+    background: #f1f5f9;
+    border: none;
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form-group input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.btn-cancel, .btn-save {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-cancel { background: #f1f5f9; color: #475569; }
+.btn-save { background: #007aff; color: #ffffff; }
+.profile-menu-item {
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 10 !important;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+}
+/* बिना HTML बदले बिखरे हुए कार्ड्स को एकदम सीधा और सुंदर करने का CSS */
+
+/* 1. पूरे मेन्यू कार्ड को एक साफ़ बॉक्स बनाएं */
+.profile-menu-card {
+    display: flex !important;
+    flex-direction: column !important;
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 8px 12px !important;
+    margin: 12px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+}
+
+/* 2. हर एक ऑप्शन (Row) को एक लाइन में सीधा अलाइन करें */
+.profile-menu-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 12px 8px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    cursor: pointer !important;
+}
+
+.profile-menu-item:last-child {
+    border-bottom: none !important;
+}
+
+/* 3. टेक्स्ट और आइकॉन का बिखराव ठीक करें */
+.profile-menu-item .menu-label, 
+.profile-menu-item span {
+    display: inline-flex !important;
+    align-items: center !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #333333 !important;
+}
+
+/* 4. तीर (Arrow) को सबसे दाएँ (Right) चिपकाएँ */
+.profile-menu-item .menu-arrow {
+    margin-left: auto !important;
+    color: #aaa !important;
+    font-size: 14px !important;
+}
+/* मेन्यू आइटम्स के बीच का गैप और स्पेस बढ़ाने के लिए */
+.profile-menu-item {
+    padding: 18px 14px !important; /* ऊपर-नीचे की जगह बढ़ाई गई */
+    margin-bottom: 8px !important;  /* हर आइटम के बीच गैप */
+}
+
+.profile-menu-card {
+    padding: 12px 16px !important;
+}
+.file-upload-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.file-upload-btn {
+    background-color: #f0f4f9;
+    color: #1a73e8;
+    border: 1px dashed #1a73e8;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.file-upload-btn:hover {
+    background-color: #e2ecf9;
+}
+
+.file-name-text {
+    font-size: 13px;
+    color: #666;
+}
