@@ -1635,3 +1635,49 @@ if (imageInput) {
         }
     });
 }
+/ Bottom Navigation Switcher
+function openHomeTab() {
+    // अगर आपके ऐप में टैब छुपाने/दिखाने का लॉजिक है, तो यहाँ लिखें
+    // उदाहरण के लिए अगर होम स्क्रीन पर जाना है:
+    const profileSection = document.getElementById('profileSection') || document.querySelector('.profile-page');
+    const homeSection = document.getElementById('homeSection') || document.querySelector('.store-page');
+    
+    if (profileSection) profileSection.style.display = 'none';
+    if (homeSection) homeSection.style.display = 'block';
+    
+    // या फिर अगर आपके पास सिंगल पेज ऐप (SPA) का स्विच फंक्शन है, उसे कॉल कर सकते हैं:
+    if (typeof switchTab === 'function') {
+        switchTab('store'); // या 'home'
+    } else {
+        window.location.hash = '#store'; // फॉलबैक
+    }
+}
+
+window.openHomeTab = openHomeTab;
+// Amazon-Style Customer Support मोडल को खोलने का सही फंक्शन
+function openSupportModal() {
+    const supportModal = document.getElementById('supportModal');
+    if (supportModal) {
+        supportModal.style.display = 'flex'; // या 'block' जो भी आपके बाकी मोडल में है
+        supportModal.classList.add('active');
+    }
+}
+
+// Global scope में रजिस्टर करने के लिए
+window.openSupportModal = openSupportModal;
+function openSupportModal() {
+    const modal = document.getElementById('supportModal');
+    if (modal) {
+        modal.style.setProperty('display', 'flex', 'important');
+    }
+}
+
+function closeSupportModal() {
+    const modal = document.getElementById('supportModal');
+    if (modal) {
+        modal.style.setProperty('display', 'none', 'important');
+    }
+}
+
+window.openSupportModal = openSupportModal;
+window.closeSupportModal = closeSupportModal;
