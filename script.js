@@ -1635,7 +1635,7 @@ if (imageInput) {
         }
     });
 }
-/ Bottom Navigation Switcher
+// Bottom Navigation Switcher//
 function openHomeTab() {
     // अगर आपके ऐप में टैब छुपाने/दिखाने का लॉजिक है, तो यहाँ लिखें
     // उदाहरण के लिए अगर होम स्क्रीन पर जाना है:
