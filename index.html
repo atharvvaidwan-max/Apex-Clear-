@@ -162,6 +162,12 @@
 <!-- PROFILE PAGE VIEW -->
 <div id="profilePage" class="profile-view-container" style="display: none;">
     <!-- Profile Card Header -->
+    <!-- Profile Page Back/Cross Button -->
+<div class="profile-top-bar" style="padding: 10px 16px;">
+    <button type="button" onclick="openHomeTab()" style="background: none; border: none; font-size: 22px; cursor: pointer; color: #333;">
+        ✕
+    </button>
+</div>          
     <div class="profile-header-card">
         <div class="avatar-wrapper">
             <img id="profileImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=ApexUser" alt="User Avatar">
@@ -239,45 +245,41 @@
         </div>
     </main>
 
-    <!-- ADVANCED AMAZON-STYLE CUSTOMER SUPPORT MODAL -->
-    <div id="supportModal" class="modal" style="display: none !important;">
-        <div class="modal-content support-modal-content">
-           
-            <h2>Amazon-Style Customer Support</h2>
-            <p style="font-size: 12px; color: #8b949e; margin-bottom: 15px;">How can we help you with your order?</p>
+  <!-- ADVANCED AMAZON-STYLE CUSTOMER SUPPORT MODAL -->
+<div id="supportModal" class="modal" style="display: none !important; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+    <div class="modal-content support-modal-content" style="position: relative; background: #ffffff; padding: 24px; border-radius: 16px; max-width: 450px; width: 90%; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+        
+        <!-- Clean & Safe Close Button -->
+        <button type="button" onclick="closeSupportModal()" style="position: absolute; top: 16px; right: 16px; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; font-weight: bold; color: #334155; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
+        
+        <h2 style="font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 4px;">Customer Support</h2>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 18px;">How can we help you with your order?</p>
+        
+        <form id="supportForm" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="custName" placeholder="Full Name" required style="flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none;">
+                <input type="tel" id="custPhone" placeholder="Mobile Number" required style="flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none;">
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <input type="email" id="custEmail" placeholder="Email Address" required style="flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none;">
+                <input type="text" id="custOrderID" placeholder="Order ID (Optional)" style="flex: 1; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none;">
+            </div>
+            <select id="queryType" required style="padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; background: #fff; color: #333;">
+                <option value="">Select Issue Type</option>
+                <option value="Where is my order?">Where is my order?</option>
+                <option value="Return / Replacement">Return / Replacement</option>
+                <option value="Damaged / Wrong Product">Damaged / Wrong Product</option>
+                <option value="Payment / Refund Issue">Payment / Refund Issue</option>
+                <option value="General Query">General Inquiry</option>
+            </select>
+            <input type="text" id="custProductName" placeholder="Product Name (If applicable)" style="padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none;">
+            <textarea id="custMessage" placeholder="Describe your issue in detail..." rows="3" style="padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; resize: none;"></textarea>
             
-            <button type="button" class="close-btn" onclick="closePopup()" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; font-weight: bold; color: #333; cursor: pointer; z-index: 99999;">×</button>
-            
-
-            <form id="supportForm" onsubmit="handleSupportSubmit(event)">
-                <div class="form-group-row">
-                    <input type="text" id="custName" placeholder="Full Name" required>
-                    <input type="tel" id="custPhone" placeholder="Mobile Number" required>
-                </div>
-                
-                <div class="form-group-row">
-                    <input type="email" id="custEmail" placeholder="Email Address" required>
-                    <input type="text" id="custOrderID" placeholder="Order ID (Optional)">
-                </div>
-
-                <div class="form-group-row">
-                    <select id="queryType" required>
-                        <option value="">Select Issue Type</option>
-                        <option value="Where is my order?">Where is my order?</option>
-                        <option value="Return / Replacement">Return / Replacement</option>
-                        <option value="Damaged / Wrong Product">Damaged / Wrong Product Received</option>
-                        <option value="Payment / Refund Issue">Payment / Refund Issue</option>
-                        <option value="General Query">General Inquiry</option>
-                    </select>
-                    <input type="text" id="custProductName" placeholder="Product Name (If applicable)">
-                </div>
-
-                <textarea id="custMessage" rows="5" placeholder="Describe your issue in detail so we can assist you better..." required></textarea>
-                
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Submit Ticket to Support Team</button>
-            </form>
-        </div>
+            <button type="submit" style="background: #2563eb; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; margin-top: 4px;">Submit Ticket to Support Team</button>
+        </form>
     </div>
+</div>
+
 
     <!-- ADVANCED CHECKOUT MODAL (REAL ADDRESS & PAYMENT) -->
     <div id="checkoutModal" class="modal" style="display: none !important;">
@@ -378,7 +380,7 @@
             <button class="tab-btn" onclick="switchAdminTab('settingsTab', this)"> Backup & Settings</button>
         </div>
 
-        <!-- TAB 1: PRODUCTS (Add & Manage) -->
+          <!-- TAB 1: PRODUCTS (Add & Manage) -->
         <div id="productsTab" class="tab-content active">
             <h3>Add New Product</h3>
             <div class="form-group">
