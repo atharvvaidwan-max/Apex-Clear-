@@ -4867,3 +4867,59 @@ html, body {
     font-size: 13px;
     color: #666;
 }
+/* प्रोफाइल कार्ड को relative बनाएं ताकि बटन उसके अंदर सही से सेट हो सके */
+.profile-card {
+    position: relative !important;
+}
+
+/* क्रॉस/बैक बटन की प्रीमियम स्टाइलिंग */
+.profile-close-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 36px;
+    height: 36px;
+    background-color: #f1f5f9;
+    color: #334155;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.profile-close-btn:active {
+    background-color: #e2e8f0;
+    transform: scale(0.95);
+}
+/* प्रोफाइल कार्ड को रिलेटिव पोजीशन दें ताकि बटन उसके अंदर सेट हो सके */
+.profile-card {
+    position: relative !important;
+}
+
+/* क्रॉस बटन की सीएसएस स्टाइलिंग */
+.profile-close-btn {
+    position: absolute !important;
+    top: 16px !important;
+    left: 16px !important;
+    width: 36px !important;
+    height: 36px !important;
+    background-color: #f1f5f9 !important;
+    color: #334155 !important;
+    border: none !important;
+    border-radius: 50% !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+    z-index: 10 !important;
+}
