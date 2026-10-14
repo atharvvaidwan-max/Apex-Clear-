@@ -490,6 +490,7 @@ function exportStoreData() {
     downloadAnchor.click();
     downloadAnchor.remove();
 }
+
 // ORDER CONFIRMATION LOGIC
 function confirmOrderPlacement(event, pName, pPrice) {
     if (event) event.preventDefault();
@@ -1005,7 +1006,7 @@ function addNewProduct(event) {
         if (input.type !== 'submit' && input.type !== 'button') input.value = '';
     });
 
-    // Refresh UI
+     // Refresh UI
     if (typeof renderProductsGrid === 'function') renderProductsGrid();
     if (typeof renderProducts === 'function') renderProducts();
     if (typeof renderAdminInventoryList === 'function') renderAdminInventoryList();
@@ -1663,7 +1664,7 @@ function openSupportModal() {
     }
 }
 
-// Global scope में रजिस्टर करने के लिए
+
 window.openSupportModal = openSupportModal;
 function openSupportModal() {
     const modal = document.getElementById('supportModal');
@@ -1831,4 +1832,4 @@ function applyCropAndSave() {
 
 window.closeCropModal = closeCropModal;
 window.applyCropAndSave = applyCropAndSave;
-    
+            
