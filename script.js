@@ -1681,3 +1681,154 @@ function closeSupportModal() {
 
 window.openSupportModal = openSupportModal;
 window.closeSupportModal = closeSupportModal;
+function previewProfileImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+        // सीधा और फास्ट तरीका फाइल को दिखाने का
+        const imageURL = URL.createObjectURL(file);
+        const imgElement = document.getElementById('profileImg');
+        
+        if (imgElement) {
+            imgElement.src = imageURL;
+            console.log("Profile picture updated successfully!");
+        } else {
+            console.error("profileImg ID नहीं मिला!");
+        }
+    }
+}
+
+// Global scope में पक्का करने के लिए
+window.previewProfileImage = previewProfileImage;
+document.addEventListener('DOMContentLoaded', () => {
+    const imageUpload = document.getElementById('imageUpload');
+    const profileImg = document.getElementById('profileImg');
+
+    if (imageUpload && profileImg) {
+        imageUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const imageURL = URL.createObjectURL(file);
+                profileImg.src = imageURL;
+            }
+        });
+    }
+});
+let cropperCanvas, cropperCtx, loadedImg = new Image(), currentScale = 1, currentX = 0, currentY = 0, isDraggingImg = false, startMouseX, startMouseY;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const imageUpload = document.getElementById('imageUpload');
+    if (imageUpload) {
+        imageUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    loadedImg.src = e.target.result;
+                    loadedImg.onload = function() {
+                        cropperCanvas = document.getElementById('cropperCanvas');
+                        cropperCtx = cropperCanvas.getContext('2d');
+                        
+                        // Initial scale & center position
+                        currentScale = Math.max(cropperCanvas.width / loadedImg.width, cropperCanvas.height / loadedImg.height);
+                        currentX = (cropperCanvas.width - loadedImg.width * currentScale) / 2;
+                        currentY = (cropperCanvas.height - loadedImg.height * currentScale) / 2;
+                        
+                        const zoomSlider = document.getElementById('imageZoomSlider');
+                        if (zoomSlider) zoomSlider.value = currentScale;
+                        
+                        document.getElementById('customCropModal').style.display = 'flex';
+                        renderCropperCanvas();
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Drag / Touch Event Listeners for Image panning inside circle
+    const canvasElem = document.getElementById('cropperCanvas');
+    if (canvasElem) {
+        canvasElem.addEventListener('mousedown', startImageDrag);
+        canvasElem.addEventListener('mousemove', dragImage);
+        canvasElem.addEventListener('mouseup', stopImageDrag);
+        canvasElem.addEventListener('mouseleave', stopImageDrag);
+
+        canvasElem.addEventListener('touchstart', startImageDrag);
+        canvasElem.addEventListener('touchmove', dragImage);
+        canvasElem.addEventListener('touchend', stopImageDrag);
+    }
+
+    // Zoom Slider Listener
+    const zoomSlider = document.getElementById('imageZoomSlider');
+    if (zoomSlider) {
+        zoomSlider.addEventListener('input', (e) => {
+            currentScale = parseFloat(e.target.value);
+            renderCropperCanvas();
+        });
+    }
+});
+
+function renderCropperCanvas() {
+    if (!cropperCtx) return;
+    cropperCtx.clearRect(0, 0, cropperCanvas.width, cropperCanvas.height);
+    cropperCtx.save();
+    cropperCtx.translate(currentX, currentY);
+    cropperCtx.scale(currentScale, currentScale);
+    cropperCtx.drawImage(loadedImg, 0, 0);
+    cropperCtx.restore();
+}
+
+function startImageDrag(e) {
+    isDraggingImg = true;
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    startMouseX = clientX - currentX;
+    startMouseY = clientY - currentY;
+}
+
+function dragImage(e) {
+    if (!isDraggingImg) return;
+    e.preventDefault();
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    currentX = clientX - startMouseX;
+    currentY = clientY - startMouseY;
+    renderCropperCanvas();
+}
+
+function stopImageDrag() {
+    isDraggingImg = false;
+}
+
+function closeCropModal() {
+    document.getElementById('customCropModal').style.display = 'none';
+    document.getElementById('imageUpload').value = '';
+}
+
+function applyCropAndSave() {
+    const finalCanvas = document.createElement('canvas');
+    finalCanvas.width = 300;
+    finalCanvas.height = 300;
+    const finalCtx = finalCanvas.getContext('2d');
+
+    // Create exact circular crop mask
+    finalCtx.beginPath();
+    finalCtx.arc(150, 150, 150, 0, Math.PI * 2);
+    finalCtx.clip();
+
+    // Scale from cropper preview canvas to final 300x300 image
+    const ratio = 300 / 260;
+    finalCtx.drawImage(cropperCanvas, currentX * ratio, currentY * ratio, loadedImg.width * currentScale * ratio, loadedImg.height * currentScale * ratio);
+
+    const croppedDataURL = finalCanvas.toDataURL('image/png');
+    const profileImg = document.getElementById('profileImg');
+    if (profileImg) {
+        profileImg.src = croppedDataURL;
+    }
+
+    closeCropModal();
+}
+
+window.closeCropModal = closeCropModal;
+window.applyCropAndSave = applyCropAndSave;
+    
