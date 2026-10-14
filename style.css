@@ -4923,3 +4923,58 @@ html, body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
     z-index: 10 !important;
 }
+.avatar-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 90px !important;
+    height: 90px !important;
+    margin-bottom: 30px;
+}
+
+.avatar-wrapper img, 
+#profileImg {
+    width: 90px !important;
+    height: 90px !important;
+    min-width: 90px !important;
+    min-height: 90px !important;
+    max-width: 90px !important;
+    max-height: 90px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 3px solid #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+.avatar-wrapper {
+    position: relative !important;
+    display: inline-block !important;
+    width: 90px !important;
+    height: 90px !important;
+    margin: 0 auto 20px auto !important;
+}
+
+#profileImg {
+    width: 90px !important;
+    height: 90px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 3px solid #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    display: block !important;
+}
+
+.change-photo-badge {
+    position: absolute !important;
+    bottom: 2px !important;
+    right: 2px !important;
+    background: #2563eb !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3) !important;
+    border: 2px solid #ffffff !important;
+    z-index: 10 !important;
+    }
