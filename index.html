@@ -3,138 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX CLEAR</title>
-    
-    <link rel="stylesheet" href="style.css">
+    <title>Shop Sphere Store</title>
+    <link rel="stylesheet" href="Style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     
-           <style>
-    /* पूरे पेज का दाएं-बाएं हिलना बंद */
-    html, body {
-        width: 100% !important;
-        max-width: 100vw !important;
-        overflow-x: hidden !important;
-        margin: 0;
-        padding: 0;
-    }
+    <style>
+        /* पूरे पेज का दाएं-बाएं हिलना बंद */
+        html, body {
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* हॉरिजॉन्टल स्क्रॉल कंटेनर सेटिंग्स */
-    .horizontal-scroll-container,
-    .horizontal-product-scroll,
-    .categories-slider,
-    .category-scroll {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        white-space: nowrap !important;
-        scroll-behavior: smooth !important;
-        -webkit-overflow-scrolling: touch !important;
-        touch-action: pan-x !important; /* मोबाइल टच स्क्रॉल चालू करने के लिए */
-        scrollbar-width: none !important;
-        -ms-overflow-style: none !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
+        /* हॉरिजॉन्टल स्क्रॉल कंटेनर सेटिंग्स */
+        .horizontal-scroll-container,
+        .horizontal-product-scroll,
+        .categories-slider,
+        .category-scroll {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+            scroll-behavior: smooth !important;
+            -webkit-overflow-scrolling: touch !important;
+            touch-action: pan-x !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
 
-    /* स्क्रॉलबार छिपाने के लिए */
-    .horizontal-scroll-container::-webkit-scrollbar,
-    .horizontal-product-scroll::-webkit-scrollbar,
-    .categories-slider::-webkit-scrollbar,
-    .category-scroll::-webkit-scrollbar {
-        display: none !important;
-    }
+        .horizontal-scroll-container::-webkit-scrollbar,
+        .horizontal-product-scroll::-webkit-scrollbar,
+        .categories-slider::-webkit-scrollbar,
+        .category-scroll::-webkit-scrollbar {
+            display: none !important;
+        }
 
-    /* सबसे महत्वपूर्ण: अंदर के हर आइटम/कार्ड को सिकुड़ने से रोकना */
-    .horizontal-scroll-container > *,
-    .horizontal-product-scroll > *,
-    .categories-slider > *,
-    .category-scroll > *,
-    .product-card,
-    .category-card {
-        flex: 0 0 auto !important; /* यह लाइन स्क्रॉलिंग को चालू करती है */
-        min-width: 140px !important; /* कार्ड की न्यूनतम चौड़ाई */
-    }
-    #mainProductsRow {
-    display: flex !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-    -webkit-overflow-scrolling: touch !important;
-}
-#mainProductsRow > * {
-    flex: 0 0 140px !important;
-    min-width: 140px !important;
-}
+        .horizontal-scroll-container > *,
+        .horizontal-product-scroll > *,
+        .categories-slider > *,
+        .category-scroll > *,
+        .product-card,
+        .category-card {
+            flex: 0 0 auto !important;
+            min-width: 140px !important;
+        }
 
+        #mainProductsRow {
+            display: flex !important;
+            overflow-x: auto !important;
+            white-space: nowrap !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+        #mainProductsRow > * {
+            flex: 0 0 140px !important;
+            min-width: 140px !important;
+        }
     </style>
-    
-   
 </head>
 
 <body>
 
-    <!-- TOP BRAND HEADER (NO HAMBURGER) -->
-    <div class="top-header">
-        <h1 class="logo">APEX CLEAR</h1>
+    <!-- Shop SphereCENTERED HEADING -->
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 14px 0 10px 0;">
+        <h1 style="font-size: 20px; font-weight: 800; color: #0f172a; margin: 0; letter-spacing: 0.5px;">APEX CLEAR</h1>
     </div>
 
-     <div class="main-search-bar" onclick="openSearchOverlay()">
-    <span class="search-icon">🔍</span>
-    <input type="text" placeholder="Search products, brands and categories..." readonly>
-</div>
+    <!-- MAIN SEARCH BAR -->
+    <div class="main-search-bar" onclick="openSearchOverlay()">
+        <span class="search-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </span>
+        <input type="text" placeholder="Search products, brands and categories..." readonly>
+    </div>
 
     <!-- Amazon-Style Full Screen Search Overlay -->
     <div id="searchOverlay" class="search-overlay" style="display: none;">
         <div class="overlay-header">
-            <button type="button" class="back-btn" onclick="closeSearchOverlay()">←</button>
+            <button type="button" class="back-btn" onclick="closeSearchOverlay()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
             <div class="overlay-input-wrapper">
-                <span class="search-icon">🔍</span>
+                <span class="search-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </span>
                 <input type="text" id="overlaySearchInput" placeholder="Search products, brands and categories..." autofocus>
             </div>
         </div>
-
-        <!-- History List Section -->
-        <div class="search-history-container" id="historyContainer">
-            <!-- History items will be inserted dynamically via JS -->
-        </div>
+        <div class="search-history-container" id="historyContainer"></div>
     </div>
 
     <!-- FULLSCREEN CART MODAL -->
-<div id="cartModal" class="fullscreen-modal" style="display: none;">
-    <div class="fullscreen-header">
-        <button type="button" class="fullscreen-close-btn" onclick="document.getElementById('cartModal').style.display='none'; document.getElementById('cartModal').classList.remove('active');">←</button>
-        <h2>Your Shopping Cart</h2>
-        <div style="width: 22px;"></div>
-    </div>
-    <div class="fullscreen-body">
-        <div id="cartItemsContainer">
-            <div class="empty-state-card">
-                <h3>Your Shopping Cart is empty</h3>
-                <p>Your shopping cart lives to serve. Give it purpose — fill it with books, CDs, electronics, and more.</p>
-                <button type="button" class="shop-now-btn" onclick="closeAndGoToSearch()">Continue Shopping</button>
+    <div id="cartModal" class="fullscreen-modal" style="display: none;">
+        <div class="fullscreen-header">
+            <button type="button" class="fullscreen-close-btn" onclick="document.getElementById('cartModal').style.display='none'; document.getElementById('cartModal').classList.remove('active');">←</button>
+            <h2>Your Shopping Cart</h2>
+            <div style="width: 22px;"></div>
+        </div>
+        <div class="fullscreen-body">
+            <div id="cartItemsContainer">
+                <div class="empty-state-card">
+                    <h3>Your Shopping Cart is empty</h3>
+                    <p>Your shopping cart lives to serve. Give it purpose — fill it with books, CDs, electronics, and more.</p>
+                    <button type="button" class="shop-now-btn" onclick="closeAndGoToSearch()">Continue Shopping</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- FULLSCREEN MY ORDERS MODAL -->
-<div id="ordersModal" class="fullscreen-modal" style="display: none;">
-    <div class="fullscreen-header">
-        <button type="button" class="fullscreen-close-btn" onclick="document.getElementById('ordersModal').style.display='none'; document.getElementById('ordersModal').classList.remove('active');">←</button>
-        <h2>Your Orders</h2>
-        <div style="width: 22px;"></div>
-    </div>
-    <div class="fullscreen-body">
-        <div id="ordersItemsContainer">
-            <div class="empty-state-card">
-                <h3>No Orders Placed</h3>
-                <p>We couldn't find any orders associated with your account. Check out today's deals to start shopping.</p>
-                <button type="button" class="shop-now-btn" onclick="closeAndGoToSearch()">Explore Products</button>
+    <!-- FULLSCREEN MY ORDERS MODAL -->
+    <div id="ordersModal" class="fullscreen-modal" style="display: none;">
+        <div class="fullscreen-header">
+            <button type="button" class="fullscreen-close-btn" onclick="document.getElementById('ordersModal').style.display='none'; document.getElementById('ordersModal').classList.remove('active');">←</button>
+            <h2>Your Orders</h2>
+            <div style="width: 22px;"></div>
+        </div>
+        <div class="fullscreen-body">
+            <div id="ordersItemsContainer">
+                <div class="empty-state-card">
+                    <h3>No Orders Placed</h3>
+                    <p>We couldn't find any orders associated with your account. Check out today's deals to start shopping.</p>
+                    <button type="button" class="shop-now-btn" onclick="closeAndGoToSearch()">Explore Products</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-
 
     <!-- PROFESSIONAL FLOATING BOTTOM NAV -->
     <nav class="bottom-nav">
@@ -159,137 +164,154 @@
             <span class="nav-label">Profile</span>
         </a>
     </nav>
-<!-- PROFILE PAGE VIEW -->
-<div id="profilePage" class="profile-view-container" style="display: none;">
-    <!-- Profile Card Header -->
-    <!-- Profile Page Back/Cross Button -->
-<div class="profile-top-bar" style="padding: 10px 16px;">
-    <button type="button" onclick="openHomeTab()" style="background: none; border: none; font-size: 22px; cursor: pointer; color: #333;">
-        ✕
+
+    <!-- PROFILE PAGE VIEW -->
+    <div id="profilePage" class="profile-view-container" style="display: none;">
+         <div class="profile-top-bar" style="padding: 10px 16px;">
+    <button type="button" onclick="closeProfile()" style="background: none; border: none; font-size: 28px; font-weight: bold; cursor: pointer; color: #0f172a;">
+        &times;
     </button>
-</div>          
-   <div class="profile-header-card">
-    <div class="avatar-wrapper">
-        <img id="profileImg" src="https://api.dicebear.com/7.x/botts/svg?seed=ApexUser" alt="User Avatar">
-        <label for="imageUpload" class="change-photo-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                <circle cx="12" cy="13" r="4"></circle>
-            </svg>
-        </label>
-        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-    </div>
-   <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="previewProfileImage(event)">
-   
-
-        <h2 id="userName" class="profile-name">Alex Dev</h2>
-        <p id="userEmail" class="profile-email">alex.apex@app.com</p>
-    </div>
-<!-- Main Menu List -->
-<div class="profile-menu-card">
-    <div id="accountSettingsBtn" class="profile-menu-item" onclick="openAccountSettings()" style="cursor: pointer; position: relative; z-index: 100;">
-        <span class="menu-icon">⚙️</span>
-        <span class="menu-label">Account Settings</span>
-        <span class="menu-arrow">&gt;</span>
-    </div>
-    
-        <div class="profile-menu-item">
-            <span class="menu-icon">🔔</span>
-            <span class="menu-label">Notifications</span>
-            <span class="menu-arrow">›</span>
-        </div>
-
-        <div class="profile-menu-item">
-    <span class="menu-icon">💳</span>
-    <span class="menu-label">Payment Methods</span>
-    <span class="menu-arrow">&gt;</span>
 </div>
-
-
-        <div class="profile-menu-item danger-item">
-            <span class="menu-icon">🚪</span>
-            <span class="menu-label">Sign Out</span>
-            <span class="menu-arrow">›</span>
-        </div>
-        <div class="profile-menu-item" style="background: #f8fafc; border-top: 1px dashed #e2e8f0;" onclick="document.getElementById('passwordModal').style.setProperty('display', 'flex', 'important');">
-    <span class="menu-icon">🛡️</span>
-    <span class="menu-label" style="color: #475569; font-size: 14px;">Admin Settings</span>
-    <span class="menu-arrow">›</span>
-</div>
-    </div>
-</div>
-
-    
-    <!-- HORIZONTAL SLIDING CATEGORIES SECTION -->
-<div class="categories-slider-wrapper">
-    <div class="categories-slider">
-        <button class="cat-chip active" onclick="filterByCategory('all', this)">All Products</button>
-        <button class="cat-chip" onclick="filterByCategory('electronics', this)"> Electronics</button>
-        <button class="cat-chip" onclick="filterByCategory('fashion', this)"> Fashion</button>
-        <button class="cat-chip" onclick="filterByCategory('gadgets', this)"> Gadgets</button>
-        <button class="cat-chip" onclick="filterByCategory('accessories', this)">Accessories</button>
-        <button class="cat-chip" onclick="filterByCategory('makeup', this)">Make-Up & Beauty</button>
-        <button class="cat-chip" onclick="filterByCategory('home', this)"> Home Decor</button>
-    </div>
-</div>
-
-   <!-- TOP PRODUCTS SECTION -->
-<section class="top-products-section">
-    <div class="products-header">
-        <h3 class="section-title">Top Products</h3>
-        <a href="#" class="see-all-btn">See All</a>
-    </div>
-    
-    <div class="horizontal-scroll-container" id="mainProductsRow">
-        <!-- Products generated dynamically via JavaScript -->
-    </div>
-</section>
-
-   
-        <!-- SEE MORE / ALL PRODUCTS CONTAINER -->
-        <div id="allProductsContainer" style="display: none; margin-top: 30px;">
-            <h2>All APEX CLEAR Products</h2>
-            <div class="product-grid" id="productGrid"></div>
-        </div>
-    </main>
-
- <!-- ADVANCED AMAZON-STYLE CUSTOMER SUPPORT MODAL -->
-<div id="supportModal" class="modal" style="display: none !important; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-    <div class="modal-content support-modal-content" style="position: relative; background: #ffffff; padding: 28px 24px; border-radius: 20px; max-width: 450px; width: 90%; box-shadow: 0 20px 35px rgba(0,0,0,0.2);">
-        
-        <!-- Clean & Safe Close Button -->
-        <button type="button" onclick="closeSupportModal()" style="position: absolute; top: 16px; right: 16px; background: #f1f5f9; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; font-weight: bold; color: #334155; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
-        
-        <h2 style="font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Customer Support</h2>
-        <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">How can we help you with your order?</p>
-        
-        <form id="supportForm" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 14px;">
-            <div style="display: flex; gap: 12px;">
-                <input type="text" id="custName" placeholder="Full Name" required style="flex: 1; padding: 12px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none;">
-                <input type="tel" id="custPhone" placeholder="Mobile Number" required style="flex: 1; padding: 12px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none;">
+        <div class="profile-header-card">
+            <div class="avatar-wrapper">
+                <img id="profileImg" src="https://api.dicebear.com/7.x/botts/svg?seed=ApexUser" alt="User Avatar">
+                <label for="imageUpload" class="change-photo-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                </label>
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="previewProfileImage(event)">
             </div>
-            <div style="display: flex; gap: 12px;">
-                <input type="email" id="custEmail" placeholder="Email Address" required style="flex: 1; padding: 12px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none;">
-                <input type="text" id="custOrderID" placeholder="Order ID (Optional)" style="flex: 1; padding: 12px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none;">
+            <h2 id="userName" class="profile-name">Alex Dev</h2>
+            <p id="userEmail" class="profile-email">alex.apex@app.com</p>
+        </div>
+
+        <!-- Main Menu List -->
+        <div class="profile-menu-card">
+            <div id="accountSettingsBtn" class="profile-menu-item" onclick="openAccountSettings()" style="cursor: pointer; position: relative; z-index: 100;">
+                <span class="menu-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                </span>
+                <span class="menu-label">Account Settings</span>
+                <span class="menu-arrow">&gt;</span>
             </div>
-            <select id="queryType" required style="padding: 12px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none;">
-                <option value="" style="color: #64748b;">Select Issue Type</option>
-                <option value="Where is my order?">Where is my order?</option>
-                <option value="Return / Replacement">Return / Replacement</option>
-                <option value="Damaged / Wrong Product">Damaged / Wrong Product</option>
-                <option value="Payment / Refund Issue">Payment / Refund Issue</option>
-                <option value="General Query">General Inquiry</option>
-            </select>
-            <input type="text" id="custProductName" placeholder="Product Name (If applicable)" style="padding: 12px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none;">
-            <textarea id="custMessage" placeholder="Describe your issue in detail..." rows="3" style="padding: 12px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; resize: none;"></textarea>
             
-            <button type="submit" style="background: #2563eb; color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 600; font-size: 15px; cursor: pointer; margin-top: 6px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);">Submit Ticket to Support Team</button>
-        </form>
+            <div class="profile-menu-item">
+                <span class="menu-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </span>
+                <span class="menu-label">Notifications</span>
+                <span class="menu-arrow">›</span>
+            </div>
+
+            <div class="profile-menu-item">
+                <span class="menu-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                </span>
+                <span class="menu-label">Payment Methods</span>
+                <span class="menu-arrow">&gt;</span>
+            </div>
+
+            <div class="profile-menu-item danger-item">
+                <span class="menu-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </span>
+                <span class="menu-label">Sign Out</span>
+                <span class="menu-arrow">›</span>
+            </div>
+
+            <div class="profile-menu-item" style="background: #f8fafc; border-top: 1px dashed #e2e8f0;" onclick="document.getElementById('passwordModal').style.setProperty('display', 'flex', 'important');">
+                <span class="menu-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </span>
+                <span class="menu-label" style="color: #475569; font-size: 14px;">Admin Settings</span>
+                <span class="menu-arrow">›</span>
+            </div>
+        </div>
     </div>
-</div>
 
+    <!-- HORIZONTAL SLIDING CATEGORIES SECTION -->
+    <div class="categories-slider-wrapper">
+        <div class="categories-slider">
+            <button class="cat-chip active" onclick="filterByCategory('all', this)">All Products</button>
+            <button class="cat-chip" onclick="filterByCategory('electronics', this)"> Electronics</button>
+            <button class="cat-chip" onclick="filterByCategory('fashion', this)"> Fashion</button>
+            <button class="cat-chip" onclick="filterByCategory('gadgets', this)"> Gadgets</button>
+            <button class="cat-chip" onclick="filterByCategory('accessories', this)">Accessories</button>
+            <button class="cat-chip" onclick="filterByCategory('makeup', this)">Make-Up & Beauty</button>
+            <button class="cat-chip" onclick="filterByCategory('home', this)"> Home Decor</button>
+        </div>
+    </div>
 
-    <!-- ADVANCED CHECKOUT MODAL (REAL ADDRESS & PAYMENT) -->
+    <!-- Top Products Section -->
+    <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; padding: 0 16px; margin-bottom: 12px;">
+        <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0;">Top Products</h3>
+        <a href="#" class="see-all" style="color: #2563eb; text-decoration: none; font-size: 14px; font-weight: 600;">See All</a>
+    </div>
+
+    <!-- Product Grid Container -->
+    <div id="productGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 0 16px 20px 16px;">
+        <p style="grid-column: span 2; text-align: center; color: #64748b; padding: 20px 0;">No product are available</p>
+    </div>
+   
+    <!-- SEE MORE / ALL PRODUCTS CONTAINER -->
+    <div id="allProductsContainer" style="display: none; margin-top: 30px;">
+        <h2>All Shop SphereProducts</h2>
+        <div class="product-grid" id="allProductsGridList"></div>
+    </div>
+
+     <!-- TRULY FULL-SCREEN CLEAN STACKED SUPPORT PAGE -->
+    <div id="supportModal" style="display: none !important; position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; background: #ffffff !important; z-index: 999999 !important; overflow-y: auto !important; margin: 0 !important; border-radius: 0 !important; box-shadow: none !important;">
+        <div style="position: relative !important; background: #ffffff !important; padding: 20px 16px 80px 16px !important; width: 100% !important; min-height: 100% !important; box-sizing: border-box !important;">
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">
+                <h2 style="font-size: 20px; font-weight: 700; color: #0f172a; margin: 0;">Customer Support</h2>
+                <button type="button" onclick="closeSupportModal()" style="background: #f1f5f9; border: none; width: 38px; height: 38px; border-radius: 50%; font-size: 20px; font-weight: bold; color: #334155; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
+            </div>
+
+            <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Provide your details & delivery address for quick assistance:</p>
+            
+            <form id="supportForm" onsubmit="handleSupportSubmit(event)" style="display: flex; flex-direction: column; gap: 14px; width: 100%; box-sizing: border-box;">
+                <input type="text" id="custName" placeholder="Full Name" required style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                <input type="tel" id="custPhone" placeholder="Mobile Number" required style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                <input type="email" id="custEmail" placeholder="Email Address" required style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                <input type="text" id="custOrderID" placeholder="Order ID (Optional)" style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                <div style="font-size: 15px; font-weight: 600; color: #334155; margin-top: 6px;">Delivery Address</div>
+                <input type="text" id="custHouse" placeholder="Flat, House no., Building, Company" style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                <input type="text" id="custStreet" placeholder="Area, Street, Sector, Village" style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                <input type="text" id="custCity" placeholder="Town / City" style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                <input type="text" id="custPincode" placeholder="Pincode" maxlength="6" style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                <select id="queryType" required style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;">
+                    <option value="">Select Issue Type</option>
+                    <option value="Where is my order?">Where is my order?</option>
+                    <option value="Return / Replacement">Return / Replacement</option>
+                    <option value="Damaged / Wrong Product">Damaged / Wrong Product</option>
+                    <option value="Payment / Refund Issue">Payment / Refund Issue</option>
+                    <option value="General Query">General Inquiry</option>
+                </select>
+                <textarea id="custMessage" placeholder="Describe your issue in detail..." rows="3" style="width: 100% !important; padding: 13px; background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; outline: none; resize: none; box-sizing: border-box;"></textarea>
+                <button type="submit" style="width: 100% !important; background: #2563eb; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: 600; font-size: 15px; cursor: pointer; margin-top: 14px; margin-bottom: 20px; box-sizing: border-box; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);">Submit Ticket to Support Team</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADVANCED CHECKOUT MODAL -->
     <div id="checkoutModal" class="modal" style="display: none !important;">
         <div class="modal-content">
             <span class="close-btn" onclick="closeCheckoutModal()">&times;</span>
@@ -317,7 +339,6 @@
                     <option value="UPI">UPI / QR Code Scan</option>
                 </select>
 
-                <!-- UPI Payment Box (Shows if UPI selected) -->
                 <div id="upiPaymentBox" style="display: none; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; margin-bottom: 10px; text-align: center;">
                     <p style="font-size: 13px; margin-bottom: 5px;">Scan & Pay via any UPI App:</p>
                     <p style="font-weight: bold; color: #2ea043; font-size: 16px;">UPI ID: yourname@upi</p>
@@ -333,205 +354,225 @@
             </form>
         </div>
     </div>
-  <div id="toastNotification" class="toast-popup" style="display: none !important;">
-    <span id="toastMessage"></span>
-</div>
-</div>
 
-<!-- CUSTOM ADMIN PASSWORD MODAL -->
-<div id="passwordModal" class="custom-modal-overlay" style="display: none !important;">
-    <div class="custom-modal-box">
-        <div class="modal-icon-header"></div>
-        <h3>Admin Access Required</h3>
-        <p>Please enter the admin password to proceed.</p>
-        
-        <div class="password-input-container">
-    <input type="password" id="adminPassInput" placeholder="Enter Password" autocomplete="off">
-    <button type="button" id="togglePasswordBtn" class="eye-btn" onclick="togglePasswordVisibility()">
-        <!-- Pass hidden hai tab Slash Eye dikhegi -->
-        <svg id="eyeSlashIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-            <line x1="1" y1="1" x2="23" y2="23"></line>
-        </svg>
-        <!-- Pass text dikhega tab Open Eye dikhegi -->
-        <svg id="eyeIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-        </svg>
-    </button>
-</div>
-
-        <p id="passErrorMsg" class="error-msg" style="display: none;">Incorrect password! Access Denied.</p>
-
-        <div class="modal-actions">
-            <!-- Cancel Button sirf Password Modal ko band karega -->
-            <button type="button" class="btn-cancel" onclick="closePasswordModal()">Cancel</button>
-            <button type="button" class="btn-submit" onclick="submitAdminPassword()">Login</button>
-        </div>
+    <div id="toastNotification" class="toast-popup" style="display: none !important;">
+        <span id="toastMessage"></span>
     </div>
-</div>
-
-
-     <!-- FULLSCREEN ADMIN PANEL WITH TABS -->
-<div id="adminModal" class="modal" style="display: none !important;">
-    
-    <div class="admin-modal-content">
-        <div class="admin-header">
-            <h2>Admin Dashboard</h2>
-            <span class="close-btn" onclick="closeAdminPanel()">&times;</span>
-        </div>
-
-        <!-- NAVIGATION TABS -->
-        <div class="admin-tabs">
-            <button class="tab-btn active" onclick="switchAdminTab('productsTab', this)"> Products</button>
-            <button class="tab-btn" onclick="switchAdminTab('ordersTab', this)"> Orders</button>
-            <button class="tab-btn" onclick="switchAdminTab('settingsTab', this)"> Backup & Settings</button>
-        </div>
-
-        <!-- TAB 1: PRODUCTS (Add & Manage) -->
-        <div id="productsTab" class="tab-content active">
-            <h3>Add New Product</h3>
-            <div class="form-group">
-                <input type="text" id="pTitle" placeholder="Product Title">
-                <input type="text" id="pDesc" placeholder="Product Description">
-                <input type="text" id="pPrice" placeholder="Price (e.g. ₹499)">
-                <input type="number" id="pStock" placeholder="Stock Quantity">
-                <input type="text" id="pImage" placeholder="Image URL">
-                <button class="action-btn" onclick="addNewProduct()">Add Product</button>
+    <!-- CUSTOM ADMIN PASSWORD MODAL -->
+    <div id="passwordModal" class="custom-modal-overlay" style="display: none !important;">
+        <div class="custom-modal-box">
+            <div class="modal-icon-header"></div>
+            <h3>Admin Access Required</h3>
+            <p>Please enter the admin password to proceed.</p>
+            
+            <div class="password-input-container">
+                <input type="password" id="adminPassInput" placeholder="Enter Password" autocomplete="off">
+                <button type="button" id="togglePasswordBtn" class="eye-btn" onclick="togglePasswordVisibility()">
+                    <svg id="eyeSlashIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                    <svg id="eyeIcon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
             </div>
-            
-            <hr class="section-divider">
-            
-            <h3>Manage Existing Products</h3>
-            <div id="adminProductsList">No products currently in store.</div>
-        </div>
 
-        <!-- TAB 2: ORDERS -->
-        <div id="ordersTab" class="tab-content">
-            <h3>Customer Orders Received</h3>
-            <div id="adminOrdersList">No orders received yet.</div>
-        </div>
+            <p id="passErrorMsg" class="error-msg" style="display: none;">Incorrect password! Access Denied.</p>
 
-        <!-- TAB 3: BACKUP, RESET & DATA -->
-        <div id="settingsTab" class="tab-content">
-            <h3>Store Data & System Controls</h3>
-            <div class="settings-actions">
-                <button class="action-btn" onclick="exportData()">Export Store Data (JSON Backup)</button>
-                <button class="action-btn warning-btn" onclick="resetAdminPassword()">Reset Admin Password</button>
-                <button class="action-btn danger-btn" onclick="clearAllData()">Clear All Data</button>
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" onclick="closePasswordModal()">Cancel</button>
+                <button type="button" class="btn-submit" onclick="submitAdminPassword()">Login</button>
             </div>
         </div>
     </div>
-</div>
 
-            <!-- ADMIN CONTROL PANEL -->
-            <div id="adminControlPanel" style="display: none;">
+    <!-- FULLSCREEN ADMIN PANEL WITH TABS -->
+    <div id="adminModal" class="modal" style="display: none !important;">
+        <div class="admin-modal-content">
+            <div class="admin-header">
+                <h2>Admin Dashboard</h2>
+                <span class="close-btn" onclick="closeAdminPanel()">&times;</span>
+            </div>
+
+            <!-- NAVIGATION TABS -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="switchAdminTab('productsTab', this)"> Products</button>
+                <button class="tab-btn" onclick="switchAdminTab('ordersTab', this)"> Orders</button>
+                <button class="tab-btn" onclick="switchAdminTab('settingsTab', this)"> Backup & Settings</button>
+            </div>
+
+            <!-- TAB 1: PRODUCTS -->
+            <div id="productsTab" class="tab-content active">
                 <h3>Add New Product</h3>
-                <form id="addProductForm" onsubmit="saveProductByAdmin(event)">
-                    <input type="text" id="adminPName" placeholder="Product Title" required>
-                    <input type="text" id="adminPDesc" placeholder="Product Description" required>
-                    <input type="text" id="adminPrice" placeholder="Price (e.g. ₹499)" required>
-                    <input type="number" id="adminStock" placeholder="Stock Quantity" min="1" required>
-                    <input type="text" id="adminPImage" placeholder="Image URL" required>
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 12px;">Add Product</button>
-                </form>
+                <div class="form-group">
+<input type="text" id="adminTitle" placeholder="Product Title" required>
+<input type="text" id="adminDesc" placeholder="Product Description" required>
+<input type="text" id="adminPrice" placeholder="Price (e.g. ₹499)" required>
+<input type="number" id="adminStock" placeholder="Stock Quantity" required>
 
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
-
-                <h3 style="margin-bottom: 10px;">Manage Existing Products</h3>
-                <div id="adminProductList" style="max-height: 180px; overflow-y: auto; margin-bottom: 20px;"></div>
-
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
-
-                <h3 style="margin-bottom: 10px;">Customer Orders Received</h3>
-                <div id="adminOrdersList" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;"></div>
-
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
-                
-                <button type="button" class="btn-primary" onclick="exportStoreData()" style="background-color: #2ea043; width: 100%; margin-bottom: 10px;">Export Store Data (JSON Backup)</button>
-                <button type="button" class="btn-primary" onclick="resetAdminPassword()" style="background-color: #da3633; width: 100%;">Reset Admin Password</button>
-                <button type="button" class="btn-primary" onclick="clearAllProducts()" style="background-color: #d97706; width: 100%; margin-top: 10px;">Clear All Data</button>
-            </div>
-        </div 
+<!-- Clean & Direct Image Upload Field -->
+<div style="margin-top: 12px; margin-bottom: 14px; width: 100%;">
+    <label style="font-size: 13px; color: #0f172a; display: block; margin-bottom: 6px; font-weight: 700;">Upload Product Image</label>
+    <input type="file" id="productImagesInput" accept="image/*" style="width: 100%; padding: 10px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px; color: #334155; cursor: pointer;">
 </div>
+
+                   
+           <button class="action-btn" onclick="addNewProduct()">Add Product</button>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <h3>Manage Existing Products</h3>
+                <div id="adminProductsList">No products currently in store.</div>
+            </div>
+
+            <!-- TAB 2: ORDERS -->
+            <div id="ordersTab" class="tab-content">
+                <h3>Customer Orders Received</h3>
+                <div id="adminOrdersList">No orders received yet.</div>
+            </div>
+
+            <!-- TAB 3: BACKUP & SETTINGS -->
+            <div id="settingsTab" class="tab-content">
+                <h3>Store Data & System Controls</h3>
+                <div class="settings-actions">
+                    <button class="action-btn" onclick="exportData()">Export Store Data (JSON Backup)</button>
+                    <button class="action-btn warning-btn" onclick="resetAdminPassword()">Reset Admin Password</button>
+                    <button class="action-btn danger-btn" onclick="clearAllData()">Clear All Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 APEX CLEAR. All rights reserved.</p>
     </footer>
 
-    <div id="toastNotification" class="toast"></div>
-<!-- Account Settings Modal -->
-<div id="accountSettingsModal" class="modal-overlay">
-    <div class="modal-card">
-        <div class="modal-header">
-            <h3>Account Settings</h3>
-            <button class="modal-close-btn" type="button" onclick="closeAccountSettings()">&times;</button>
-            
+    <!-- Account Settings Modal -->
+    <div id="accountSettingsModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Account Settings</h3>
+                <button class="modal-close-btn" type="button" onclick="closeAccountSettings()">&times;</button>
+            </div>
+            <form id="accountSettingsForm" onsubmit="saveAccountSettings(event)">
+                <div class="form-group">
+                    <label for="settingUserName">Full Name</label>
+                    <input type="text" id="settingUserName" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="settingUserEmail">Email Address</label>
+                    <input type="email" id="settingUserEmail" placeholder="Enter email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="settingUserPhone">Phone Number</label>
+                    <input type="tel" id="settingUserPhone" placeholder="Enter phone number">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeAccountSettings()">Cancel</button>
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </div>
+            </form>
         </div>
-        <form id="accountSettingsForm" onsubmit="saveAccountSettings(event)">
-            <div class="form-group">
-                <label for="settingUserName">Full Name</label>
-                <input type="text" id="settingUserName" placeholder="Enter full name" required>
-            </div>
-            <div class="form-group">
-                <label for="settingUserEmail">Email Address</label>
-                <input type="email" id="settingUserEmail" placeholder="Enter email address" required>
-            </div>
-            <div class="form-group">
-                <label for="settingUserPhone">Phone Number</label>
-                <input type="tel" id="settingUserPhone" placeholder="Enter phone number">
+    </div>
+    <!-- Instagram Style Circular Crop Modal -->
+    <div id="customCropModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 99999; align-items: center; justify-content: center; flex-direction: column;">
+        <div style="background: #ffffff; padding: 20px; border-radius: 20px; width: 92%; max-width: 350px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+            <h3 style="margin-bottom: 4px; font-size: 18px; color: #0f172a; font-weight: 700;">Crop Profile Photo</h3>
+            <p style="font-size: 12px; color: #64748b; margin-bottom: 14px;">Drag image to position, use slider to zoom</p>
+            
+            <div id="cropContainer" style="position: relative; width: 260px; height: 260px; margin: 0 auto 16px auto; overflow: hidden; border-radius: 50%; border: 3px solid #2563eb; background: #1e293b; touch-action: none; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
+                <canvas id="cropperCanvas" width="260" height="260" style="position: absolute; top: 0; left: 0; cursor: grab;"></canvas>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; border-radius: 50%; overflow: hidden;">
+                    <div style="position: absolute; top: 33.33%; width: 100%; height: 1px; background: rgba(255,255,255,0.35);"></div>
+                    <div style="position: absolute; top: 66.66%; width: 100%; height: 1px; background: rgba(255,255,255,0.35);"></div>
+                    <div style="position: absolute; left: 33.33%; height: 100%; width: 1px; background: rgba(255,255,255,0.35);"></div>
+                    <div style="position: absolute; left: 66.66%; height: 100%; width: 1px; background: rgba(255,255,255,0.35);"></div>
+                </div>
             </div>
             
-
-            <div class="modal-actions">
-                <button type="button" class="btn-cancel" onclick="closeAccountSettings()">Cancel</button>
-                <button type="submit" class="btn-save">Save Changes</button>
+            <div style="margin-bottom: 18px; padding: 0 10px;">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: #64748b; margin-bottom: 4px;">
+                    <span>Zoom Out (-)</span>
+                    <span>Zoom In (+)</span>
+                </div>
+                <input type="range" id="imageZoomSlider" min="0.5" max="3" step="0.05" value="1" style="width: 100%; accent-color: #2563eb; cursor: pointer;">
             </div>
-        </form>
+            
+            <div style="display: flex; gap: 10px;">
+                <button type="button" onclick="closeCropModal()" style="flex: 1; padding: 11px; background: #f1f5f9; border: none; border-radius: 10px; font-weight: 600; color: #334155; cursor: pointer;">Cancel</button>
+                <button type="button" onclick="applyCropAndSave()" style="flex: 1; padding: 11px; background: #2563eb; color: #fff; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(37,99,235,0.3);">Done</button>
+            </div>
+        </div>
+    </div>
+
+<!-- PREMIUM FULLSCREEN PRODUCT DETAILS MODAL -->
+<div id="productDetailsPage" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #f8fafc; z-index: 999999; overflow-y: auto; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif;">
+    
+    <!-- TOP HEADER BAR -->
+    <div style="position: sticky; top: 0; background: #ffffff; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; z-index: 10;">
+        <button type="button" onclick="closeProductDetails()" style="background: #f1f5f9; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 20px; font-weight: bold; color: #0f172a; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            &larr;
+        </button>
+        <div style="font-size: 15px; font-weight: 700; color: #0f172a;" id="pdHeaderCategory">Product Details</div>
+        <button type="button" onclick="showToast('Link copied to clipboard!')" style="background: none; border: none; font-size: 20px; cursor: pointer;">
+            &#128257;
+        </button>
+    </div>
+
+    <div style="padding-bottom: 90px; max-width: 600px; margin: 0 auto;">
+        <!-- PRODUCT IMAGE GALLERY VIEW -->
+        <div style="background: #ffffff; padding: 20px; text-align: center; border-bottom: 1px solid #e2e8f0; position: relative;">
+            <span id="pdDiscountBadge" style="position: absolute; top: 16px; left: 16px; background: #ef4444; color: #ffffff; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 20px;">-42% OFF</span>
+            <img id="pdMainImage" src="" alt="Product Image" style="max-width: 100%; height: 260px; object-fit: contain; border-radius: 12px; margin: 10px 0;">
+        </div>
+
+        <!-- PRODUCT INFO CARD -->
+        <div style="background: #ffffff; padding: 16px; margin-top: 8px; border-bottom: 1px solid #e2e8f0;">
+            <div style="color: #2563eb; font-size: 13px; font-weight: 600; margin-bottom: 4px;">Brand Store Verified &#10004;</div>
+            <h1 id="pdTitle" style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0 0 10px 0; line-height: 1.4;">Product Title</h1>
+            
+            <!-- RATING BAR -->
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                <span id="pdRatingScore" style="font-size: 14px; font-weight: 800; color: #0f172a;">4.5</span>
+                <div id="pdRatingStars" style="color: #f59e0b; font-size: 15px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                <span id="pdReviewsCount" style="font-size: 12px; color: #64748b;">(128 ratings)</span>
+            </div>
+
+            <!-- PRICE SECTION -->
+            <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
+                <span id="pdPrice" style="font-size: 26px; font-weight: 800; color: #0f172a;">&#8377;0</span>
+                <span id="pdOriginalPrice" style="font-size: 14px; color: #94a3b8; text-decoration: line-through;">&#8377;0</span>
+            </div>
+            <div style="font-size: 12px; color: #16a34a; font-weight: 700; margin-bottom: 12px;">Inclusive of all taxes</div>
+
+            <!-- DESCRIPTION -->
+            <p id="pdDescription" style="font-size: 14px; color: #475569; line-height: 1.6; margin: 0; border-top: 1px dashed #e2e8f0; padding-top: 10px;">Product description goes here...</p>
+        </div>
+
+        <!-- OFFERS & DELIVERY SECTION -->
+        <div style="background: #ffffff; padding: 16px; margin-top: 8px; border-bottom: 1px solid #e2e8f0;">
+            <div style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">Delivery & Offers</div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #0f172a; margin-bottom: 8px;">
+                <span style="color: #2563eb;">&#128205;</span> Deliver to <strong>Dehradun 248001</strong> - <span style="color: #16a34a; font-weight: 700;">FREE Delivery</span>
+            </div>
+            <div id="pdStockStatus" style="font-size: 13px; font-weight: 700; color: #ef4444;">Only few left in stock!</div>
+        </div>
+    </div>
+
+    <!-- STICKY BOTTOM ACTION BUTTONS -->
+    <div style="position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; padding: 12px 16px; border-top: 1px solid #e2e8f0; display: flex; gap: 10px; box-sizing: border-box; z-index: 100;">
+        <button id="pdCartBtn" type="button" style="flex: 1; padding: 14px; background: #f1f5f9; color: #0f172a; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer;">Add to Cart</button>
+        <button id="pdBuyBtn" type="button" style="flex: 1; padding: 14px; background: #2563eb; color: #ffffff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(37,99,235,0.3);">Buy Now</button>
     </div>
 </div>
 
-<!-- Instagram Style Circular Crop Modal with Grid -->
-<div id="customCropModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 99999; align-items: center; justify-content: center; flex-direction: column;">
-    <div style="background: #ffffff; padding: 20px; border-radius: 20px; width: 92%; max-width: 350px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
-        <h3 style="margin-bottom: 4px; font-size: 18px; color: #0f172a; font-weight: 700;">Crop Profile Photo</h3>
-        <p style="font-size: 12px; color: #64748b; margin-bottom: 14px;">Drag image to position, use slider to zoom</p>
-        
-        <!-- Crop Container with Circle & Grid Lines -->
-        <div id="cropContainer" style="position: relative; width: 260px; height: 260px; margin: 0 auto 16px auto; overflow: hidden; border-radius: 50%; border: 3px solid #2563eb; background: #1e293b; touch-action: none; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
-            <canvas id="cropperCanvas" width="260" height="260" style="position: absolute; top: 0; left: 0; cursor: grab;"></canvas>
-            
-            <!-- Grid Lines Overlay (Inside Circle) -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; border-radius: 50%; overflow: hidden;">
-                <div style="position: absolute; top: 33.33%; width: 100%; height: 1px; background: rgba(255,255,255,0.35);"></div>
-                <div style="position: absolute; top: 66.66%; width: 100%; height: 1px; background: rgba(255,255,255,0.35);"></div>
-                <div style="position: absolute; left: 33.33%; height: 100%; width: 1px; background: rgba(255,255,255,0.35);"></div>
-                <div style="position: absolute; left: 66.66%; height: 100%; width: 1px; background: rgba(255,255,255,0.35);"></div>
-            </div>
-        </div>
-        
-        <!-- Zoom Slider -->
-        <div style="margin-bottom: 18px; padding: 0 10px;">
-            <div style="display: flex; justify-content: space-between; font-size: 11px; color: #64748b; margin-bottom: 4px;">
-                <span>Zoom Out (-)</span>
-                <span>Zoom In (+)</span>
-            </div>
-            <input type="range" id="imageZoomSlider" min="0.5" max="3" step="0.05" value="1" style="width: 100%; accent-color: #2563eb; cursor: pointer;">
-        </div>
-        
-        <!-- Action Buttons -->
-        <div style="display: flex; gap: 10px;">
-            <button type="button" onclick="closeCropModal()" style="flex: 1; padding: 11px; background: #f1f5f9; border: none; border-radius: 10px; font-weight: 600; color: #334155; cursor: pointer;">Cancel</button>
-            <button type="button" onclick="applyCropAndSave()" style="flex: 1; padding: 11px; background: #2563eb; color: #fff; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(37,99,235,0.3);">Done</button>
-        </div>
-    </div>
-</div>
-
-    <script src="script.js"></script>
-   <script>lucide.createIcons();
+    <script src="Script.js"></script>
+    <script>
+        lucide.createIcons();
     </script>  
-             
 </body>
 </html>
-  
